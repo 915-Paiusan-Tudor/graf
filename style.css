@@ -3,17 +3,15 @@ body {
   height: 100vh;
   margin: 0px;
   display: flex;
-  align-items:center;
-  justify-content: center;
-  background: #263238;
-}
+  align-items: center;
+  justify-content: flex-start;
+  background: #263238; }
 
-table, th, td{
+table {
   outline: 5px solid #1E282D;
   padding: 0px;
-  margin: 0px;
-}
-table{
+  margin-left: auto;
+  margin-right: auto;
   height: auto;
   font-family: consolas;
   color: #DC9E38;
@@ -21,25 +19,51 @@ table{
   width: 65%;
   height: inherit;
   text-align: center;
-  font-size: 3em;
+  font-size: 3em; }
+
+th {
+  outline: 5px solid #1E282D;
+  padding: 0px;
+  margin: 0px; }
+
+td {
+  outline: 5px solid #1E282D;
+  padding: 0px;
+  margin: 0px; }
+
+.one {
+  color: #FB9039; }
+
+.zero {
+  color: #C39EA0; }
+
+.row {
+  background: #171E22; }
+
+.collumn {
+  background: #171E22; }
+
+.diag {
+  background: #1D1D2C; }
+.btn{
+  display: flex;
+  position: absolute;
+  background: transparent;
+  background-image: url("585e4831cb11b227491c338e.png");
+  background-position: center;
+  background-size:cover;
+  outline: none;
+  border:0px;
+  margin-left: 50px;
+  margin-top: 35px;
+  height: 60px;
+  width: 60px;
+  align-self: flex-start;
 }
 
-.one{
-  color: #FB9039;
-}
-.zero{
-  color: #C39EA0;
-}
-.row{
-  background: #171E22;
-}
-.collumn{
-  background: #171E22;
-}
-.diag{
-  background: #1D1D2C;
-}
-@media screen and (max-width: 600px){
-table{
-  width:100%;
-}
+@media screen and (max-width: 600px) {
+  table {
+    width: 100%; }
+
+  .btn {
+    display: none; } }
