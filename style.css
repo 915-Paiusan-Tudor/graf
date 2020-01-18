@@ -3,7 +3,6 @@ body {
   height: 100vh;
   margin: 0px;
   display: flex;
-  align-items: center;
   justify-content: flex-start;
   background: #263238; }
 
@@ -63,7 +62,9 @@ td {
 
 @media screen and (max-width: 600px) {
   table {
-    width: 100%; }
+    width: 100%;
+    height: 90vh;
+   }
 
   .btn {
     display: none; } }
