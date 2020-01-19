@@ -71,11 +71,12 @@ td {
     justify-content: center;
 
   }
-   .btn{
+   .btn{ position: absolute;
+     top: 800px
      height: 60px;
      width: 60px;
      align-self: flex-end;
      margin-left: 0px;
-     margin-bottom: 400px;
+     margin-bottom: 40px;
    }
   }
