@@ -223,7 +223,7 @@ function deleteCell(x) {
 ///////////////////////////////////////////////////////////////////////////////
 function change(rownum,cellnum){
 var cell = document.getElementById(rownum + '-' + cellnum);
-  if (cell.firstChild.value <= 0|| cell.firstChild.value==rownum || cell.firstChild.value>rowNumber|| typeof(cell.firstChild.value)!='number') {
+  if (cell.firstChild.value <= 0|| cell.firstChild.value==rownum || cell.firstChild.value>rowNumber || isNaN(parseInt(cell.firstChild.value))) {
     cell.firstChild.value="";
     cell.firstChild.focus();
   }
