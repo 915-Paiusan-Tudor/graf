@@ -1,0 +1,173 @@
+$bg-color: #263238;
+$table-color: #DC9E38;
+
+html {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  justify-content: center;
+  background: $bg-color;
+  font-family: consolas;
+}
+
+.grid {
+  padding: 10px 0 20px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 5% 30% 10% 10% 30%;
+  grid-template-rows: 30px 400px 140px;
+  grid-gap: 10px;
+}
+
+.g {
+  outline: 2px dashed gray;
+}
+#g0{
+    grid-row: 2;
+    grid-row: 2/4;
+    outline: 0px;
+}
+#g1 {
+  grid-row: 2/4;
+  grid-column: 2;
+}
+#g2{
+  grid-column: 3;
+  grid-row: 2;
+}
+#g3 {
+grid-column: 5;
+  grid-row: 2;
+}
+
+#g4 {
+  grid-column: 4;
+    grid-row: 2;
+}
+
+#g5 {
+  grid-column: 3/6;
+    grid-row: 3;
+}
+#ghead{
+  grid-column: 2/3;
+  padding-left: 5px;
+  outline: 0px;
+}
+table {
+  padding: 0;
+  color: $table-color;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1em;
+}
+
+.table2 {
+  table-layout: fixed;
+  padding: 10px 5px 10px 5px;
+  height: auto;
+  width: auto;
+  table-layout: fixed;
+}
+.btndiv{
+  height: auto;
+  width: 100%;
+  max-width: 50px;
+  padding: 4px 0px 4px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.trb{
+  height: auto;
+  outline: 2px solid #1E282D;
+}
+.td{
+  height: 62px;
+  width: 39px;
+}
+.btnadd {
+  cursor: pointer;
+  padding: 0px;
+  margin-top: 5px;
+  width: 25px;
+  height: 25px;
+  border: 3px solid #3b6619;
+  background-color: #4aa54c;
+  border-radius: 5px;
+  color: #79c37b;
+  font-size: 32px;
+  overflow: hidden;
+  line-height: 0;
+  outline: none;
+  margin-right: 5px;
+}
+.btnremove{
+  cursor: pointer;
+  padding: 0px;
+  margin-top: 5px;
+  margin-right: 5px;
+  width: 25px;
+  height: 25px;
+  border: 3px solid #A33E3B;
+  background-color: #D9534F;
+  border-radius: 5px;
+  color: #F1BFBD;
+  font-size: 32px;
+  overflow: hidden;
+  line-height: 0px;
+  outline: none;
+}
+.btnremove:disabled{
+  opacity: 0.4;
+  cursor: default;
+}
+.btnadd:disabled{
+  opacity: 0.4;
+  cursor: default;
+}
+.rowbuttons{
+  display: flex;
+  align-content: center;
+}
+td {
+  outline: 2px solid #1E282D;
+  margin: 0px;
+}
+.inputnode{
+  width: 10px;
+  caret-color: $table-color;
+  color: #FB9039;
+  padding-left: 3px;
+  font-family: consolas;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1em;
+  background: transparent;
+  border: 0px;
+  outline: none;
+}
+
+.zero {
+  color: #C39EA0;
+}
+.one {
+  color: #FB9039;
+}
+
+.row {
+  background: #171E22;
+}
+
+.collumn {
+  background: #171E22;
+}
+
+.diag {
+  background: #1D1D2C;
+}
