@@ -4,7 +4,7 @@
   [2, 0, "", 0],
   [3, 0, 0, ""],
 ];
-
+  var text;
   var rowNumber = 3;
   var cellNumber = [1, 1, 1];
   var tabelm = [Array(3), Array(3), Array(3)];
@@ -196,11 +196,12 @@ function deleteMatrice(){
   }
 }
 ///////////////////////////////////////////////////////////////////////////////
-function deleteCell(x) {
+function deleteCell(x) { //remove mirror
   var table = document.getElementById("table2");
   var row = document.getElementById("tr" + x);
 
   if (row.lastChild.firstChild.value!=""){
+    console.log("td"+x+"-"+text);
   text=parseInt(row.lastChild.firstChild.value);
     document.getElementById("td"+text+"-"+x).innerText=0;
     document.getElementById("td"+x+"-"+text).innerText=0;
@@ -226,9 +227,9 @@ var cell = document.getElementById(rownum + '-' + cellnum);
     cell.firstChild.focus();
   }
   else {
-    var text = parseInt(cell.firstChild.value);
+      text = parseInt(cell.firstChild.value);
       cell.firstChild.blur();
-
+                                                  //add mirror
       document.getElementById("td"+text+"-"+rownum).innerText=1;
       document.getElementById("td"+rownum+"-"+text).innerText=1;
       document.getElementById("td"+text+"-"+rownum).classList.add("one");
