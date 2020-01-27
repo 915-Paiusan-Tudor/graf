@@ -105,14 +105,12 @@ function createleftbuttons(x){
     button.setAttribute("onclick", "addCell(" + (x + 1) + ")");
     button.setAttribute("id", "add" + (x + 1));
     button.className = "btnadd";
-    button.innerHTML = "+";
     btndiv.appendChild(button);
   var button = document.createElement("button");
     button.setAttribute("onclick", "deleteCell(" + (x + 1) + ")");
     button.setAttribute("id", "remove" + (x + 1));
     button.setAttribute("disabled", "");
     button.className = "btnremove";
-    button.innerHTML = "−";
     btndiv.appendChild(button);
   document.getElementById("g0").insertBefore(btndiv, document.getElementById("g0").childNodes[-1]);
 }

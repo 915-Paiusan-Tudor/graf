@@ -58,6 +58,11 @@ table {
   text-align: center;
   font-size: 1em; }
 
+h1 {
+  text-align: center;
+  text-decoration: underline;
+  color: #DC9E38; }
+
 .table2 {
   table-layout: fixed;
   padding: 10px 5px 10px 5px;
@@ -88,31 +93,25 @@ table {
   margin-top: 5px;
   width: 25px;
   height: 25px;
-  border: 3px solid #3b6619;
-  background-color: #4aa54c;
-  border-radius: 5px;
-  color: #79c37b;
-  font-size: 32px;
-  overflow: hidden;
-  line-height: 0;
+  border: 0px;
+  background: transparent;
   outline: none;
-  margin-right: 5px; }
+  background-image: url("plus.png");
+  background-position: center;
+  background-size: contain; }
 
 .btnremove {
   cursor: pointer;
   padding: 0px;
   margin-top: 5px;
-  margin-right: 5px;
   width: 25px;
   height: 25px;
-  border: 3px solid #A33E3B;
-  background-color: #D9534F;
-  border-radius: 5px;
-  color: #F1BFBD;
-  font-size: 32px;
-  overflow: hidden;
-  line-height: 0px;
-  outline: none; }
+  border: 0px;
+  background: transparent;
+  outline: none;
+  background-image: url("minus.png");
+  background-position: center;
+  background-size: contain; }
 
 .btnremove:disabled {
   opacity: 0.4;
@@ -157,5 +156,46 @@ td {
 
 .diag {
   background: #1D1D2C; }
+
+@media only screen and (max-width: 600px) {
+  .grid {
+    grid-template-columns: 5% 80%;
+    grid-template-rows: 30px 400px 400px 75px 75px 100px; }
+
+  #g0 {
+    grid-column: 1/2;
+    grid-row: 2; }
+
+  #g1 {
+    grid-row: 2;
+    grid-column: 2; }
+
+  #g2 {
+    grid-column: 2;
+    grid-row: 4; }
+
+  #g3 {
+    grid-column: 2;
+    grid-row: 3; }
+
+  #g4 {
+    grid-column: 2;
+    grid-row: 5; }
+
+  #g5 {
+    grid-column: 2;
+    grid-row: 6; }
+
+  #ghead {
+    grid-row: 1;
+    grid-column: 2; }
+
+  .td {
+    height: 44px;
+    width: 30px; }
+
+  .btnadd, .btnremove {
+    height: 16px;
+    width: 16px; } }
 
 /*# sourceMappingURL=style.css.map */
