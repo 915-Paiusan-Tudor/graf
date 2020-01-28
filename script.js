@@ -145,7 +145,7 @@ function addmatrice() {
   }
 }
 ///////////////////////////////////////////////////////////////////////////////
-function addCell(x) {
+function addCell(x,y) {
   var table = document.getElementById("table2");
   var row = document.getElementById("tr" + x);
   var cell = row.insertCell(-1);
@@ -154,7 +154,10 @@ function addCell(x) {
     cell.setAttribute("id", x + "-" + (cellNumber[x - 1] + 1));
     cell.innerHTML='<input type="text" class="inputnode" maxlength="1" onkeyup="blur()" onchange="change('+ x + ',' + (cellNumber[x - 1] + 1) + ')"></input>';
     cell.firstChild.focus();
-
+  if (y) {
+    cell.firstChild.value=y;
+    cell.firstChild.blur();
+  }
   if (cellNumber[x - 1] == 1) {
     button.attributes.removeNamedItem("disabled");
   }
@@ -196,19 +199,27 @@ function deleteMatrice(){
   }
 }
 ///////////////////////////////////////////////////////////////////////////////
-function deleteCell(x) { //remove mirror
+function deleteCell(x) {
   var table = document.getElementById("table2");
   var row = document.getElementById("tr" + x);
 
   if (row.lastChild.firstChild.value!=""){
-    console.log("td"+x+"-"+text);
   text=parseInt(row.lastChild.firstChild.value);
     document.getElementById("td"+text+"-"+x).innerText=0;
     document.getElementById("td"+x+"-"+text).innerText=0;
     document.getElementById("td"+text+"-"+x).classList.remove("one");
     document.getElementById("td"+x+"-"+text).classList.remove("one");
   }
-
+  console.log(cellNumber[x - 1]);
+var y=parseInt(row.lastChild.firstChild.value);
+console.log(isNaN(y));
+  if(isNaN(y)==false){
+    for (var i = 0; i < cellNumber[y - 1]; i++) {
+      if(document.getElementById("td"+text+"-"+i+2)){
+        console.log('abc');
+      }
+    }
+  }
   row.deleteCell(cellNumber[x - 1] - 1);
   cellNumber[x - 1]--;
 
@@ -229,7 +240,7 @@ var cell = document.getElementById(rownum + '-' + cellnum);
   else {
       text = parseInt(cell.firstChild.value);
       cell.firstChild.blur();
-                                                  //add mirror
+      addCell(text,rownum);                                            //add mirror
       document.getElementById("td"+text+"-"+rownum).innerText=1;
       document.getElementById("td"+rownum+"-"+text).innerText=1;
       document.getElementById("td"+text+"-"+rownum).classList.add("one");
