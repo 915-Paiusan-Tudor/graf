@@ -93,7 +93,6 @@ function addRow(){
   }
 
   rowNumber++;
-
   addmatrice();
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -146,13 +145,17 @@ function addmatrice() {
 }
 ///////////////////////////////////////////////////////////////////////////////
 function addCell(x,y) {
+  if (ifComplete()==false) {
+alert("Please enter a node");
+return;
+  }
   var table = document.getElementById("table2");
   var row = document.getElementById("tr" + x);
   var cell = row.insertCell(-1);
   var button = document.getElementById("remove" + x);
     cell.className = "td";
     cell.setAttribute("id", x + "-" + (cellNumber[x - 1] + 1));
-    cell.innerHTML='<input type="text" class="inputnode" maxlength="1" onkeyup="blur()" onchange="change('+ x + ',' + (cellNumber[x - 1] + 1) + ')"></input>';
+    cell.innerHTML='<input type="text" class="inputnode" maxlength="1" onkeyup="blur()" placeholder="0" onchange="change('+ x + ',' + (cellNumber[x - 1] + 1) + ')"></input>';
     cell.firstChild.focus();
   if (y) {
     cell.firstChild.value=y;
@@ -163,7 +166,6 @@ function addCell(x,y) {
   }
 
     cellNumber[x - 1]++;
-
   if (cellNumber[x - 1] == rowNumber) {
     document.getElementById("add" + x).setAttribute("disabled", "");
   }
@@ -189,6 +191,7 @@ function deleteRow() {
       document.getElementById("add" + (i+1)).setAttribute("disabled", "");
     }
   }
+  //ifRowInCell();
   rowNumber--;
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -202,21 +205,26 @@ function deleteMatrice(){
 function deleteCell(x) {
   var table = document.getElementById("table2");
   var row = document.getElementById("tr" + x);
-
   if (row.lastChild.firstChild.value!=""){
-  text=parseInt(row.lastChild.firstChild.value);
-    document.getElementById("td"+text+"-"+x).innerText=0;
-    document.getElementById("td"+x+"-"+text).innerText=0;
-    document.getElementById("td"+text+"-"+x).classList.remove("one");
-    document.getElementById("td"+x+"-"+text).classList.remove("one");
-  }
-  console.log(cellNumber[x - 1]);
-var y=parseInt(row.lastChild.firstChild.value);
-console.log(isNaN(y));
-  if(isNaN(y)==false){
+  var y=parseInt(row.lastChild.firstChild.value);
+  if(y<rowNumber){
+    document.getElementById("td"+y+"-"+x).innerText=0;
+    document.getElementById("td"+x+"-"+y).innerText=0;
+    document.getElementById("td"+y+"-"+x).classList.remove("one");
+    document.getElementById("td"+x+"-"+y).classList.remove("one");
+    }
+}
+  if(y){
     for (var i = 0; i < cellNumber[y - 1]; i++) {
-      if(document.getElementById("td"+text+"-"+i+2)){
-        console.log('abc');
+      if(document.getElementById("tr"+y).childNodes[i].firstChild.value==x){
+        document.getElementById("tr"+y).deleteCell(i);
+          cellNumber[y - 1]--;
+        if (cellNumber[y - 1] == 1) {
+          document.getElementById("remove" + y).setAttribute("disabled", "");
+        }
+        if (cellNumber[y - 1] == rowNumber-1) {
+          document.getElementById("add" + y).attributes.removeNamedItem("disabled");
+        }
       }
     }
   }
@@ -236,15 +244,45 @@ var cell = document.getElementById(rownum + '-' + cellnum);
   if (cell.firstChild.value <= 0|| cell.firstChild.value==rownum || cell.firstChild.value>rowNumber || isNaN(parseInt(cell.firstChild.value))) {
     cell.firstChild.value="";
     cell.firstChild.focus();
+    return;
   }
-  else {
+  for (var i = 1; i <cellNumber[rownum - 1] - 1; i++) {
+  if (document.getElementById("tr"+rownum).childNodes[i].firstChild.value==cell.firstChild.value) {
+    cell.firstChild.value="";
+    cell.firstChild.focus();
+    return;
+  }
+}
       text = parseInt(cell.firstChild.value);
       cell.firstChild.blur();
-      addCell(text,rownum);                                            //add mirror
+      addCell(text,rownum);
       document.getElementById("td"+text+"-"+rownum).innerText=1;
       document.getElementById("td"+rownum+"-"+text).innerText=1;
       document.getElementById("td"+text+"-"+rownum).classList.add("one");
       document.getElementById("td"+rownum+"-"+text).classList.add("one");
-  }
 }
 ///////////////////////////////////////////////////////////////////////////////
+function ifComplete(){
+  for (var i = 0; i <= rowNumber; i++) {
+    if(cellNumber[i]!=1){
+      console.table(cellNumber);
+    for(var j = 1; j < cellNumber[i];j++){
+      if(document.getElementById("tr"+(i+1)).childNodes[j].firstChild.value==0)
+      return false;
+    }
+  }
+}
+}
+/*function ifRowInCell(){
+  for (var i = 0; i <= rowNumber; i++) {
+    if(cellNumber[i]!=1){
+    for(var j = 1; j < cellNumber[i];j++){
+      if(document.getElementById("tr"+(i+1)).childNodes[j].firstChild.value==rowNumber){
+      document.getElementById("tr"+(i+1)).deleteCell(j);
+      cellNumber[i-1]--;
+    }
+    }
+  }
+}
+}
+*/
