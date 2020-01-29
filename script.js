@@ -93,6 +93,7 @@ function addRow(){
   }
 
   rowNumber++;
+  console.table(cellNumber);
   addmatrice();
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -184,14 +185,10 @@ function deleteRow() {
   }
   deleteMatrice();
   cellNumber.pop();
+  console.table(cellNumber);
+ifRowInCell();
+  console.table(cellNumber);
 
-  for (var i = 0; i < cellNumber.length; i++) {
-    if (cellNumber[i]==rowNumber) {
-      deleteCell(i+1);
-      document.getElementById("add" + (i+1)).setAttribute("disabled", "");
-    }
-  }
-  //ifRowInCell();
   rowNumber--;
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -218,6 +215,9 @@ function deleteCell(x) {
     for (var i = 0; i < cellNumber[y - 1]; i++) {
       if(document.getElementById("tr"+y).childNodes[i].firstChild.value==x){
         document.getElementById("tr"+y).deleteCell(i);
+        for(var j = i;j < cellNumber[y - 1]-1; j++){
+              document.getElementById("tr"+y).childNodes[j].setAttribute("id", y + "-" + (j+1));
+        }
           cellNumber[y - 1]--;
         if (cellNumber[y - 1] == 1) {
           document.getElementById("remove" + y).setAttribute("disabled", "");
@@ -265,7 +265,6 @@ var cell = document.getElementById(rownum + '-' + cellnum);
 function ifComplete(){
   for (var i = 0; i <= rowNumber; i++) {
     if(cellNumber[i]!=1){
-      console.table(cellNumber);
     for(var j = 1; j < cellNumber[i];j++){
       if(document.getElementById("tr"+(i+1)).childNodes[j].firstChild.value==0)
       return false;
@@ -273,16 +272,27 @@ function ifComplete(){
   }
 }
 }
-/*function ifRowInCell(){
-  for (var i = 0; i <= rowNumber; i++) {
+function ifRowInCell(){
+  for (var i = 0; i < rowNumber -1; i++) {
+
     if(cellNumber[i]!=1){
     for(var j = 1; j < cellNumber[i];j++){
       if(document.getElementById("tr"+(i+1)).childNodes[j].firstChild.value==rowNumber){
+        console.log(document.getElementById("tr"+(i+1)).childNodes[j].firstChild.value + "=" +rowNumber)
       document.getElementById("tr"+(i+1)).deleteCell(j);
-      cellNumber[i-1]--;
+      for(var k = j;k < cellNumber[i]-1; k++){
+            document.getElementById("tr"+(i+1)).childNodes[k].setAttribute("id", (i+1) + "-" + (k+1));
+      }
+      j--;
+      cellNumber[i]--;
+      if (cellNumber[i] == 1) {
+        document.getElementById("remove" + (i+1)).setAttribute("disabled", "");
+      }
+      if (cellNumber[i] == rowNumber-1) {
+        document.getElementById("add" + (i+1)).attributes.removeNamedItem("disabled");
+      }
     }
     }
   }
 }
 }
-*/
