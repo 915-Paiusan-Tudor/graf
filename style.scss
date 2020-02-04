@@ -29,10 +29,13 @@ body {
     grid-row: 2;
     grid-row: 2/4;
     outline: 0px;
+    margin-top: 12px;
 }
 #g1 {
   grid-row: 2/4;
   grid-column: 2;
+  z-index: 2;
+  background: $bg-color;
 }
 #g2{
   grid-column: 3;
@@ -77,6 +80,7 @@ h1{
   height: auto;
   width: auto;
   table-layout: fixed;
+  z-index: 2;
 }
 .tabelAdiacenta{
 width: auto;
@@ -103,11 +107,10 @@ height: 100%;
 .btndiv{
   height: auto;
   width: 100%;
-  max-width: 50px;
-  padding: 4px 0px 4px 0px;
+  max-height: 64px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items:baseline;
 }
 .trb{
   height: auto;
@@ -119,30 +122,63 @@ height: 100%;
 }
 .btnadd {
   cursor: pointer;
-  padding: 0px;
-  margin-top: 5px;
-  width: 25px;
-  height: 25px;
+  padding: 2px 0px 2px 0px;
+  width: 100%;
+  height: 32px;
   border: 0px;
   background: transparent;
   outline: none;
-  background-image: url("plus.png");
-  background-position: center;
+  background-image: url("mor.png");
+  background-position: left;
   background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
+  animation-name: deselected;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+.btnadd:hover{
+  animation-name: selected;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 .btnremove{
   cursor: pointer;
-  padding: 0px;
-  margin-top: 5px;
-  width: 25px;
-  height: 25px;
+  padding: 2px 0px 2px 0px;
+  width: 100%;
+  height: 32px;
   border: 0px;
   background: transparent;
   outline: none;
-  background-image: url("minus.png");
-  background-position: center;
+  background-image: url("mor2.png");
+  background-position: left;
   background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
+  animation-name: deselected;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
+.btnremove:hover{
+  animation-name: selected;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes selected{
+  from{left:70%;}
+  to{left:50%;}
+}
+@keyframes deselected{
+  from{left:50%;}
+  to{left:70%;}
+}
+
 .btnremove:disabled{
   opacity: 0.4;
   cursor: default;
