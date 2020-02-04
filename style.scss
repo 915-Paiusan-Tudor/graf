@@ -107,8 +107,10 @@ height: 100%;
 .btndiv{
   height: auto;
   width: 100%;
-  max-height: 64px;
+  min-height: 64px;
   display: flex;
+  padding-left: 70%;
+  margin: 2px 0px 2px 0px;
   flex-direction: column;
   align-items:baseline;
 }
@@ -120,15 +122,15 @@ height: 100%;
   height: 62px;
   width: 39px;
 }
-.btnadd {
+.btnadd,.btnremove {
   cursor: pointer;
-  padding: 2px 0px 2px 0px;
-  width: 100%;
+  padding: 0px;
+    width: 64px;
   height: 32px;
   border: 0px;
   background: transparent;
   outline: none;
-  background-image: url("mor.png");
+  background-image: url("plus.png");
   background-position: left;
   background-size: contain;
   background-repeat: no-repeat;
@@ -139,57 +141,68 @@ height: 100%;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
-.btnadd:hover{
+.btnadd:hover, .btnremove:hover{
   animation-name: selected;
   animation-duration: 0.1s;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
 .btnremove{
+  background-image: url("minus.png");
+}
+@keyframes selected{
+  from{left:0%;}
+  to{left:-10%;}
+}
+@keyframes deselected{
+  from{left:-10%;}
+  to{left:0%;}
+}
+
+.btnremove:disabled,.btnadd:disabled{
+  opacity: 0.4;
+  cursor: default;
+}
+.btnaddtop,.btnremovetop{
   cursor: pointer;
   padding: 2px 0px 2px 0px;
   width: 100%;
-  height: 32px;
+  height: 64px;
   border: 0px;
   background: transparent;
   outline: none;
-  background-image: url("mor2.png");
+  background-image: url("plustop.png");
   background-position: left;
   background-size: contain;
   background-repeat: no-repeat;
   position: relative;
   z-index: 1;
-  animation-name: deselected;
+  animation-name: deselectedtop;
   animation-duration: 0.1s;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
-.btnremove:hover{
-  animation-name: selected;
+.btnremovetop{
+  background-image: url("minustop.png");
+}
+.btnaddtop:hover,.btnremovetop:hover{
+  animation-name: selectedtop;
   animation-duration: 0.1s;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
-@keyframes selected{
-  from{left:70%;}
-  to{left:50%;}
+@keyframes selectedtop{
+  from{top:10px;}
+  to{top:5px;}
 }
-@keyframes deselected{
-  from{left:50%;}
-  to{left:70%;}
-}
-
-.btnremove:disabled{
-  opacity: 0.4;
-  cursor: default;
-}
-.btnadd:disabled{
-  opacity: 0.4;
-  cursor: default;
+@keyframes deselectedtop{
+  from{top:5px;}
+  to{top:10px;}
 }
 .rowbuttons{
   display: flex;
   align-content: center;
+  max-width: 64px;
 }
 td {
   outline: 2px solid #1E282D;
@@ -266,8 +279,7 @@ grid-template-rows: 30px 400px 400px 75px 75px 100px;
     height: 44px;
     width: 30px;
     }
-.btnadd , .btnremove{
-height: 16px;
-width: 16px;
 }
+.btndiv{
+  padding-left: 0%;
 }
