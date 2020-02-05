@@ -9,7 +9,16 @@
   var cellNumber = [1, 1, 1];
   var tabelm = [Array(3), Array(3), Array(3)];
   var tabelAdiacenta;
-
+  var parcurgere= Array(2);
+  console.log(document.getElementById("parcurgere"+i));
+for(var i=0;i<2;i++)
+{parcurgere.push({
+buttonid:document.getElementById("parcurgere"+i),
+visibility:false
+}
+);
+}
+console.table(parcurgere[0]);
   for (var i = 0; i < 3; i++) {
     tabelm[i][0] = i + 1;
   }
@@ -79,6 +88,10 @@
   createTableLeft(tabelm, "g1")
   ///////////////////////////////////////////////////////////////////////////////
   function addRow() {
+    if (ifComplete() == false) {
+      alert("Please enter a node");
+      return;
+    }
     var table = document.getElementById("table2");
 
     var row = table.insertRow(-1);
@@ -184,6 +197,10 @@
   }
   ///////////////////////////////////////////////////////////////////////////////
   function deleteRow() {
+    if (ifComplete() == false) {
+      alert("Please enter a node");
+      return;
+    }
     document.getElementById("table2").deleteRow(-1);
     document.getElementById("btndiv" + rowNumber).remove();
 
@@ -209,6 +226,10 @@
   }
   ///////////////////////////////////////////////////////////////////////////////
   function deleteCell(x) {
+    if (ifComplete() == false) {
+      alert("Please enter a node");
+      return;
+    }
     var table = document.getElementById("table2");
     var row = document.getElementById("tr" + x);
     if (row.lastChild.firstChild.value != "") {
