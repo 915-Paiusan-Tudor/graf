@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
+<body>
 <div class="grid">
 <div id="ghead" class="g">
   <div class="rowbuttons">
@@ -15,21 +16,33 @@
    <button class="btnremovetop" id="removetop" type="button" onclick="deleteRow()" name="button" disabled></button>
  </div>
 </div>
-<div id="g0" class="g"></div>
-<div id="g1" class="g"></div>
+<div id="g1" class="g">
+  <div id="allbtndiv">
+  </div>
+</div>
 <div id="g2" class="g">
-  <div class="btnparcurgere">
-    <button type="button"><</button>
-    <button type="button" id="parcurgere0">Bf</button>
-    <button type="button" id="parcurgere1">Df</button>
-    <button type="button">></button>
+  <div class="tab">
+    <button type="button" class="tablinks" onclick="openCity(event, 'BF')" id="defaultOpen"><img src="BF.png"  id="bfbtn"></button>
+    <button type="button" class="tablinks" onclick="openCity(event, 'DF')"><img src="DF.png"  id="dfbtn"></button>
+  </div>
+  <div id="BF" class="tabcontent">
+    <div class="nodeselect">
+      <button type="button" class="directionbtn" onclick="leftBF()" id="leftbtn"></button>
+      <div class=current><p id="currentbf">1</p></div>
+      <button type="button" class="directionbtn" onclick="rightBF()" id="rightbtn"></button>
+    </div>
+  </div>
+  <div id="DF"  class="tabcontent">
+    <div class="nodeselect">
+      <button type="button" class="directionbtn" onclick="leftDF()" id="leftbtn"></button>
+      <div class=current><p id="currentdf">1</p></div>
+      <button type="button" class="directionbtn" onclick="rightDF()" id="rightbtn"></button>
+    </div>
   </div>
 </div>
 <div id="g3" class="g"></div>
 <div id="g5" class="g"></div>
 </div>
-<body>
   <script src="script.js" charset="utf-8"></script>
 </body>
-
 </html>

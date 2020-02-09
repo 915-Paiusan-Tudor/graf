@@ -4,26 +4,18 @@
     [2, 0, "", 0],
     [3, 0, 0, ""],
   ];
+  var matriceA =[,[,0,0,0],[,0,0,0],[,0,0,0]];
   var text;
   var rowNumber = 3;
   var cellNumber = [1, 1, 1];
   var tabelm = [Array(3), Array(3), Array(3)];
   var tabelAdiacenta;
-  var parcurgere= Array(2);
-  console.log(document.getElementById("parcurgere"+i));
-for(var i=0;i<2;i++)
-{parcurgere.push({
-buttonid:document.getElementById("parcurgere"+i),
-visibility:false
-}
-);
-}
-console.table(parcurgere[0]);
+  var current=1;
   for (var i = 0; i < 3; i++) {
     tabelm[i][0] = i + 1;
   }
   ///////////////////////////////////////////////////////////////////////////////
-  function createTable(tableData, g, conditii, classnametabel) {
+  function createTable(tableData, g, conditii, classnametabel, tdname) {
     if (document.getElementById(g).childNodes[0]) {
       document.getElementById(g).removeChild(document.getElementById(g).childNodes[0]);
     }
@@ -38,7 +30,7 @@ console.table(parcurgere[0]);
       row.setAttribute("id", "mrow" + index);
       rowData.forEach(function(cellData, index2) {
         var cell = document.createElement('td');
-        cell.setAttribute("id", "td" + index + "-" + index2);
+        cell.setAttribute("id", "td"+tdname+ index + "-" + index2);
         conditii(index, index2, cellData, cell);
         cell.appendChild(document.createTextNode(cellData));
         row.appendChild(cell);
@@ -63,9 +55,11 @@ console.table(parcurgere[0]);
     }
 
   }
-  createTable(a, "g3", conditiimatrice, 'matrice');
+  createTable(a, "g3", conditiimatrice, 'matrice','');
   ///////////////////////////////////////////////////////////////////////////////
   function createTableLeft(tableData, g) {
+    var container= document.createElement('div');
+    container.setAttribute("id", "table2container");
     var table = document.createElement('table');
     table.className = "table2";
     table.setAttribute("id", "table2");
@@ -83,15 +77,13 @@ console.table(parcurgere[0]);
       createleftbuttons(index);
       table.appendChild(row);
     });
-    document.getElementById(g).insertBefore(table, document.getElementById(g).childNodes[0]);
+    container.appendChild(table);
+    document.getElementById(g).insertBefore(container, document.getElementById(g).childNodes[0]);
   }
   createTableLeft(tabelm, "g1")
   ///////////////////////////////////////////////////////////////////////////////
   function addRow() {
-    if (ifComplete() == false) {
-      alert("Please enter a node");
-      return;
-    }
+
     var table = document.getElementById("table2");
 
     var row = table.insertRow(-1);
@@ -114,16 +106,25 @@ console.table(parcurgere[0]);
     }
     for (var i = 0; i < rowNumber; i++) {
       if (cellNumber[i] == rowNumber) {
-        document.getElementsByClassName('btnadd')[i + 1].attributes.removeNamedItem("disabled");
+        document.getElementsByClassName('btnadd')[i].attributes.removeNamedItem("disabled");
       }
     }
 
     rowNumber++;
+    matriceA.push([,0,0,0])
+    for(var i=1;i<=rowNumber;i++){
+      matriceA[i].push(0);
+    }
+    while(matriceA[rowNumber].length<=rowNumber)
+    {
+      matriceA[rowNumber].push(0);
+    }
     addmatrice();
     generareTabelAdiacenta();
   }
   ///////////////////////////////////////////////////////////////////////////////
   function createleftbuttons(x) {
+    var allbtndiv = document.getElementById('allbtndiv');
     var btndiv = document.createElement('div'); //BUTOANE
     btndiv.className = "btndiv";
     btndiv.setAttribute("id", "btndiv" + (x + 1));
@@ -138,7 +139,7 @@ console.table(parcurgere[0]);
     button.setAttribute("disabled", "");
     button.className = "btnremove";
     btndiv.appendChild(button);
-    document.getElementById("g0").insertBefore(btndiv, document.getElementById("g0").childNodes[-1]);
+    allbtndiv.insertBefore(btndiv, allbtndiv.childNodes[-1]);
   }
   ///////////////////////////////////////////////////////////////////////////////
   function addmatrice() {
@@ -197,10 +198,6 @@ console.table(parcurgere[0]);
   }
   ///////////////////////////////////////////////////////////////////////////////
   function deleteRow() {
-    if (ifComplete() == false) {
-      alert("Please enter a node");
-      return;
-    }
     document.getElementById("table2").deleteRow(-1);
     document.getElementById("btndiv" + rowNumber).remove();
 
@@ -214,8 +211,12 @@ console.table(parcurgere[0]);
     deleteMatrice();
     cellNumber.pop();
     ifRowInCell();
-    generareTabelAdiacenta();
     rowNumber--;
+    matriceA.pop();
+    for(var i=1;i<=rowNumber;i++){
+      matriceA[i].pop();
+    }
+    generareTabelAdiacenta();
   }
   ///////////////////////////////////////////////////////////////////////////////
   function deleteMatrice() {
@@ -226,10 +227,6 @@ console.table(parcurgere[0]);
   }
   ///////////////////////////////////////////////////////////////////////////////
   function deleteCell(x) {
-    if (ifComplete() == false) {
-      alert("Please enter a node");
-      return;
-    }
     var table = document.getElementById("table2");
     var row = document.getElementById("tr" + x);
     if (row.lastChild.firstChild.value != "") {
@@ -260,7 +257,6 @@ console.table(parcurgere[0]);
     }
     row.deleteCell(cellNumber[x - 1] - 1);
     cellNumber[x - 1]--;
-
     if (cellNumber[x - 1] == 1) {
       document.getElementById("remove" + x).setAttribute("disabled", "");
     }
@@ -311,7 +307,6 @@ console.table(parcurgere[0]);
       if (cellNumber[i] != 1) {
         for (var j = 1; j < cellNumber[i]; j++) {
           if (document.getElementById("tr" + (i + 1)).childNodes[j].firstChild.value == rowNumber) {
-            console.log(document.getElementById("tr" + (i + 1)).childNodes[j].firstChild.value + "=" + rowNumber)
             document.getElementById("tr" + (i + 1)).deleteCell(j);
             for (var k = j; k < cellNumber[i] - 1; k++) {
               document.getElementById("tr" + (i + 1)).childNodes[k].setAttribute("id", (i + 1) + "-" + (k + 1));
@@ -321,15 +316,20 @@ console.table(parcurgere[0]);
             if (cellNumber[i] == 1) {
               document.getElementById("remove" + (i + 1)).setAttribute("disabled", "");
             }
-            if (cellNumber[i] == rowNumber - 1) {
-              document.getElementById("add" + (i + 1)).attributes.removeNamedItem("disabled");
-            }
           }
         }
       }
     }
   }
-
+  function updateMatriceA() {
+    for (var i = 1; i <= rowNumber; i++) {
+      if (cellNumber[i-1] != 1) {
+        for (var j = 1; j < cellNumber[i-1]; j++) {
+          matriceA[i][document.getElementById("tr" + (i)).childNodes[j].firstChild.value]=1;
+        }
+      }
+    }
+  }
   function conditiiTabel(index, index2, cellData, cell) {
     if (index == 0) {
       cell.className = "row";
@@ -370,6 +370,167 @@ console.table(parcurgere[0]);
     for (var i = 0; i < k; i++) {
       tabelAdiacenta[0][i] = i + 1;
     }
-    createTable(tabelAdiacenta, "g5", conditiiTabel, 'tabelAdiacenta');
+    createTable(tabelAdiacenta, "g5", conditiiTabel, 'tabelAdiacenta','adiacenta');
   }
   generareTabelAdiacenta();
+{
+  var s1 = document.getElementById('allbtndiv');
+  var s2 = document.getElementById('table2container');
+
+  function select_scroll_1(e) { s2.scrollTop = s1.scrollTop; }
+  function select_scroll_2(e) { s1.scrollTop = s2.scrollTop; }
+
+  s1.addEventListener('scroll', select_scroll_1, false);
+  s2.addEventListener('scroll', select_scroll_2, false);
+}
+function openCity(evt, parcurgere) {
+
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(parcurgere).style.display = "flex";
+  evt.currentTarget.className += " active";
+}
+function parcurgereBF(i){
+    updateMatriceA();
+  var viz=[];
+  var c=[];
+  viz.length=rowNumber+1;
+  viz.fill(0,1);
+  c.length=rowNumber+1;
+  var p=1;
+  var u=1;
+  c[1]=i;
+  viz[i]=1;
+  var loop=1;
+  while (p<=u) {
+    var x=c[p];
+    for(var j=1; j<=rowNumber; j++)
+    {
+      if(matriceA[x][j]==1 && viz[j]==0){
+        viz[j]=1;
+        u++;
+        c[u]=j;
+      }
+    }
+    p++;
+    console.log(u+","+p);
+  }
+createTableArray(c, "g2", conditiiArray, 'parcurgeretabel','bf');
+}
+  var viz=[];
+  var c=[];
+  var l;
+  var i;
+function parcurgere(i,l){
+  for (var j=1;j<=rowNumber;j++){
+        if (matriceA[i][j]==1 & viz[j]==0)
+        {
+            c[l]=j;
+            viz[j]=1;
+            l++;
+            parcurgere(j,l);
+        }
+      }
+}
+function parcurgereDF(i){
+  updateMatriceA();
+  c=[];
+  viz.length=rowNumber+1;
+  viz.fill(0,1);
+  c.length=rowNumber+1;
+  l=2;
+  viz[i]=1;
+    c[1]=i;
+    parcurgere(i,l);
+    createTableArray(c, "g2", conditiiArray, 'parcurgeretabel','df');
+}
+function conditiiArray(index, cell) {
+  if (index == 1) {
+    cell.className = "row";
+  }
+  cell.classList.add('cellArray');
+}
+
+function createTableArray(tableData, g, conditii, classnametabel, tdname) {
+if (document.getElementById(classnametabel)) {
+ document.getElementById(classnametabel).parentNode.removeChild(document.getElementById(classnametabel));
+}
+  var div = document.getElementById('BF');
+  var table = document.createElement('table');
+  var tbody = document.createElement('tbody');
+  table.className = classnametabel;
+  table.setAttribute('id', classnametabel);
+
+    rowData=tableData.length;
+    for(var i=1; i<rowData;i++) {
+      if(tableData[i]==undefined){
+        continue;
+      }
+      var row = document.createElement('tr');
+      row.setAttribute("id", "arow" + i);
+      var cell = document.createElement('td');
+      cell.setAttribute("id", "td"+tdname+ i + "-" + 1);
+      conditii(i , cell);
+      cell.appendChild(document.createTextNode(tableData[i]));
+      row.appendChild(cell);
+      table.appendChild(row);
+    }
+
+    div.appendChild(table);
+  document.getElementById(g).appendChild(div);
+}
+function rightBF(){
+  if(current!=rowNumber){
+    current++;
+  }
+  else {
+    current=1;
+  }
+  document.getElementById("currentbf").innerHTML=current;
+  parcurgereDF(current);
+}
+function rightDF(){
+  if(current!=rowNumber){
+    current++;
+  }
+  else {
+    current=1;
+  }
+  document.getElementById("currentdf").innerHTML=current;
+  parcurgereDF(current);
+}
+function leftBF(){
+  if(current!=1){
+    current--;
+  }
+  else {
+    current=rowNumber;
+  }
+  document.getElementById("currentbf").innerHTML=current;
+  parcurgereDF(current);
+}
+function leftDF(){
+  if(current!=1){
+    current--;
+  }
+  else {
+    current=rowNumber;
+  }
+  document.getElementById("currentdf").innerHTML=current;
+  parcurgereDF(current);
+}
+document.getElementById("defaultOpen").click();
