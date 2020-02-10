@@ -11,6 +11,7 @@
   var tabelm = [Array(3), Array(3), Array(3)];
   var tabelAdiacenta;
   var current=1;
+  var currentparcurgere='BF';
   for (var i = 0; i < 3; i++) {
     tabelm[i][0] = i + 1;
   }
@@ -217,6 +218,7 @@
       matriceA[i].pop();
     }
     generareTabelAdiacenta();
+    eval("parcurgere"+currentparcurgere)(current);
   }
   ///////////////////////////////////////////////////////////////////////////////
   function deleteMatrice() {
@@ -264,6 +266,7 @@
       document.getElementById("add" + x).attributes.removeNamedItem("disabled");
     }
     generareTabelAdiacenta();
+    eval("parcurgere"+currentparcurgere)(current);
   }
   ///////////////////////////////////////////////////////////////////////////////
   function change(rownum, cellnum) {
@@ -288,6 +291,7 @@
     document.getElementById("td" + text + "-" + rownum).classList.add("one");
     document.getElementById("td" + rownum + "-" + text).classList.add("one");
     generareTabelAdiacenta();
+    eval("parcurgere"+currentparcurgere)(current);
   }
   ///////////////////////////////////////////////////////////////////////////////
   function ifComplete() {
@@ -323,6 +327,7 @@
   }
   function updateMatriceA() {
     for (var i = 1; i <= rowNumber; i++) {
+            matriceA[i].fill(0);
       if (cellNumber[i-1] != 1) {
         for (var j = 1; j < cellNumber[i-1]; j++) {
           matriceA[i][document.getElementById("tr" + (i)).childNodes[j].firstChild.value]=1;
@@ -384,7 +389,7 @@
   s2.addEventListener('scroll', select_scroll_2, false);
 }
 function openCity(evt, parcurgere) {
-
+  currentparcurgere=parcurgere;
   // Declare all variables
   var i, tabcontent, tablinks;
 
@@ -403,6 +408,7 @@ function openCity(evt, parcurgere) {
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(parcurgere).style.display = "flex";
   evt.currentTarget.className += " active";
+  eval("parcurgere"+currentparcurgere)(current);
 }
 function parcurgereBF(i){
     updateMatriceA();
@@ -429,25 +435,26 @@ function parcurgereBF(i){
     p++;
     console.log(u+","+p);
   }
-createTableArray(c, "g2", conditiiArray, 'parcurgeretabel','bf');
+createTableArray(c, "g2", conditiiArray, 'parcurgeretabel','BF');
 }
+
+function parcurgereDF(i){
+  updateMatriceA();
   var viz=[];
   var c=[];
   var l;
   var i;
-function parcurgere(i,l){
+function parcurgere(i){
   for (var j=1;j<=rowNumber;j++){
         if (matriceA[i][j]==1 & viz[j]==0)
         {
             c[l]=j;
             viz[j]=1;
             l++;
-            parcurgere(j,l);
+            parcurgere(j);
         }
       }
 }
-function parcurgereDF(i){
-  updateMatriceA();
   c=[];
   viz.length=rowNumber+1;
   viz.fill(0,1);
@@ -455,8 +462,8 @@ function parcurgereDF(i){
   l=2;
   viz[i]=1;
     c[1]=i;
-    parcurgere(i,l);
-    createTableArray(c, "g2", conditiiArray, 'parcurgeretabel','df');
+    parcurgere(i);
+    createTableArray(c, "g2", conditiiArray, 'parcurgeretabel','DF');
 }
 function conditiiArray(index, cell) {
   if (index == 1) {
@@ -469,7 +476,7 @@ function createTableArray(tableData, g, conditii, classnametabel, tdname) {
 if (document.getElementById(classnametabel)) {
  document.getElementById(classnametabel).parentNode.removeChild(document.getElementById(classnametabel));
 }
-  var div = document.getElementById('BF');
+  var div = document.getElementById(tdname);
   var table = document.createElement('table');
   var tbody = document.createElement('tbody');
   table.className = classnametabel;
@@ -493,7 +500,7 @@ if (document.getElementById(classnametabel)) {
     div.appendChild(table);
   document.getElementById(g).appendChild(div);
 }
-function rightBF(){
+function right(x){
   if(current!=rowNumber){
     current++;
   }
@@ -501,19 +508,9 @@ function rightBF(){
     current=1;
   }
   document.getElementById("currentbf").innerHTML=current;
-  parcurgereDF(current);
+  eval("parcurgere"+x)(current);
 }
-function rightDF(){
-  if(current!=rowNumber){
-    current++;
-  }
-  else {
-    current=1;
-  }
-  document.getElementById("currentdf").innerHTML=current;
-  parcurgereDF(current);
-}
-function leftBF(){
+function left(x){
   if(current!=1){
     current--;
   }
@@ -521,16 +518,6 @@ function leftBF(){
     current=rowNumber;
   }
   document.getElementById("currentbf").innerHTML=current;
-  parcurgereDF(current);
-}
-function leftDF(){
-  if(current!=1){
-    current--;
-  }
-  else {
-    current=rowNumber;
-  }
-  document.getElementById("currentdf").innerHTML=current;
-  parcurgereDF(current);
+  eval("parcurgere"+x)(current);
 }
 document.getElementById("defaultOpen").click();
