@@ -81,7 +81,7 @@
     container.appendChild(table);
     document.getElementById(g).insertBefore(container, document.getElementById(g).childNodes[0]);
   }
-  createTableLeft(tabelm, "g1")
+  createTableLeft(tabelm, "table")
   ///////////////////////////////////////////////////////////////////////////////
   function addRow() {
 
@@ -133,12 +133,14 @@
     button.setAttribute("onclick", "addCell(" + (x + 1) + ")");
     button.setAttribute("id", "add" + (x + 1));
     button.className = "btnadd";
+    button.innerHTML="<p>+</p>";
     btndiv.appendChild(button);
     var button = document.createElement("button");
     button.setAttribute("onclick", "deleteCell(" + (x + 1) + ")");
     button.setAttribute("id", "remove" + (x + 1));
     button.setAttribute("disabled", "");
     button.className = "btnremove";
+    button.innerHTML="<p>-</p>";
     btndiv.appendChild(button);
     allbtndiv.insertBefore(btndiv, allbtndiv.childNodes[-1]);
   }
@@ -388,7 +390,7 @@
   s1.addEventListener('scroll', select_scroll_1, false);
   s2.addEventListener('scroll', select_scroll_2, false);
 }
-function openCity(evt, parcurgere) {
+function openParcurgere(evt, parcurgere) {
   currentparcurgere=parcurgere;
   // Declare all variables
   var i, tabcontent, tablinks;
@@ -409,6 +411,27 @@ function openCity(evt, parcurgere) {
   document.getElementById(parcurgere).style.display = "flex";
   evt.currentTarget.className += " active";
   eval("parcurgere"+currentparcurgere)(current);
+  document.getElementById("current"+currentparcurgere).innerHTML=current;
+}
+function openMain(evt, main) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent2");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks2");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(main).style.display = "flex";
+  evt.currentTarget.className += " active";
 }
 function parcurgereBF(i){
     updateMatriceA();
@@ -507,7 +530,7 @@ function right(x){
   else {
     current=1;
   }
-  document.getElementById("currentbf").innerHTML=current;
+  document.getElementById("current"+x).innerHTML=current;
   eval("parcurgere"+x)(current);
 }
 function left(x){
@@ -517,7 +540,8 @@ function left(x){
   else {
     current=rowNumber;
   }
-  document.getElementById("currentbf").innerHTML=current;
+  document.getElementById("current"+x).innerHTML=current;
   eval("parcurgere"+x)(current);
 }
 document.getElementById("defaultOpen").click();
+document.getElementById("defaultOpen2").click();

@@ -6,43 +6,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Graf</title>
   <link rel="stylesheet" type="text/css" href="style.css">
-
+  <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Coda+Caption:800|Nanum+Gothic|Nanum+Myeongjo&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="grid">
+
 <div id="ghead" class="g">
-  <div class="rowbuttons">
-   <button class="btnaddtop" id="addtop" type="button" onclick="addRow(rowNumber)" name="button"></button>
-   <button class="btnremovetop" id="removetop" type="button" onclick="deleteRow()" name="button" disabled></button>
+ <div class="rowbuttons">
+   <button class="btnaddtop" id="addtop" type="button" onclick="addRow(rowNumber)" name="button"><p>Add</p></button>
+   <button class="btnremovetop" id="removetop" type="button" onclick="deleteRow()" name="button" disabled><p>Remove</p></button>
+ </div>
+ <div id="gtabs2">
+   <button type="button" class="tablinks2" onclick="openMain(event, 'canvas')"><p>Canvas</p></button>
+   <button type="button" class="tablinks2" onclick="openMain(event, 'table')" id="defaultOpen2" ><p>Table</p></button>
  </div>
 </div>
+
+<div id="gtabs" class="g">
+  <button type="button" class="tablinks" onclick="openParcurgere(event, 'BF')" id="defaultOpen"><p>BF</p></button>
+  <button type="button" class="tablinks" onclick="openParcurgere(event, 'DF')"><p>DF</p></button>
+</div>
+
 <div id="g1" class="g">
-  <div id="allbtndiv">
+  <div id="table" class="tabcontent2">
+    <div id="allbtndiv">
+    </div>
+  </div>
+
+  <div id="canvas" class="tabcontent2">
+        <p>placeholder</p>
   </div>
 </div>
+
 <div id="g2" class="g">
-  <div class="tab">
-    <button type="button" class="tablinks" onclick="openCity(event, 'BF')" id="defaultOpen"><img src="BF.png"  id="bfbtn"></button>
-    <button type="button" class="tablinks" onclick="openCity(event, 'DF')"><img src="DF.png"  id="dfbtn"></button>
-  </div>
   <div id="BF" class="tabcontent">
     <div class="nodeselect">
-      <button type="button" class="directionbtn" onclick="left('BF')" id="leftbtn"></button>
-      <div class=current><p id="currentbf">1</p></div>
-      <button type="button" class="directionbtn" onclick="right('BF')" id="rightbtn"></button>
+      <button type="button" class="directionbtn" onclick="left('BF')" id="leftbtn"><p><</p></button>
+      <div class=current><p id="currentBF">1</p></div>
+      <button type="button" class="directionbtn" onclick="right('BF')" id="rightbtn"><p>></p></button>
     </div>
   </div>
   <div id="DF"  class="tabcontent">
     <div class="nodeselect">
-      <button type="button" class="directionbtn" onclick="left('DF')" id="leftbtn"></button>
-      <div class=current><p id="currentdf">1</p></div>
-      <button type="button" class="directionbtn" onclick="right('DF')" id="rightbtn"></button>
+      <button type="button" class="directionbtn" onclick="left('DF')" id="leftbtn"><p><</p></button>
+      <div class=current><p id="currentDF">1</p></div>
+      <button type="button" class="directionbtn" onclick="right('DF')" id="rightbtn"><p>></p></button>
     </div>
   </div>
 </div>
+
 <div id="g3" class="g"></div>
+
 <div id="g5" class="g"></div>
+
 </div>
+
   <script src="script.js" charset="utf-8"></script>
 </body>
 </html>
