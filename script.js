@@ -114,14 +114,15 @@
     rowNumber++;
     matriceA.push([,0,0,0])
     for(var i=1;i<=rowNumber;i++){
-      matriceA[i].push(0);
+      while(matriceA[i].length<=rowNumber)
+      {
+        matriceA[i].push(0);
+      }
     }
-    while(matriceA[rowNumber].length<=rowNumber)
-    {
-      matriceA[rowNumber].push(0);
-    }
+
     addmatrice();
     generareTabelAdiacenta();
+    makeCanvas();
   }
   ///////////////////////////////////////////////////////////////////////////////
   function createleftbuttons(x) {
@@ -221,6 +222,7 @@
     }
     generareTabelAdiacenta();
     eval("parcurgere"+currentparcurgere)(current);
+    makeCanvas();
   }
   ///////////////////////////////////////////////////////////////////////////////
   function deleteMatrice() {
@@ -432,6 +434,7 @@ function openMain(evt, main) {
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(main).style.display = "flex";
   evt.currentTarget.className += " active";
+  makeCanvas();
 }
 function parcurgereBF(i){
     updateMatriceA();
@@ -545,3 +548,67 @@ function left(x){
 }
 document.getElementById("defaultOpen").click();
 document.getElementById("defaultOpen2").click();
+
+
+function makeCanvas(){
+
+var c=document.querySelector("canvas");
+var container=document.getElementById("canvasContainer");
+var ctx = c.getContext("2d");
+
+c.width=container.offsetWidth*2;
+c.height=container.offsetHeight*2;
+
+var x=c.width;
+var y=c.height;
+var smaller;
+if (x<y) {
+  smaller=x;
+}
+else {
+  smaller=y;
+}
+var x2=1.5*Math.PI;
+var y2=x2 + 2*Math.PI/rowNumber;
+var radius=0.8;
+var cx=[];
+var cy=[];
+
+  ctx.strokeStyle = "#1D262B";
+  ctx.lineWidth = 10;
+for (var i = 1; i <=rowNumber; i++) {
+  cx[i] = x/2 + smaller/2*radius*Math.cos(x2);
+  cy[i] = y/2 + smaller/2*radius*Math.sin(x2);
+  ctx.arc(x/2, y/2, smaller/2*radius, x2,y2,false);
+
+  ctx.beginPath();
+  ctx.arc(cx[i], cy[i], smaller/2*0.15, 0,Math.PI*2,false);
+    ctx.fillStyle = "#161D21";
+      ctx.fill();
+      ctx.stroke();
+    ctx.fillStyle = "#D19738";
+    ctx.textAlign = "center";
+    ctx.font = "bold 24px consolas";
+    ctx.fontWeight = "bold";
+    ctx.textBaseline = "middle";
+  ctx.fillText(i, cx[i], cy[i]+2 ,);
+  x2=y2;
+  y2=x2 + 2*Math.PI/rowNumber;
+}
+ctx.closePath();
+ctx.beginPath();
+    ctx.globalCompositeOperation='destination-over';
+    ctx.lineWidth = 10;
+    for (var i = 1; i < rowNumber; i++){
+      for (var j = i; j <= rowNumber; j++) {
+        if (matriceA[i][j]==1) {
+          ctx.moveTo(cx[i],cy[i]);
+          ctx.lineTo(cx[j],cy[j]);
+        }
+      }
+    }
+ctx.stroke();
+}
+makeCanvas();
+window.onresize=makeCanvas;
+window.onzoom=makeCanvas;
