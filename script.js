@@ -559,6 +559,22 @@ var ctx = c.getContext("2d");
 c.width=container.offsetWidth*2;
 c.height=container.offsetHeight*2;
 
+
+function getMousePos(canvas, evt) {
+  var rect = canvas.getBoundingClientRect();
+  return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+  };
+}
+
+c.addEventListener('mousemove', function(evt) {
+  var mousePos = getMousePos(canvas, evt);
+  var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+  console.log(message);
+}, false);
+
+
 var x=c.width;
 var y=c.height;
 var smaller;
