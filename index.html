@@ -30,29 +30,31 @@
 
 <div id="g1" class="g">
   <div id="table" class="tabcontent2">
+    <div class="empty">
+    </div>
     <div id="allbtndiv">
     </div>
   </div>
 
   <div id="canvasContainer" class="tabcontent2">
-
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas1"></canvas>
+        <canvas id="canvas2"></canvas>
   </div>
 </div>
 
 <div id="g2" class="g">
   <div id="BF" class="tabcontent">
     <div class="nodeselect">
-      <button type="button" class="directionbtn" onclick="left('BF')" id="leftbtn"><p><</p></button>
+      <button type="button" class="directionbtn" onclick="increment('BF',-1)" id="leftbtn"><p><</p></button>
       <div class=current><p id="currentBF">1</p></div>
-      <button type="button" class="directionbtn" onclick="right('BF')" id="rightbtn"><p>></p></button>
+      <button type="button" class="directionbtn" onclick="increment('BF',1)" id="rightbtn"><p>></p></button>
     </div>
   </div>
   <div id="DF"  class="tabcontent">
     <div class="nodeselect">
-      <button type="button" class="directionbtn" onclick="left('DF')" id="leftbtn"><p><</p></button>
+      <button type="button" class="directionbtn" onclick="increment('DF',-1)" id="leftbtn"><p><</p></button>
       <div class=current><p id="currentDF">1</p></div>
-      <button type="button" class="directionbtn" onclick="right('DF')" id="rightbtn"><p>></p></button>
+      <button type="button" class="directionbtn" onclick="increment('DF',1)" id="rightbtn"><p>></p></button>
     </div>
   </div>
 </div>
