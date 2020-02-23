@@ -10,6 +10,18 @@
   var current=1;
   var currentparcurgere='BF';
   var listener=false;
+
+  var container=document.getElementById("canvasContainer");
+  var c2=document.getElementById("canvas2");
+  var ctx2 = c2.getContext("2d");
+  var c=document.getElementById("canvas1");
+  var ctx = c.getContext("2d");
+  var cx=[];
+  var cy=[];
+  var currentCircle;
+  var mouseMovePos;
+  var smaller;
+  var closestC;
   ///////////////////////////////////////////////////////////////////////////////
   function createTable(tableData, g, conditii, classnametabel, tdname,rowname) {
     if (document.getElementById(g).childNodes[0]) {
@@ -128,6 +140,7 @@ tableLeft=[[]];
 
     createTable(matriceA, "g3", conditiimatrice, 'matrice','');
     //generareTabelAdiacenta();
+    // document.getElementById("canvas1").removeEventListener('click',canvasClick, false);
     makeCanvas();
   }
 
@@ -235,6 +248,7 @@ tableLeft=[[]];
     //generareTabelAdiacenta();
     createTable(matriceA, "g3", conditiimatrice, 'matrice','');
     //eval("parcurgere"+currentparcurgere)(current);
+    // document.getElementById("canvas1").removeEventListener('click',canvasClick, false);
     makeCanvas();
   }
   console.table(tableLeft);
@@ -430,6 +444,7 @@ function openMain(evt, main) {
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(main).style.display = "flex";
   evt.currentTarget.className += " active";
+  // document.getElementById("canvas1").removeEventListener('click',canvasClick, false);
   makeCanvas();
 }
 function parcurgereBF(i){
@@ -534,6 +549,8 @@ function increment(x, i){
   }
   document.getElementById("current"+x).innerHTML=current;
   eval("parcurgere"+x)(current);
+
+  // document.getElementById("canvas1").removeEventListener('click',canvasClick, false);
   makeCanvas();
 }
 
@@ -542,14 +559,12 @@ document.getElementById("defaultOpen2").click();
 
 
 function makeCanvas(){
-  var container=document.getElementById("canvasContainer");
-  var c2=document.getElementById("canvas2");
-  var ctx2 = c2.getContext("2d");
+  // var container=document.getElementById("canvasContainer");
+  // var c2=document.getElementById("canvas2");
+  // var ctx2 = c2.getContext("2d");
+  // var c=document.getElementById("canvas1");
   c2.width=container.offsetWidth;
   c2.height=container.offsetHeight;
-  var c=document.getElementById("canvas1");
-
-  var ctx = c.getContext("2d");
   c.width=container.offsetWidth;
   c.height=container.offsetHeight;
 
@@ -558,7 +573,6 @@ function makeCanvas(){
   var y=c.height;
 ctx.clearRect(0,0,x,y);
 
-var smaller;
 if (x<y) {
   smaller=x;
 }
@@ -568,12 +582,9 @@ else {
 var x2=1.5*Math.PI-(current-1)*2*Math.PI/rowNumber;
 var y2=x2 + 2*Math.PI/rowNumber;
 var radius=0.8;
-var cx=[];
-var cy=[];
+cx=[];
+cy=[];
 //console.log(cx);
-var currentCircle;
-var mouseMovePos;
-var closestC;
   ctx.strokeStyle = "#1D262B";
   ctx.lineWidth = 5;
 for (var i = 1; i <=rowNumber; i++) {
@@ -610,36 +621,12 @@ ctx.beginPath();
 ctx.stroke();
 ctx.closePath();
 
-function getMousePos(canvas, evt) {
-  var rect = c.getBoundingClientRect();
-  return {
-    x: evt.clientX - rect.left,
-    y: evt.clientY - rect.top
-  };
+// c.addEventListener('click',canvasClick, false);
+
+//c.off('mousemove', canvasHover);
+// c.addEventListener('mousemove',canvasHover);
 }
 
-function ifInCircle(evt){
-var mousePos = getMousePos(c, evt);
-  //console.log(cx);
-for(var i=1;i<=rowNumber;i++){
-
-  if ( (Math.pow((mousePos.x - cx[i]),2) + Math.pow((mousePos.y - cy[i]),2)) < Math.pow((smaller/2*0.15),2) ) {
-    //console.log(i);
-    return i;
-  }
-}
-}
-function closestCircle(evt, mouseMovePos){
-  var min=Number.MAX_SAFE_INTEGER;
-  var k;
-  for(var i=1;i<=rowNumber;i++){
-    if(i!=currentCircle && min>Math.sqrt( Math.pow((mouseMovePos.y - cy[i]),2) + Math.pow((mouseMovePos.x - cx[i]),2 ))) {
-      k=i;
-      min=Math.sqrt( Math.pow((mouseMovePos.y - cy[i]),2) + Math.pow((mouseMovePos.x - cx[i]),2 ));
-    }
-  }
-  return k;
-}
 function canvasClick(evt) {
   var mousePos = getMousePos(c, evt);
   if (currentCircle==undefined && ifInCircle(evt)){
@@ -655,18 +642,26 @@ function canvasClick(evt) {
   }
 }
 
-c.addEventListener('click',canvasClick, false);
+function getMousePos(canvas, evt) {
+  var rect = c.getBoundingClientRect();
+  return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+  };
+}
 
+function ifInCircle(evt){
+  var mousePos = getMousePos(c, evt);
+    //console.log(cx);
+  for(var i=1;i<=rowNumber;i++){
 
-
-function drawCanvas2(){
-    ctx2.clearRect(0,0,x,y);
-    ctx2.beginPath();
-    //console.log(cx[closestC]);
-    ctx2.moveTo(cx[currentCircle],cy[currentCircle]);
-    ctx2.lineTo(cx[closestC],cy[closestC]);
-    ctx2.stroke();
+    if ( (Math.pow((mousePos.x - cx[i]),2) + Math.pow((mousePos.y - cy[i]),2)) < Math.pow((smaller/2*0.15),2) ) {
+      //console.log(i);
+      return i;
+    }
   }
+}
+
 function canvasHover(evt) {
   mouseMovePos = getMousePos(c, evt);
 
@@ -675,10 +670,30 @@ function canvasHover(evt) {
   drawCanvas2();
     }
 }
-//c.off('mousemove', canvasHover);
-c.addEventListener('mousemove',canvasHover);
+
+function closestCircle(evt, mouseMovePos){
+  var min=Number.MAX_SAFE_INTEGER;
+  var k;
+  for(var i=1;i<=rowNumber;i++){
+    if(i!=currentCircle && min>Math.sqrt( Math.pow((mouseMovePos.y - cy[i]),2) + Math.pow((mouseMovePos.x - cx[i]),2 ))) {
+      k=i;
+      min=Math.sqrt( Math.pow((mouseMovePos.y - cy[i]),2) + Math.pow((mouseMovePos.x - cx[i]),2 ));
+    }
+  }
+  return k;
 }
 
+function drawCanvas2() {
+  ctx2.clearRect(0,0,c.width,c.height);
+  ctx2.beginPath();
+  //console.log(cx[closestC]);
+  ctx2.moveTo(cx[currentCircle],cy[currentCircle]);
+  ctx2.lineTo(cx[closestC],cy[closestC]);
+  ctx2.stroke();
+}
+
+c.addEventListener('mousemove',canvasHover);
+c.addEventListener('click',canvasClick, false);
 makeCanvas();
 window.onresize=makeCanvas;
 window.onzoom=makeCanvas;
