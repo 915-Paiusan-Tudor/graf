@@ -229,3 +229,37 @@ else if (act=="deleterow") {
   }
 }
 }
+
+
+function generareTabelAdiacenta() {
+  tabelAdiacenta = [
+    [],
+    [],
+    []
+  ];
+  for (var i = 0; i < rowNumber; i++) {
+    tabelAdiacenta[1].push(i + 1);
+  }
+  var k = rowNumber;
+  for (var i = 0; i < rowNumber; i++) {
+    if (cellNumber[i] > 1) {
+      tabelAdiacenta[2][i] = k + 1;
+    } else {
+      tabelAdiacenta[2][i] = 0;
+    }
+    for (var j = 1; j < cellNumber[i]; j++) {
+      tabelAdiacenta[1].push(parseInt(document.getElementById("tr" + (i + 1)).childNodes[j].firstChild.value));
+      if (j != cellNumber[i] - 1) {
+        tabelAdiacenta[2][k] = k + 2;
+      } else {
+        tabelAdiacenta[2][k] = 0;
+      }
+      k++;
+    }
+
+  }
+  for (var i = 0; i < k; i++) {
+    tabelAdiacenta[0][i] = i + 1;
+  }
+  createTable(tabelAdiacenta, "g5", conditiiTabel, 'tabelAdiacenta','adiacenta');
+}

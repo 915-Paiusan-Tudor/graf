@@ -5,7 +5,6 @@
   var btnNumber = 0;
   var rowNumber = 3;
   var tableLeft=[[]];
-  var cellNumber = [1, 1, 1];
   var tabelAdiacenta;
   var current=1;
   var currentparcurgere='BF';
@@ -120,6 +119,10 @@ tableLeft=[[]];
   ///////////////////////////////////////////////////////////////////////////////
 
   function addRow() {
+    if (openInput != 0) {
+      alert("Please enter a node");
+      return;
+    }
     rowNumber++;
     matriceA[0].push(rowNumber);
     matriceA.push([0]);
@@ -139,7 +142,7 @@ tableLeft=[[]];
     updateButtons();
 
     createTable(matriceA, "g3", conditiimatrice, 'matrice','');
-    //generareTabelAdiacenta();
+    generareTabelAdiacenta();
     // document.getElementById("canvas1").removeEventListener('click',canvasClick, false);
     makeCanvas();
   }
@@ -225,19 +228,15 @@ tableLeft=[[]];
       cell.firstChild.value = y;
       cell.firstChild.blur();
     }
-    if (tableLeft[x].length == 1) {
-      button.attributes.removeNamedItem("disabled");
-    }
-    if (tableLeft[x].length == rowNumber-1) {
-      document.getElementById("add" + x).setAttribute("disabled", "");
-    }
   }
   ///////////////////////////////////////////////////////////////////////////////
   function deleteRow() {
+    if (openInput != 0) {
+      alert("Please enter a node");
+      return;
+    }
     rowNumber--;
     tableLeft.pop();
-    cellNumber.pop();
-    ifRowInCell();
     matriceA.pop();
     for(var i=0;i<=rowNumber;i++){
       matriceA[i].pop();
@@ -245,7 +244,7 @@ tableLeft=[[]];
     updateTableLeft();
     updateButtons();
     checkButtons();
-    //generareTabelAdiacenta();
+    generareTabelAdiacenta();
     createTable(matriceA, "g3", conditiimatrice, 'matrice','');
     //eval("parcurgere"+currentparcurgere)(current);
     // document.getElementById("canvas1").removeEventListener('click',canvasClick, false);
@@ -264,8 +263,9 @@ tableLeft=[[]];
       else if (tableLeft[i].length==1 && !document.getElementById("remove"+i).hasAttribute("disabled")) {
         document.getElementById("remove" + i).setAttribute("disabled", "");
       }
-      else if (tableLeft[i].length!=1 &&document.getElementById("remove"+i).hasAttribute("disabled")) {
+      else if (tableLeft[i].length!==1 &&document.getElementById("remove"+i).hasAttribute("disabled")) {
         document.getElementById("remove" + i).attributes.removeNamedItem("disabled");
+
       }
     }
     if(rowNumber==3 && !document.getElementById("removetop").hasAttribute("disabled")){
@@ -286,17 +286,20 @@ tableLeft=[[]];
     if (openInput == x) {
       openInput=0;
     }
+    else if (openInput !=0) {
+      alert("Please enter a node");
+      return;
+    }
     var row = document.getElementById("tr" + x);
     var y = parseInt(row.lastChild.innerText);
     if (y) {
       matriceA[x][y]=0;
       matriceA[y][x]=0;
     }
-    cellNumber[x - 1]--;
 
     updateTableLeft();
     checkButtons();
-    //generareTabelAdiacenta();
+    generareTabelAdiacenta();
     eval("parcurgere"+currentparcurgere)(current);
   }
   ///////////////////////////////////////////////////////////////////////////////
@@ -324,31 +327,12 @@ tableLeft=[[]];
       matriceA[text][rownum]=1;
       matriceA[rownum][text]=1;
       updateTableLeft();
+      checkButtons();
     }
-    //generareTabelAdiacenta();
+    generareTabelAdiacenta();
     eval("parcurgere"+currentparcurgere)(current);
   }
   ///////////////////////////////////////////////////////////////////////////////continue
-  function ifRowInCell() {
-    for (var i = 0; i < rowNumber - 1; i++) {
-
-      if (cellNumber[i] != 1) {
-        for (var j = 1; j < cellNumber[i]; j++) {
-          if (document.getElementById("tr" + (i + 1)).childNodes[j].firstChild.value == rowNumber) {
-            document.getElementById("tr" + (i + 1)).deleteCell(j);
-            for (var k = j; k < cellNumber[i] - 1; k++) {
-              document.getElementById("tr" + (i + 1)).childNodes[k].setAttribute("id", (i + 1) + "-" + (k + 1));
-            }
-            j--;
-            cellNumber[i]--;
-            if (cellNumber[i] == 1) {
-              document.getElementById("remove" + (i + 1)).setAttribute("disabled", "");
-            }
-          }
-        }
-      }
-    }
-  }
   function conditiiTabel(index, index2, cellData, cell) {
     if (index == 0) {
       cell.className = "row";
@@ -366,18 +350,18 @@ tableLeft=[[]];
       []
     ];
     for (var i = 0; i < rowNumber; i++) {
-      tabelAdiacenta[1].push(i + 1);
+      tabelAdiacenta[1].push(i+1);
     }
     var k = rowNumber;
     for (var i = 0; i < rowNumber; i++) {
-      if (cellNumber[i] > 1) {
+      if (tableLeft[i+1].length > 1) {
         tabelAdiacenta[2][i] = k + 1;
       } else {
         tabelAdiacenta[2][i] = 0;
       }
-      for (var j = 1; j < cellNumber[i]; j++) {
-        tabelAdiacenta[1].push(parseInt(document.getElementById("tr" + (i + 1)).childNodes[j].firstChild.value));
-        if (j != cellNumber[i] - 1) {
+      for (var j = 1; j < tableLeft[i+1].length; j++) {
+        tabelAdiacenta[1].push(parseInt(document.getElementById("tr" + (i+1)).childNodes[j].innerText));
+        if (j != tableLeft[i+1].length - 1) {
           tabelAdiacenta[2][k] = k + 2;
         } else {
           tabelAdiacenta[2][k] = 0;
@@ -387,11 +371,11 @@ tableLeft=[[]];
 
     }
     for (var i = 0; i < k; i++) {
-      tabelAdiacenta[0][i] = i + 1;
+      tabelAdiacenta[0][i] = i+1;
     }
     createTable(tabelAdiacenta, "g5", conditiiTabel, 'tabelAdiacenta','adiacenta');
   }
-  //generareTabelAdiacenta();
+  generareTabelAdiacenta();
 {
   var s1 = document.getElementById('allbtndiv');
   var s2 = document.getElementById('tableLeft');
@@ -444,7 +428,6 @@ function openMain(evt, main) {
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(main).style.display = "flex";
   evt.currentTarget.className += " active";
-  // document.getElementById("canvas1").removeEventListener('click',canvasClick, false);
   makeCanvas();
 }
 function parcurgereBF(i){
@@ -550,7 +533,6 @@ function increment(x, i){
   document.getElementById("current"+x).innerHTML=current;
   eval("parcurgere"+x)(current);
 
-  // document.getElementById("canvas1").removeEventListener('click',canvasClick, false);
   makeCanvas();
 }
 
@@ -559,10 +541,6 @@ document.getElementById("defaultOpen2").click();
 
 
 function makeCanvas(){
-  // var container=document.getElementById("canvasContainer");
-  // var c2=document.getElementById("canvas2");
-  // var ctx2 = c2.getContext("2d");
-  // var c=document.getElementById("canvas1");
   c2.width=container.offsetWidth;
   c2.height=container.offsetHeight;
   c.width=container.offsetWidth;
@@ -584,14 +562,12 @@ var y2=x2 + 2*Math.PI/rowNumber;
 var radius=0.8;
 cx=[];
 cy=[];
-//console.log(cx);
   ctx.strokeStyle = "#1D262B";
   ctx.lineWidth = 5;
 for (var i = 1; i <=rowNumber; i++) {
   cx[i] = x/2 + smaller/2*radius*Math.cos(x2);
   cy[i] = y/2+10 + smaller/2*radius*Math.sin(x2);
   ctx.arc(x/2, y/2+10, smaller/2*radius, x2,y2,false);
-  //console.log(i+":"+cx[i]);
   ctx.beginPath();
   ctx.arc(cx[i], cy[i], smaller/2*0.15, 0,Math.PI*2,false);
     ctx.fillStyle = "#161D21";
@@ -620,11 +596,6 @@ ctx.beginPath();
     }
 ctx.stroke();
 ctx.closePath();
-
-// c.addEventListener('click',canvasClick, false);
-
-//c.off('mousemove', canvasHover);
-// c.addEventListener('mousemove',canvasHover);
 }
 
 function canvasClick(evt) {
@@ -633,11 +604,20 @@ function canvasClick(evt) {
       currentCircle=ifInCircle(evt);
       //console.log(currentCircle);
   }
-  else{
+  else if(currentCircle!=undefined){
     ctx.beginPath();
     ctx.moveTo(cx[currentCircle],cy[currentCircle]);
     ctx.lineTo(cx[closestC],cy[closestC]);
     ctx.stroke();
+    console.log(currentCircle);
+    matriceA[currentCircle][closestC]=1;
+    matriceA[closestC][currentCircle]=1;
+    createTable(matriceA, "g3", conditiimatrice, 'matrice','');
+    updateTableLeft();
+    updateButtons();
+    checkButtons();
+    generareTabelAdiacenta();
+    eval("parcurgere"+currentparcurgere)(current);
     currentCircle=undefined;
   }
 }
@@ -667,7 +647,7 @@ function canvasHover(evt) {
 
   if(currentCircle!=undefined){
     closestC=closestCircle(evt,mouseMovePos);
-  drawCanvas2();
+  drawLines();
     }
 }
 
@@ -683,7 +663,7 @@ function closestCircle(evt, mouseMovePos){
   return k;
 }
 
-function drawCanvas2() {
+function drawLines() {
   ctx2.clearRect(0,0,c.width,c.height);
   ctx2.beginPath();
   //console.log(cx[closestC]);
@@ -691,7 +671,21 @@ function drawCanvas2() {
   ctx2.lineTo(cx[closestC],cy[closestC]);
   ctx2.stroke();
 }
-
+function clearMatriceA(){
+  for(var i=1;i<rowNumber;i++){
+    for (var j = i+1; j <= rowNumber; j++) {
+      matriceA[i][j]=0;
+      matriceA[j][i]=0;
+    }
+  }
+  createTable(matriceA, "g3", conditiimatrice, 'matrice','');
+  updateTableLeft();
+  updateButtons();
+  checkButtons();
+  generareTabelAdiacenta();
+  eval("parcurgere"+currentparcurgere)(current);
+  makeCanvas();
+}
 c.addEventListener('mousemove',canvasHover);
 c.addEventListener('click',canvasClick, false);
 makeCanvas();
