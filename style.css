@@ -412,10 +412,18 @@ td {
   color: #FB9039; }
 
 .row, .collumn, #td1 {
-  background: #171E22; }
+  background: #171E22;
+  color: #B27A0C; }
 
 .diag {
   background: #161d21; }
+
+table {
+  font-size: 1.2em !important; }
+
+.current p {
+  font-size: 2em !important;
+  top: 0%; }
 
 @media only screen and (max-width: 600px) {
   .grid {
