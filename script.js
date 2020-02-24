@@ -64,7 +64,7 @@
     }
 
   }
-  createTable(matriceA, "g3", conditiimatrice, 'matrice','');
+  createTable(matriceA, "g3", conditiimatrice, 'matrice','matrice',"matrice");
 
   ///////////////////////////////////////////////////////////////////////////////
   function updateTableLeft(){
@@ -313,7 +313,7 @@ tableLeft=[[]];
     for (var i = 0; i < k; i++) {
       tabelAdiacenta[0][i] = i+1;
     }
-    createTable(tabelAdiacenta, "g5", conditiiTabel, 'tabelAdiacenta','adiacenta');
+    createTable(tabelAdiacenta, "g5", conditiiTabel, 'tabelAdiacenta','adiacenta','adiacenta');
   }
   generareTabelAdiacenta();
 {
@@ -393,7 +393,7 @@ function parcurgereBF(i){
     }
     p++;
   }
-createTableArray(c, "g2", conditiiArray, 'parcurgeretabel','BF');
+createTableArray(c, "g2", conditiiArray, 'parcurgeretabel','BF',"BF");
 }
 
 function parcurgereDF(i){
@@ -589,6 +589,7 @@ function canvasHover(evt) {
 
   if(currentCircle!=undefined){
     closestC=closestCircle(evt,mouseMovePos);
+    console.log(matriceA[currentCircle][closestC]);
   drawLines();
     }
 }
@@ -607,7 +608,13 @@ function closestCircle(evt, mouseMovePos){
 
 function drawLines() {
   ctx2.clearRect(0,0,c.width,c.height);
-  ctx2.strokeStyle = "#1D262B";
+  if (matriceA[currentCircle][closestC]==0) {
+    ctx2.strokeStyle = "#1D262B";
+  }
+  else {
+    ctx2.globalCompositeOperation='xor';
+    ctx2.strokeStyle = "#263238";
+  }
   ctx2.lineWidth = 5;
   ctx2.beginPath();
   ctx2.moveTo(cx[currentCircle],cy[currentCircle]);
