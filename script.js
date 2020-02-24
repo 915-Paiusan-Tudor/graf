@@ -621,13 +621,7 @@ function drawLines() {
   ctx2.lineTo(cx[closestC],cy[closestC]);
   ctx2.stroke();
 }
-function clearMatriceA(){
-  for(var i=1;i<rowNumber;i++){
-    for (var j = i+1; j <= rowNumber; j++) {
-      matriceA[i][j]=0;
-      matriceA[j][i]=0;
-    }
-  }
+function updateAll(){
   createTable(matriceA, "g3", conditiimatrice, 'matrice','');
   updateTableLeft();
   updateButtons();
@@ -635,6 +629,33 @@ function clearMatriceA(){
   generareTabelAdiacenta();
   eval("parcurgere"+currentparcurgere)(current);
   makeCanvas();
+}
+function clearMatriceA(){
+  for(var i=1;i<rowNumber;i++){
+    for (var j = i+1; j <= rowNumber; j++) {
+      matriceA[i][j]=0;
+      matriceA[j][i]=0;
+    }
+  }
+  updateAll();
+}
+function randomMatriceA(){
+  for(var i=1;i<rowNumber;i++){
+    for (var j = i+1; j <= rowNumber; j++) {
+      matriceA[i][j]=Math.round(Math.random());
+      matriceA[j][i]=matriceA[i][j];
+    }
+  }
+  updateAll();
+}
+function completeMatriceA(){
+  for(var i=1;i<rowNumber;i++){
+    for (var j = i+1; j <= rowNumber; j++) {
+      matriceA[i][j]=1;
+      matriceA[j][i]=1;
+    }
+  }
+  updateAll();
 }
 c.addEventListener('mousemove',canvasHover);
 c.addEventListener('click',canvasClick, false);
