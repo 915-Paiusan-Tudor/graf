@@ -130,7 +130,7 @@ h1 {
   outline: 2px solid #1E282D; }
 
 .td {
-  border-radius: 15%;
+  border-radius: 5%;
   height: 62px;
   width: 62px; }
 
@@ -396,8 +396,8 @@ canvas {
     align-items: center; }
 
 td {
-  outline: 2px solid #1E282D;
-  margin: 0px; }
+  
+  margin: 2px; }
 
 .inputnode {
   width: 50%;
