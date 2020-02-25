@@ -130,6 +130,7 @@ h1 {
   outline: 2px solid #1E282D; }
 
 .td {
+  border-radius: 15%;
   height: 62px;
   width: 62px; }
 
