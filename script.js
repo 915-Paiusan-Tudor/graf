@@ -47,7 +47,13 @@
       table.appendChild(row);
       div.appendChild(table);
     });
+          console.log(classnametabel);
+
     document.getElementById(g).insertBefore(div, document.getElementById(g).childNodes[0]);
+    if (classnametabel=="tableLeft") {
+      var trow=document.createElement('tr');
+      document.getElementById(classnametabel).appendChild(trow);
+    }
   }
 
   function conditiimatrice(index, index2, cellData, cell) {

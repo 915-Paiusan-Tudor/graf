@@ -25,7 +25,8 @@ body {
 }
 
 .g {
-  outline: 2px solid #D19738;
+  border: 2px solid #D19738;
+  border-radius: 5px;
   box-shadow: 0px 6px 20px 10px rgba(0,0,0,0.2);
   background-color: $bg-color;
 }
@@ -34,15 +35,15 @@ body {
   grid-column: 1;
   position: relative;
   z-index: 1;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 #g2{
   grid-column: 2;
   grid-row: 2;
-  outline: 0;
-  border-bottom: 2px solid;
-  border-left: solid 2px;
-  border-right: solid 2px;
-  border-top: solid 2px;
+  border: solid 2px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
   border-color: #D19738;
 }
 #g3 {
@@ -55,7 +56,8 @@ grid-column: 3;
 }
 #ghead{
   grid-column: 1/2;
-  outline: 0px;
+  border: 0px;
+  border-radius: 0px;
   box-shadow: none;
   background-color: inherit;
   display: flex;
@@ -64,7 +66,8 @@ grid-column: 3;
 #gtabs{
   grid-column: 2/3;
   padding-left: 5px;
-  outline: 0px;
+  border: 0px;
+  border-radius: 0px;
   box-shadow: none;
   background-color: inherit;
 }
@@ -77,6 +80,9 @@ table{
   text-align: center;
   font-size: 1em;
 }
+#table{
+  padding-left: 2px;
+}
 h1{
   text-align: center;
   text-decoration: underline;
@@ -85,7 +91,7 @@ h1{
 .tableLeft{
   table-layout: fixed;
   padding: 0;
-  height: auto;
+  height: 100%;
   width: auto;
   table-layout: fixed;
 }
@@ -120,7 +126,8 @@ height: 100%;
 .btndiv{
   height: auto;
   width: 100%;
-  min-height: 60px;
+  height: 12%;
+  justify-content:space-around;
   display: flex;
   margin: 2px 0px 2px 0px;
   flex-direction: column;
@@ -129,6 +136,7 @@ height: 100%;
 #allbtndiv{
 position: absolute;
 top: 2px;
+height: 100%;
 left: -30px;
 z-index: -2;
 }
@@ -137,8 +145,8 @@ z-index: -2;
   outline: 2px solid #1E282D;
 }
 .td{
-  height: 62px;
-  width: 62px;
+  height: 12.5%;
+  width: 64px;
 }
 .tab{
     margin-top: 5px;
@@ -210,6 +218,12 @@ button{
 .tabcontent{
   justify-content: center;
   flex-direction: column;
+}
+.tabcontent2{
+  height:100%;
+  #tr0{
+    height:0;
+  }
 }
 #canvasContainer{
   justify-self: center;
@@ -407,8 +421,19 @@ button{
 }
 }
 td {
-  outline: 2px solid #1E282D;
-  margin: 0px;
+  background-color: #1E282D;
+  margin: 2px;
+  border-radius: 10%;
+}
+.matrice{
+  td{
+    border-radius: 5%;
+  }
+}
+.parcurgeretabel{
+  td{
+    border-radius: 5%;
+  }
 }
 .inputnode{
   width: 50%;
@@ -443,8 +468,8 @@ table{
 }
 .current{
   p{
-    font-size: 2em !important;
-    top:0%;
+    font-size: 1.5em;
+    top:15%;
   }
 }
 @media only screen and (max-width: 600px){
@@ -459,6 +484,7 @@ grid-template-rows: 30px 400px 400px 75px 100px;
   #g1 {
       grid-row: 2;
       grid-column: 2;
+      overflow: visible;
     }
     #allbtndiv{
       max-height: 400px;
@@ -599,11 +625,11 @@ grid-template-rows: 30px 400px 400px 75px 100px;
   grid-template-rows: 30px 600px 240px;
       }
       .td{
-        height: 96px;
         width: 96px;
       }
       .btndiv{
-        padding: 17px 0px 17px 0px;
+        margin-top: 4px;
+        margin-bottom: 4px;
       }
       .celladiacenta{
         padding: 0px 28px 0px 28px;
