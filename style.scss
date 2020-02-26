@@ -487,11 +487,11 @@ grid-template-rows: 30px 400px 400px 75px 100px;
       overflow: visible;
     }
     #allbtndiv{
-      max-height: 400px;
+      max-height: 100%;
       overflow-y: auto;
     }
     #tableLeftdiv{
-      max-height: 400px;
+      max-height: 100%;
       overflow-y: auto;
     }
   #g2{
@@ -596,6 +596,9 @@ grid-template-rows: 30px 400px 400px 75px 100px;
       top:-13px;
       left:15px;
     }
+}
+.btndiv{
+  height:64px;
 }
 .current{
   height:25px;

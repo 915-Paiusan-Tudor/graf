@@ -7,7 +7,9 @@
   var tabelAdiacenta;
   var current=1;
   var currentparcurgere='BF';
-
+  var dragging=false;
+  var mouseDownXY;
+  var mouseUpXY;
   var container=document.getElementById("canvasContainer");
   var c2=document.getElementById("canvas2");
   var ctx2 = c2.getContext("2d");
@@ -19,6 +21,8 @@
   var mouseMovePos;
   var smaller;
   var closestC;
+  var s1;
+  var s2;
   ///////////////////////////////////////////////////////////////////////////////
   function createTable(tableData, g, conditii, classnametabel, tdname,rowname) {
     if (document.getElementById(g).childNodes[0]) {
@@ -47,8 +51,6 @@
       table.appendChild(row);
       div.appendChild(table);
     });
-          console.log(classnametabel);
-
     document.getElementById(g).insertBefore(div, document.getElementById(g).childNodes[0]);
     if (classnametabel=="tableLeft") {
       var trow=document.createElement('tr');
@@ -89,10 +91,14 @@ tableLeft=[[]];
       }
     }
     createTable(tableLeft, "table",empty, 'tableLeft','td',"tr");
+
   }
   updateTableLeft();
   function empty(){}
   function conditionsTableLeft(){
+
+  }
+  {
 
   }
   ///////////////////////////////////////////////////////////////////////////////
@@ -135,7 +141,16 @@ tableLeft=[[]];
       btnNumber--;
     }
         checkButtons();
+
+        s2 = document.getElementById('tableLeftdiv');
+
+
+        function select_scroll_2(e) { s1.scrollTop = s2.scrollTop; }
+        s2.addEventListener('scroll', select_scroll_2, false);
   }
+  function select_scroll_1(e) { s2.scrollTop = s1.scrollTop; }
+  s1 = document.getElementById('allbtndiv');
+    s1.addEventListener('scroll', select_scroll_1, false);
   updateButtons();
   ///////////////////////////////////////////////////////////////////////////////
   function createleftbuttons(x) {
@@ -322,16 +337,7 @@ tableLeft=[[]];
     createTable(tabelAdiacenta, "g5", conditiiTabel, 'tabelAdiacenta','adiacenta','adiacenta');
   }
   generareTabelAdiacenta();
-{
-  var s1 = document.getElementById('allbtndiv');
-  var s2 = document.getElementById('tableLeft');
 
-  function select_scroll_1(e) { s2.scrollTop = s1.scrollTop; }
-  function select_scroll_2(e) { s1.scrollTop = s2.scrollTop; }
-
-  s1.addEventListener('scroll', select_scroll_1, false);
-  s2.addEventListener('scroll', select_scroll_2, false);
-}
 function openParcurgere(evt, parcurgere) {
   currentparcurgere=parcurgere;
   // Declare all variables
@@ -374,7 +380,7 @@ function openMain(evt, main) {
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(main).style.display = "flex";
   evt.currentTarget.className += " active";
-  makeCanvas();
+  drawNodes();
 }
 function parcurgereBF(i){
   var viz=[];
@@ -494,7 +500,7 @@ function makeCanvas(){
 
   var x=c.width;
   var y=c.height;
-ctx.clearRect(0,0,x,y);
+
 
 if (x<y) {
   smaller=x;
@@ -508,11 +514,23 @@ var radius=0.8;
 cx=[];
 cy=[];
   ctx.strokeStyle = "#1D262B";
+  ctx2.strokeStyle = "#1D262B";
   ctx.lineWidth = 5;
 for (var i = 1; i <=rowNumber; i++) {
   cx[i] = x/2 - smaller/2*radius*Math.cos(x2);
   cy[i] = y/2+10 + smaller/2*radius*Math.sin(x2);
   ctx.arc(x/2, y/2+10, smaller/2*radius, x2,y2,false);
+  drawNodes();
+  x2=y2;
+  y2=x2 + 2*Math.PI/rowNumber;
+}
+ctx.closePath();
+drawCanvasLines();
+}
+
+function drawNodes(){
+  ctx.clearRect(0,0,c.width,c.height);
+  for (var i = 1; i <=rowNumber; i++){
   ctx.beginPath();
   ctx.arc(cx[i], cy[i], smaller/2*0.15, 0,Math.PI*2,false);
     ctx.fillStyle = "#161D21";
@@ -524,35 +542,40 @@ for (var i = 1; i <=rowNumber; i++) {
     ctx.fontWeight = "bold";
     ctx.textBaseline = "middle";
     ctx.fillText(i, cx[i], cy[i]+2 ,);
-  x2=y2;
-  y2=x2 + 2*Math.PI/rowNumber;
-}
-ctx.closePath();
-ctx.beginPath();
-    ctx.globalCompositeOperation='destination-over';
-    ctx.lineWidth = 10;
-    for (var i = 1; i < rowNumber; i++){
-      for (var j = i+1; j <= rowNumber; j++) {
-        if (matriceA[i][j]==1) {
-          ctx.moveTo(cx[i],cy[i]);
-          ctx.lineTo(cx[j],cy[j]);
-        }
-      }
-    }
-ctx.stroke();
-ctx.closePath();
+  }
 }
 
+function drawCanvasLines(){
+  ctx2.clearRect(0,0,c.width,c.height);
+  ctx2.beginPath();
+      ctx2.lineWidth = 10;
+      ctx2.strokeStyle = "#1D262B";
+      for (var i = 1; i < rowNumber; i++){
+        for (var j = i+1; j <= rowNumber; j++) {
+          if (matriceA[i][j]==1) {
+            ctx2.moveTo(cx[i],cy[i]);
+            ctx2.lineTo(cx[j],cy[j]);
+          }
+        }
+      }
+  ctx2.stroke();
+  ctx2.closePath();
+}
 function canvasClick(evt) {
+
   var mousePos = getMousePos(c, evt);
-  if (currentCircle==undefined && ifInCircle(evt)){
+  console.log(dragging);
+  console.log(currentCircle);
+  console.log(ifInCircle(evt));
+  if (currentCircle==undefined && ifInCircle(evt) && dragging==false){
       currentCircle=ifInCircle(evt);
   }
-  else if(currentCircle!=undefined){
-    ctx.beginPath();
-    ctx.moveTo(cx[currentCircle],cy[currentCircle]);
-    ctx.lineTo(cx[closestC],cy[closestC]);
-    ctx.stroke();
+  else if(currentCircle!=undefined && dragging==false){
+    ctx2.beginPath();
+    ctx2.lineWidth = 10;
+    ctx2.moveTo(cx[currentCircle],cy[currentCircle]);
+    ctx2.lineTo(cx[closestC],cy[closestC]);
+    ctx2.stroke();
     if (matriceA[currentCircle][closestC]==0) {
       matriceA[currentCircle][closestC]=1;
       matriceA[closestC][currentCircle]=1;
@@ -560,8 +583,9 @@ function canvasClick(evt) {
     else {
       matriceA[currentCircle][closestC]=0;
       matriceA[closestC][currentCircle]=0;
-      makeCanvas();
+      drawNodes();
     }
+    drawCanvasLines();
     createTable(matriceA, "g3", conditiimatrice, 'matrice','');
     updateTableLeft();
     updateButtons();
@@ -579,7 +603,17 @@ function getMousePos(canvas, evt) {
     y: evt.clientY - rect.top
   };
 }
-
+function mouseDown(evt){
+  mouseDownXY=getMousePos(c,evt);
+  mouseUpXY=undefined;
+}
+function mouseUp(evt){
+  mouseUpXY=getMousePos(c,evt);
+  if (dragging) {
+    dragging=false;
+    currentCircle=undefined;
+  }
+}
 function ifInCircle(evt){
   var mousePos = getMousePos(c, evt);
   for(var i=1;i<=rowNumber;i++){
@@ -592,12 +626,26 @@ function ifInCircle(evt){
 
 function canvasHover(evt) {
   mouseMovePos = getMousePos(c, evt);
-
-  if(currentCircle!=undefined){
-    closestC=closestCircle(evt,mouseMovePos);
-    console.log(matriceA[currentCircle][closestC]);
-  drawLines();
+  if (mouseDownXY && !mouseUpXY) {
+    if (Math.abs(mouseMovePos.x-mouseDownXY.x)>5 || Math.abs(mouseMovePos.y-mouseDownXY.y)>5) {
+      currentCircle=ifInCircle(evt);
+      dragging=true;
+      mouseDownXY=undefined;
+      console.log(mouseDownXY);
     }
+  }
+  else if(currentCircle!=undefined && dragging==false){
+    closestC=closestCircle(evt,mouseMovePos);
+      drawLines();
+    }
+    if (dragging) {
+      cx[currentCircle]=mouseMovePos.x;
+      cy[currentCircle]=mouseMovePos.y;
+      drawNodes();
+
+      drawCanvasLines();
+    }
+    console.log(dragging);
 }
 
 function closestCircle(evt, mouseMovePos){
@@ -614,18 +662,21 @@ function closestCircle(evt, mouseMovePos){
 
 function drawLines() {
   ctx2.clearRect(0,0,c.width,c.height);
+  drawCanvasLines();
   if (matriceA[currentCircle][closestC]==0) {
     ctx2.strokeStyle = "#1D262B";
+    ctx2.lineWidth = 5;
   }
   else {
-    ctx2.globalCompositeOperation='xor';
-    ctx2.strokeStyle = "#263238";
+    ctx2.globalCompositeOperation='source-over';
+    ctx2.strokeStyle = "#343c40";
+    ctx2.lineWidth = 10;
   }
-  ctx2.lineWidth = 5;
-  ctx2.beginPath();
-  ctx2.moveTo(cx[currentCircle],cy[currentCircle]);
-  ctx2.lineTo(cx[closestC],cy[closestC]);
-  ctx2.stroke();
+   ctx2.beginPath();
+   ctx2.moveTo(cx[currentCircle],cy[currentCircle]);
+   ctx2.lineTo(cx[closestC],cy[closestC]);
+   ctx2.stroke();
+  ctx2.globalCompositeOperation='destination-over';
 }
 function updateAll(){
   createTable(matriceA, "g3", conditiimatrice, 'matrice','');
@@ -634,7 +685,8 @@ function updateAll(){
   checkButtons();
   generareTabelAdiacenta();
   eval("parcurgere"+currentparcurgere)(current);
-  makeCanvas();
+  drawNodes();
+  drawCanvasLines();
 }
 function clearMatriceA(){
   for(var i=1;i<rowNumber;i++){
@@ -663,8 +715,11 @@ function completeMatriceA(){
   }
   updateAll();
 }
+c.addEventListener("mousedown",mouseDown);
+c.addEventListener('mouseup',canvasClick, false);
+c.addEventListener("mouseup",mouseUp);
 c.addEventListener('mousemove',canvasHover);
-c.addEventListener('click',canvasClick, false);
+
 makeCanvas();
 window.onresize=makeCanvas;
 window.onzoom=makeCanvas;
