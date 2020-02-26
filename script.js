@@ -553,8 +553,8 @@ cy=[];
   ctx.lineWidth = 5;
 for (var i = 1; i <=rowNumber; i++) {
   cx[i] = x/2 - smaller/2*radius*Math.cos(x2);
-  cy[i] = y/2+10 + smaller/2*radius*Math.sin(x2);
-  ctx.arc(x/2, y/2+10, smaller/2*radius, x2,y2,false);
+  cy[i] = y/2 + smaller/2*radius*Math.sin(x2);
+  ctx.arc(x/2, y/2, smaller/2*radius, x2,y2,false);
   drawNodes();
   x2=y2;
   y2=x2 + 2*Math.PI/rowNumber;
@@ -567,7 +567,7 @@ function drawNodes(){
   ctx.clearRect(0,0,c.width,c.height);
   for (var i = 1; i <=rowNumber; i++){
   ctx.beginPath();
-  ctx.arc(cx[i], cy[i], smaller/2*0.15, 0,Math.PI*2,false);
+  ctx.arc(cx[i], cy[i], smaller/2*0.12, 0,Math.PI*2,false);
     ctx.fillStyle = "#161D21";
       ctx.fill();
       ctx.stroke();
@@ -583,7 +583,7 @@ function drawNodes(){
 function drawCanvasLines(){
   ctx2.clearRect(0,0,c.width,c.height);
   ctx2.beginPath();
-      ctx2.lineWidth = 10;
+      ctx2.lineWidth = 5;
       ctx2.strokeStyle = "#1D262B";
       for (var i = 1; i < rowNumber; i++){
         for (var j = i+1; j <= rowNumber; j++) {
@@ -604,7 +604,7 @@ function canvasClick(evt) {
   }
   else if(currentCircle!=undefined && dragging==false){
     ctx2.beginPath();
-    ctx2.lineWidth = 10;
+    ctx2.lineWidth = 2;
     ctx2.moveTo(cx[currentCircle],cy[currentCircle]);
     ctx2.lineTo(cx[closestC],cy[closestC]);
     ctx2.stroke();
@@ -695,17 +695,18 @@ function drawLines() {
   drawCanvasLines();
   if (matriceA[currentCircle][closestC]==0) {
     ctx2.strokeStyle = "#1D262B";
-    ctx2.lineWidth = 5;
+    ctx2.lineWidth = 2;
   }
   else {
     ctx2.globalCompositeOperation='source-over';
     ctx2.strokeStyle = "#343c40";
-    ctx2.lineWidth = 10;
+    ctx2.lineWidth = 5;
   }
    ctx2.beginPath();
    ctx2.moveTo(cx[currentCircle],cy[currentCircle]);
    ctx2.lineTo(cx[closestC],cy[closestC]);
    ctx2.stroke();
+
   ctx2.globalCompositeOperation='destination-over';
 }
 function updateAll(){
