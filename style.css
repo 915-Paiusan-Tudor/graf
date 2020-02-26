@@ -40,6 +40,7 @@ body {
   border-color: #D19738; }
 
 #g3 {
+  padding: 2px;
   grid-column: 3;
   grid-row: 2; }
 
@@ -398,6 +399,7 @@ canvas {
     background-color: #263835;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    border-bottom: 0;
     border-top: solid 3px;
     border-left: solid 3px;
     border-right: solid 3px;
@@ -406,6 +408,27 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center; }
+
+.matriceButtonZero, .matriceButtonOne, .parcurgereButton {
+  background: #2c3a41;
+  box-shadow: 0px 2px 2px #1c2429, 0px 0px 0px #222d32;
+  transition: all 150ms linear; }
+
+.matriceButtonZero:hover, .matriceButtonOne:hover, .parcurgereButton:hover {
+  background: #232e33;
+  transition: all 250ms linear;
+  box-sizing: inherit;
+  transition-property: all;
+  transition-duration: .2s;
+  transition-timing-function: ease; }
+
+.matriceButtonOne, .parcurgereButton {
+  background: #243036;
+  box-shadow: 0px 1px 1px #141a1e, 0px 0px 0px #1c252a; }
+
+.matriceButtonOne:hover, .parcurgereButton:hover {
+  background: #1b2428;
+  box-shadow: 1px 1px 2px 2px rgba(30, 40, 45, 0.1); }
 
 td {
   background-color: #1E282D;
@@ -416,7 +439,11 @@ td {
   border-radius: 5%; }
 
 .parcurgeretabel td {
-  border-radius: 5%; }
+  border-radius: 5%;
+  margin-bottom: 5px; }
+.parcurgeretabel .row {
+  background: #1c252a;
+  box-shadow: 0px 2px 2px #0c1012, 0px 0px 0px #12181b; }
 
 .inputnode {
   width: 50%;
@@ -435,6 +462,7 @@ td {
   color: #C39EA0; }
 
 .one {
+  background-color: #1E282D;
   color: #FB9039; }
 
 .row, .collumn, #td1 {

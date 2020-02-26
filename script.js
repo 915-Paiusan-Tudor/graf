@@ -66,8 +66,14 @@
       cell.className = "collumn";
     }
     if (cellData == "0") {
-      cell.className = "zero";
-    } else if (cellData === "") {
+      cell.classList.add("zero","matriceButtonZero");
+      cell.setAttribute("onClick",'matriceToggle('+index+','+index2+')');
+    }
+    if (cellData == "1"&& !(cell.classList.contains("row")||cell.classList.contains("collumn"))) {
+      cell.classList.add("one","matriceButtonOne");
+      cell.setAttribute("onClick",'matriceToggle('+index+','+index2+')');
+    }
+    else if (cellData === "") {
       cell.className = "diag";
     }
 
@@ -75,6 +81,17 @@
   createTable(matriceA, "g3", conditiimatrice, 'matrice','matrice',"matrice");
 
   ///////////////////////////////////////////////////////////////////////////////
+  function matriceToggle(x,y){
+    if(matriceA[x][y]==0){
+    matriceA[x][y]=1;
+    matriceA[y][x]=1;
+  }
+    else {
+      matriceA[x][y]=0;
+      matriceA[y][x]=0;
+    }
+    updateAll();
+  }
   function updateTableLeft(){
 tableLeft=[[]];
     for(var i=1;i<=rowNumber;i++)
@@ -380,6 +397,13 @@ function openMain(evt, main) {
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(main).style.display = "flex";
   evt.currentTarget.className += " active";
+  if(main=="canvasContainer"){
+    var mq = window.matchMedia('@media all and (max-width: 600px)');
+      if(mq.matches) {
+        console.log("asda");
+          document.getElementById("g1").style.gridTemplateColumn=1;
+      }
+  }
   drawNodes();
 }
 function parcurgereBF(i){
@@ -434,9 +458,19 @@ function parcurgere(i){
     parcurgere(i);
     createTableArray(c, "g2", conditiiArray, 'parcurgeretabel','DF');
 }
+function parcurgereButton(x){
+  document.getElementById("current"+currentparcurgere).innerHTML=x;
+  eval("parcurgere"+currentparcurgere)(x);
+  current=x;
+  makeCanvas();
+}
 function conditiiArray(index, cell) {
   if (index == 1) {
     cell.className = "row";
+  }
+  else {
+    cell.classList.add('parcurgereButton');
+    cell.setAttribute("onClick",'parcurgereButton('+cell.innerText+')');
   }
   cell.classList.add('cellArray');
 }
@@ -460,8 +494,9 @@ if (document.getElementById(classnametabel)) {
       row.setAttribute("id", "arow" + i);
       var cell = document.createElement('td');
       cell.setAttribute("id", "td"+tdname+ i + "-" + 1);
-      conditii(i , cell);
+
       cell.appendChild(document.createTextNode(tableData[i]));
+      conditii(i , cell);
       row.appendChild(cell);
       table.appendChild(row);
     }
@@ -564,9 +599,6 @@ function drawCanvasLines(){
 function canvasClick(evt) {
 
   var mousePos = getMousePos(c, evt);
-  console.log(dragging);
-  console.log(currentCircle);
-  console.log(ifInCircle(evt));
   if (currentCircle==undefined && ifInCircle(evt) && dragging==false){
       currentCircle=ifInCircle(evt);
   }
@@ -631,7 +663,6 @@ function canvasHover(evt) {
       currentCircle=ifInCircle(evt);
       dragging=true;
       mouseDownXY=undefined;
-      console.log(mouseDownXY);
     }
   }
   else if(currentCircle!=undefined && dragging==false){
@@ -645,7 +676,6 @@ function canvasHover(evt) {
 
       drawCanvasLines();
     }
-    console.log(dragging);
 }
 
 function closestCircle(evt, mouseMovePos){

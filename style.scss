@@ -47,7 +47,8 @@ body {
   border-color: #D19738;
 }
 #g3 {
-grid-column: 3;
+  padding: 2px;
+  grid-column: 3;
   grid-row: 2;
 }
 #g5 {
@@ -410,6 +411,7 @@ button{
   background-color: #263835;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  border-bottom: 0;
   border-top: solid 3px;
   border-left: solid 3px;
   border-right: solid 3px;
@@ -419,6 +421,27 @@ button{
   justify-content: center;
   align-items: center;
 }
+}
+.matriceButtonZero,.matriceButtonOne,.parcurgereButton{
+background: lighten($bg-color, 3%);
+box-shadow: 0px 2px 2px darken($bg-color, 5%), 0px 0px 0px darken($bg-color, 2%);
+transition: all 150ms linear;
+}
+.matriceButtonZero:hover, .matriceButtonOne:hover,.parcurgereButton:hover{
+  background: darken($bg-color, 1.5%);
+  transition: all 250ms linear;
+  box-sizing: inherit;
+  transition-property: all;
+  transition-duration: .2s;
+  transition-timing-function: ease;
+}
+.matriceButtonOne,.parcurgereButton{
+  background: lighten(#1E282D, 3%);
+  box-shadow: 0px 1px 1px darken(#1E282D, 5%), 0px 0px 0px darken(#1E282D, 1%);
+}
+.matriceButtonOne:hover,.parcurgereButton:hover{
+  background: darken(#1E282D, 1.5%);
+    box-shadow: 1px 1px 2px 2px rgba(#1E282D, .1);
 }
 td {
   background-color: #1E282D;
@@ -433,6 +456,11 @@ td {
 .parcurgeretabel{
   td{
     border-radius: 5%;
+    margin-bottom:5px;
+  }
+  .row{
+    background: lighten(#161D21, 3%);
+    box-shadow: 0px 2px 2px darken(#161D21, 5%), 0px 0px 0px darken(#161D21, 2%);
   }
 }
 .inputnode{
@@ -452,6 +480,7 @@ td {
   color: #C39EA0;
 }
 .one {
+  background-color: #1E282D;
   color: #FB9039;
 }
 
