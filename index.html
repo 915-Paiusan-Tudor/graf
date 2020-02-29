@@ -10,67 +10,108 @@
   <link href="https://fonts.googleapis.com/css?family=Coda+Caption:800|Nanum+Gothic|Nanum+Myeongjo&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="grid">
+  <nav class="navbar" onmouseover="navbarhover(true)" onmouseout="navbarhover(false)">
+    <ul class="navbar-nav">
+      <li class="logo">
+        <span class="itemtext">Graf</span>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-double-right" class="svg-inline--fa fa-angle-double-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34zm192-34l-136-136c-9.4-9.4-24.6-9.4-33.9 0l-22.6 22.6c-9.4 9.4-9.4 24.6 0 33.9l96.4 96.4-96.4 96.4c-9.4 9.4-9.4 24.6 0 33.9l22.6 22.6c9.4 9.4 24.6 9.4 33.9 0l136-136c9.4-9.2 9.4-24.4 0-33.8z"></path></svg>
 
-<div id="ghead" class="g">
- <div class="rowbuttons">
-   <button class="btnaddtop" id="addtop" type="button" onclick="addRow(rowNumber)" name="button"><p>Add</p></button>
-   <button class="btnremovetop" id="removetop" type="button" onclick="deleteRow()" name="button" disabled><p>Remove</p></button>
- </div>
- <div id="gtabs2">
-   <button type="button" class="tablinks2" onclick="openMain(event, 'table')" ><p>Table</p></button>
-   <button type="button" class="tablinks2" onclick="openMain(event, 'canvasContainer')" id="defaultOpen2"><p>Canvas</p></button>
- </div>
-</div>
+      </li>
 
-<div id="gtabs" class="g">
-  <button type="button" class="tablinks" onclick="openParcurgere(event, 'BF')" id="defaultOpen"><p>BF</p></button>
-  <button type="button" class="tablinks" onclick="openParcurgere(event, 'DF')"><p>DF</p></button>
-</div>
+      <li class="navbar-item">
+        <button id="circleLayout" type="button" name="button" class="svgButton" onclick="changeLayout(this,'circle');"><svg id="Circle" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><title>Loading Circles_1</title><path id="Loading_Circles" data-name="Loading Circles" d="M8,8.5A3.5,3.5,0,1,1,4.5,5,3.5,3.5,0,0,1,8,8.5ZM4.5,14A3.5,3.5,0,1,0,8,17.5,3.5,3.5,0,0,0,4.5,14Zm16-2A3.5,3.5,0,1,0,17,8.5,3.5,3.5,0,0,0,20.5,12Zm0,2A3.5,3.5,0,1,0,24,17.5,3.5,3.5,0,0,0,20.5,14Zm-8,4A3.5,3.5,0,1,0,16,21.5,3.5,3.5,0,0,0,12.5,18Zm0-18A3.5,3.5,0,1,0,16,3.5,3.5,3.5,0,0,0,12.5,0Z" fill="#0e1d25"/></svg></button>
+        <button id="treeLayout" type="button" name="button" class="svgButton" onclick="changeLayout(this,'tree');"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        	 viewBox="0 0 476.401 476.401" style="enable-background:new 0 0 476.401 476.401;" xml:space="preserve">
+        <g>
+        	<g>
+        		<path d="M474.111,390.913c-5.12-23.552-23.04-42.496-47.104-49.664v-52.224c0-32.256-26.624-58.88-58.88-58.88h-110.08v-94.72
+        			c36.864-10.752,57.856-49.152,47.104-86.016c-10.752-36.352-49.152-57.344-85.504-46.592
+        			c-36.352,10.752-57.856,49.152-47.104,86.016c6.656,23.552,26.112,41.984,50.176,47.616v93.696H109.055
+        			c-32.256,0-58.88,26.624-58.88,58.88v51.712c-36.864,11.264-57.856,49.664-47.104,86.016
+        			c10.752,36.352,49.152,57.856,86.016,46.592c36.864-11.264,57.856-49.152,46.592-86.016
+        			c-7.168-23.552-26.112-41.984-50.176-47.616v-51.2c0-12.8,10.24-23.04,23.04-23.04h113.152v74.24
+        			c-36.864,9.216-59.904,46.592-50.688,83.456c9.216,36.864,46.592,59.904,83.456,50.688s59.904-46.592,50.688-83.456
+        			c-5.632-24.064-24.064-43.008-47.616-49.664v-74.752h110.08c12.8,0,23.04,10.24,23.04,23.04v51.2
+        			c-36.864,9.216-59.904,46.592-50.688,83.456c9.216,36.864,46.592,59.904,83.456,50.688
+        			C460.287,465.153,483.327,427.777,474.111,390.913z"/>
+        	</g>
+        </g>
+        </svg></button>
+      </li>
+      <li class="navbar-item miscButtonLi" class="miscButton">
+        <button type="button" onclick="clearMatriceA()" class="miscButton" name="button">Clear</button>
+      </li>
+      <li class="navbar-item miscButtonLi" class="miscButton">
+        <button type="button" onclick="randomMatriceA()" class="miscButton" name="button">Random</button>
+      </li>
+      <li class="navbar-item miscButtonLi" class="miscButton">
+        <button type="button" onclick="completeMatriceA()" class="miscButton" name="button">Complete</button>
+      </li>
+    </ul>
+  </nav>
 
-<div id="g1" class="g">
-  <div id="table" class="tabcontent2">
-    <div class="empty">
+  <main>
+    <div class="grid">
+
+      <div id="ghead" class="g">
+       <div class="rowbuttons">
+         <button class="btnaddtop" id="addtop" type="button" onclick="addRow(rowNumber)" name="button"><p>Add</p></button>
+         <button class="btnremovetop" id="removetop" type="button" onclick="deleteRow()" name="button" disabled><p>Remove</p></button>
+       </div>
+       <div id="gtabs2">
+         <button type="button" class="tablinks2" onclick="openMain(event, 'table')" ><p>Table</p></button>
+         <button type="button" class="tablinks2" onclick="openMain(event, 'canvasContainer')" id="defaultOpen2"><p>Canvas</p></button>
+       </div>
+      </div>
+
+      <div id="gtabs" class="g">
+        <button type="button" class="tablinks" onclick="openParcurgere(event, 'BF')" id="defaultOpen"><p>BF</p></button>
+        <button type="button" class="tablinks" onclick="openParcurgere(event, 'DF')"><p>DF</p></button>
+      </div>
+
+      <div id="g1" class="g">
+
+        <div id="table" class="tabcontent2">
+          <div class="empty">
+          </div>
+          <div id="allbtndiv">
+          </div>
+          <div id="whitespace">
+          </div>
+        </div>
+
+        <div id="canvasContainer" class="tabcontent2">
+              <canvas id="canvas1"></canvas>
+              <canvas id="canvas2"></canvas>
+        </div>
+
+        <div id="miscButtonContainer">
+
+        </div>
+      </div>
+
+      <div id="g2" class="g">
+        <div id="BF" class="tabcontent">
+          <div class="nodeselect">
+            <button type="button" class="directionbtn" onclick="increment('BF',-1)" id="leftbtn"><p><</p></button>
+            <div class=current><p id="currentBF">1</p></div>
+            <button type="button" class="directionbtn" onclick="increment('BF',1)" id="rightbtn"><p>></p></button>
+          </div>
+        </div>
+        <div id="DF"  class="tabcontent">
+          <div class="nodeselect">
+            <button type="button" class="directionbtn" onclick="increment('DF',-1)" id="leftbtn"><p><</p></button>
+            <div class=current><p id="currentDF">1</p></div>
+            <button type="button" class="directionbtn" onclick="increment('DF',1)" id="rightbtn"><p>></p></button>
+          </div>
+        </div>
+      </div>
+
+      <div id="g3" class="g"></div>
+
+      <div id="g5" class="g"></div>
     </div>
-    <div id="allbtndiv">
-    </div>
-    <div id="whitespace">
-    </div>
-  </div>
-
-  <div id="canvasContainer" class="tabcontent2">
-        <canvas id="canvas1"></canvas>
-        <canvas id="canvas2"></canvas>
-  </div>
-  <div id="miscButtonContainer">
-    <button type="button" onclick="clearMatriceA()" class="miscButton" name="button">Clear</button>
-    <button type="button" onclick="randomMatriceA()" class="miscButton" name="button">Random</button>
-    <button type="button" onclick="completeMatriceA()" class="miscButton" name="button">Complete</button>
-  </div>
-</div>
-
-<div id="g2" class="g">
-  <div id="BF" class="tabcontent">
-    <div class="nodeselect">
-      <button type="button" class="directionbtn" onclick="increment('BF',-1)" id="leftbtn"><p><</p></button>
-      <div class=current><p id="currentBF">1</p></div>
-      <button type="button" class="directionbtn" onclick="increment('BF',1)" id="rightbtn"><p>></p></button>
-    </div>
-  </div>
-  <div id="DF"  class="tabcontent">
-    <div class="nodeselect">
-      <button type="button" class="directionbtn" onclick="increment('DF',-1)" id="leftbtn"><p><</p></button>
-      <div class=current><p id="currentDF">1</p></div>
-      <button type="button" class="directionbtn" onclick="increment('DF',1)" id="rightbtn"><p>></p></button>
-    </div>
-  </div>
-</div>
-
-<div id="g3" class="g"></div>
-
-<div id="g5" class="g"></div>
-
-</div>
+</main>
 
   <script src="script.js" charset="utf-8"></script>
 </body>

@@ -1,9 +1,9 @@
 
-  var matriceA =[["",1,2,3],[1,"",0,0],[2,0,"",0],[3,0,0,""]];
+  var matriceA =[["",1,2,3,4,5],[1,"",0,0,0,0],[2,0,"",0,0,0],[3,0,0,"",0,0],[4,0,0,0,"",0],[5,0,0,0,0,""]];
   var text;
   var openInput=0;
   var btnNumber = 0;
-  var rowNumber = 3;
+  var rowNumber = 5;
   var tabelAdiacenta;
   var current=1;
   var currentparcurgere='BF';
@@ -17,12 +17,16 @@
   var ctx = c.getContext("2d");
   var cx=[];
   var cy=[];
+  let cdepth=[[]];
   var currentCircle;
   var mouseMovePos;
   var smaller;
   var closestC;
+  var currentArrangement="tree";
   var s1;
   var s2;
+  var x;
+  var y;
   ///////////////////////////////////////////////////////////////////////////////
   function createTable(tableData, g, conditii, classnametabel, tdname,rowname) {
     if (document.getElementById(g).childNodes[0]) {
@@ -81,6 +85,7 @@
   createTable(matriceA, "g3", conditiimatrice, 'matrice','matrice',"matrice");
 
   ///////////////////////////////////////////////////////////////////////////////
+  randomMatriceA();
   function matriceToggle(x,y){
     if(matriceA[x][y]==0){
     matriceA[x][y]=1;
@@ -409,27 +414,57 @@ function openMain(evt, main) {
 function parcurgereBF(i){
   var viz=[];
   var c=[];
+  let currentDepth=1;
+  let includes;
+  cdepth=[];
   viz.length=rowNumber+1;
   viz.fill(0,1);
   c.length=rowNumber+1;
   var p=1;
   var u=1;
   c[1]=i;
+  cdepth[currentDepth]=[i];
   viz[i]=1;
-  var loop=1;
   while (p<=u) {
     var x=c[p];
+    if(cdepth[currentDepth].includes(x)){
+      currentDepth++;
+      cdepth.push([]);
+    }
     for(var j=1; j<=rowNumber; j++)
     {
       if(matriceA[x][j]==1 && viz[j]==0){
+
         viz[j]=1;
         u++;
         c[u]=j;
+        cdepth[currentDepth].push(j);
       }
     }
     p++;
   }
-createTableArray(c, "g2", conditiiArray, 'parcurgeretabel','BF',"BF");
+  for(var k=1;k<=rowNumber;k++){
+    let isolated=true;
+  for (var i = 1; i <cdepth.length; i++) {
+    for (var j = 0; j < cdepth[i].length; j++) {
+      if (cdepth[i].includes(k)) {
+        isolated=false
+      }
+    }
+  }
+  if (isolated) {
+    cdepth[currentDepth].push(k);
+  }
+}
+if(cdepth[currentDepth][0]==undefined)
+{
+  cdepth.pop();
+}
+console.log(cdepth);
+if (currentparcurgere=="BF") {
+  createTableArray(c, "g2", conditiiArray, 'parcurgeretabel','BF',"BF");
+}
+
 }
 
 function parcurgereDF(i){
@@ -533,8 +568,8 @@ function makeCanvas(){
   c.width=container.offsetWidth;
   c.height=container.offsetHeight;
 
-  var x=c.width;
-  var y=c.height;
+x=c.width;
+y=c.height;
 
 
 if (x<y) {
@@ -543,33 +578,62 @@ if (x<y) {
 else {
   smaller=y;
 }
-var x2=1.5*Math.PI-(current-1)*2*Math.PI/rowNumber;
-var y2=x2 + 2*Math.PI/rowNumber;
-var radius=0.8;
-cx=[];
-cy=[];
-  ctx.strokeStyle = "#1D262B";
-  ctx2.strokeStyle = "#1D262B";
-  ctx.lineWidth = 5;
-for (var i = 1; i <=rowNumber; i++) {
-  cx[i] = x/2 - smaller/2*radius*Math.cos(x2);
-  cy[i] = y/2 + smaller/2*radius*Math.sin(x2);
-  ctx.arc(x/2, y/2, smaller/2*radius, x2,y2,false);
-  drawNodes();
-  x2=y2;
-  y2=x2 + 2*Math.PI/rowNumber;
+if (currentArrangement=='tree') {
+arrangeTree();
 }
-ctx.closePath();
-drawCanvasLines();
+else {
+  arrangeCircle();
 }
 
+drawCanvasLines();
+}
+function arrangeTree(){
+  parcurgereBF(current);
+  cx=[];
+  cy=[];
+    ctx.strokeStyle = "#1D262B";
+    ctx2.strokeStyle = "#1D262B";
+    ctx.lineWidth = 3;
+  for (var i = 1; i <cdepth.length; i++) {
+    for (var j = 0; j <= cdepth[i].length; j++) {
+      cx[cdepth[i][j]] = (j+1)*x/(cdepth[i].length+1);
+      cy[cdepth[i][j]] = i*y / (cdepth.length);
+    }
+  }
+  ctx.closePath();
+  drawNodes();
+}
+function arrangeCircle(){
+  var x2=1.5*Math.PI-(current-1)*2*Math.PI/rowNumber;
+  var y2=x2 + 2*Math.PI/rowNumber;
+  var radius=0.8;
+  cx=[];
+  cy=[];
+    ctx.strokeStyle = "#1D262B";
+    ctx2.strokeStyle = "#1D262B";
+    ctx.lineWidth = 5;
+  for (var i = 1; i <=rowNumber; i++) {
+    cx[i] = x/2 - smaller/2*radius*Math.cos(x2);
+    cy[i] = y/2 + smaller/2*radius*Math.sin(x2);
+    ctx.arc(x/2, y/2, smaller/2*radius, x2,y2,false);
+    x2=y2;
+    y2=x2 + 2*Math.PI/rowNumber;
+  }
+  ctx.closePath();
+      drawNodes();
+}
 function drawNodes(){
   ctx.clearRect(0,0,c.width,c.height);
   for (var i = 1; i <=rowNumber; i++){
   ctx.beginPath();
-  ctx.arc(cx[i], cy[i], smaller/2*0.12, 0,Math.PI*2,false);
+  ctx.arc(cx[i], cy[i], smaller/2*0.10, 0,Math.PI*2,false);
     ctx.fillStyle = "#161D21";
+
       ctx.fill();
+      ctx.shadowColor = '#161D21';
+      ctx.shadowBlur = 2;
+   ctx.shadowOffsetX = 2;
+   ctx.shadowOffsetY = 2;
       ctx.stroke();
     ctx.fillStyle = "#D19738";
     ctx.textAlign = "center";
@@ -658,7 +722,7 @@ function ifInCircle(evt){
 
 function canvasHover(evt) {
   mouseMovePos = getMousePos(c, evt);
-  if (mouseDownXY && !mouseUpXY) {
+  if (mouseDownXY && !mouseUpXY && !currentCircle) {
     if (Math.abs(mouseMovePos.x-mouseDownXY.x)>5 || Math.abs(mouseMovePos.y-mouseDownXY.y)>5) {
       currentCircle=ifInCircle(evt);
       dragging=true;
@@ -716,6 +780,12 @@ function updateAll(){
   checkButtons();
   generareTabelAdiacenta();
   eval("parcurgere"+currentparcurgere)(current);
+  if (currentArrangement=='tree') {
+  arrangeTree();
+  }
+  else {
+    arrangeCircle();
+  }
   drawNodes();
   drawCanvasLines();
 }
@@ -754,3 +824,28 @@ c.addEventListener('mousemove',canvasHover);
 makeCanvas();
 window.onresize=makeCanvas;
 window.onzoom=makeCanvas;
+function navbarhover(hover){
+  if (hover) {
+    document.getElementsByClassName("grid")[0].style.marginLeft="10%";
+    document.getElementsByClassName("grid")[0].style.marginRight="-5%";
+    //document.getElementsByClassName("grid")[0].style.justifyContent="flex-end";
+  }
+  else {
+    document.getElementsByClassName("grid")[0].style.marginLeft="0";
+    document.getElementsByClassName("grid")[0].style.marginRight="0";
+    //document.getElementsByClassName("grid")[0].style.justifyContent="center";
+  }
+}
+document.getElementById('treeLayout').click();
+function changeLayout(button,layout){
+  currentArrangement=layout;
+  updateAll();
+  if (button==document.getElementById('circleLayout')) {
+    button.classList.add("selectedLayout");
+    document.getElementById('treeLayout').classList.remove("selectedLayout");
+  }
+  else {
+    button.classList.add("selectedLayout");
+    document.getElementById('circleLayout').classList.remove("selectedLayout");
+  }
+}

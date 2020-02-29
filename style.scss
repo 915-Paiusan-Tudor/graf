@@ -10,18 +10,20 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
-  justify-content: center;
   background: #263835;
   font-family: consolas;
+  overflow-x: hidden;
+  user-select: none;
 }
 
 .grid {
   padding: 10px 0 20px;
   display: grid;
   justify-content: center;
-  grid-template-columns: 40% 15% 30%;
+  grid-template-columns: 35% 15% 30%;
   grid-template-rows: 30px 400px 120px;
   grid-gap: 10px;
+  transition: margin 200ms ease;
 }
 
 .g {
@@ -71,6 +73,112 @@ body {
   border-radius: 0px;
   box-shadow: none;
   background-color: inherit;
+}
+
+.navbar{
+  z-index: 3;
+  width:5%;
+  min-width: 50px;
+  height: 100vh;
+  position: fixed;
+  background-color: darken($bg-color,5);
+  transition: width 200ms ease;
+}
+.navbar:hover{
+  width:15%;
+  .logo svg{
+
+    transform: rotate(-180deg);
+  }
+  span{
+    display: inline;
+  }
+  button{
+    display: inline;
+  }
+  .miscButtonLi{
+    display: flex;
+  }
+  .navbar-item{
+    svg{
+      width: 40%;
+      max-width: none;
+    }
+  }
+}
+.navbar-nav{
+  list-style: none;
+  padding: 0px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navbar-item{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 1px rgba($bg-color, 0.9) solid;
+  button{
+    display: none;
+    outline: none;
+  }
+  svg{
+    width: 80%;
+    max-width: 50px;
+    fill:$yellow;
+    filter: grayscale(100%) opacity(0.2);
+    transition: filter 100ms linear;
+  }
+  svg:hover{
+    filter: grayscale(0%) opacity(1);
+    transform: scale();
+  }
+}
+.selectedLayout{
+    display: inline !important;
+  svg{
+  filter: grayscale(0%) opacity(1);
+}
+}
+.miscButtonLi{
+  display: none;
+}
+.logo {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 50px;
+    background-color: darken($darkbg, 2);
+      span{
+        font-size: 2em;
+        font-weight: bold;
+        padding-top: 5px;
+        padding-left: 10px;
+        color:$yellow;
+        display: none;
+      }
+      svg{
+        height:100%;
+        align-self: flex-end;
+        transform: rotate(0deg);
+        transition: transform 200ms;
+      }
+}
+.svgButton{
+  background: transparent;
+  border:0;
+  margin: 0;
+  padding: 0;
+}
+.fa-angle-double-right{
+  color: $yellow;
+}
+#Loading_Circles{
+  fill: $yellow;
 }
 table{
   padding: 0;
@@ -227,7 +335,6 @@ button{
   }
 }
 #canvasContainer{
-  justify-self: center;
   justify-content: center;
   height: 100%;
   width: 100%;
@@ -254,30 +361,18 @@ height: 100%;
   background: transparent;
   opacity: 0.5;
 }
-#miscButtonContainer{
-    margin: auto;
-    z-index: 4;
-    width: 100%;
-    height: 5%;
-    justify-content: space-around;
-    display: flex;
-    position: absolute;
-    bottom: -5%;
-}
 .miscButton{
-  margin-top: 5px;
+  width: 80%;
   height: auto;
-  width: 30%;
-  height: 100%;
   background-color: #D19738;
-  border-radius: 20px;
-  color: $bg-color;
+  border-radius: 12px;
+  color: $darkbg;
   border: 0;
   outline: none;
   cursor: pointer;
   font-family: consolas;
   font-weight: bold;
-  font-size:0.9em;
+  font-size:1em;
 }
 .directionbtn{
   cursor: pointer;
