@@ -22,6 +22,7 @@
   var mouseMovePos;
   var smaller;
   var closestC;
+  var oriented=false;
   var currentArrangement="tree";
   var s1;
   var s2;
@@ -826,14 +827,10 @@ window.onresize=makeCanvas;
 window.onzoom=makeCanvas;
 function navbarhover(hover){
   if (hover) {
-    document.getElementsByClassName("grid")[0].style.marginLeft="10%";
-    document.getElementsByClassName("grid")[0].style.marginRight="-5%";
-    //document.getElementsByClassName("grid")[0].style.justifyContent="flex-end";
+    document.getElementsByClassName("grid")[0].style.transform="translateX(8%)";
   }
   else {
-    document.getElementsByClassName("grid")[0].style.marginLeft="0";
-    document.getElementsByClassName("grid")[0].style.marginRight="0";
-    //document.getElementsByClassName("grid")[0].style.justifyContent="center";
+    document.getElementsByClassName("grid")[0].style.transform="translateX(0)";
   }
 }
 document.getElementById('treeLayout').click();

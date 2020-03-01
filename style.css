@@ -17,7 +17,7 @@ body {
   grid-template-columns: 35% 15% 30%;
   grid-template-rows: 30px 400px 120px;
   grid-gap: 10px;
-  transition: margin 200ms ease; }
+  transition: transform 200ms ease; }
 
 .g {
   border: 2px solid #D19738;
@@ -113,10 +113,10 @@ body {
     max-width: 50px;
     fill: #DC9E38;
     filter: grayscale(100%) opacity(0.2);
-    transition: filter 100ms linear; }
+    transition: filter 100ms linear, transform 100ms linear; }
   .navbar-item svg:hover {
     filter: grayscale(0%) opacity(1);
-    transform: scale(); }
+    transform: scale(1.1); }
 
 .selectedLayout {
   display: inline !important; }
