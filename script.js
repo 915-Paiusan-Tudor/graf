@@ -96,6 +96,7 @@
       matriceA[x][y]=0;
       matriceA[y][x]=0;
     }
+
     updateAll();
   }
   function updateTableLeft(){
@@ -680,15 +681,11 @@ function canvasClick(evt) {
     else {
       matriceA[currentCircle][closestC]=0;
       matriceA[closestC][currentCircle]=0;
-      drawNodes();
     }
-    drawCanvasLines();
-    createTable(matriceA, "g3", conditiimatrice, 'matrice','');
-    updateTableLeft();
-    updateButtons();
-    checkButtons();
-    generareTabelAdiacenta();
-    eval("parcurgere"+currentparcurgere)(current);
+    if (currentArrangement=='tree') {
+    arrangeTree();
+    }
+    updateAll();
     currentCircle=undefined;
   }
 }
@@ -781,12 +778,6 @@ function updateAll(){
   checkButtons();
   generareTabelAdiacenta();
   eval("parcurgere"+currentparcurgere)(current);
-  if (currentArrangement=='tree') {
-  arrangeTree();
-  }
-  else {
-    arrangeCircle();
-  }
   drawNodes();
   drawCanvasLines();
 }
@@ -797,6 +788,12 @@ function clearMatriceA(){
       matriceA[j][i]=0;
     }
   }
+  if (currentArrangement=='tree') {
+  arrangeTree();
+  }
+  else {
+    arrangeCircle();
+  }
   updateAll();
 }
 function randomMatriceA(){
@@ -806,6 +803,12 @@ function randomMatriceA(){
       matriceA[j][i]=matriceA[i][j];
     }
   }
+  if (currentArrangement=='tree') {
+  arrangeTree();
+  }
+  else {
+    arrangeCircle();
+  }
   updateAll();
 }
 function completeMatriceA(){
@@ -814,6 +817,12 @@ function completeMatriceA(){
       matriceA[i][j]=1;
       matriceA[j][i]=1;
     }
+  }
+  if (currentArrangement=='tree') {
+  arrangeTree();
+  }
+  else {
+    arrangeCircle();
   }
   updateAll();
 }
@@ -836,6 +845,12 @@ function navbarhover(hover){
 document.getElementById('treeLayout').click();
 function changeLayout(button,layout){
   currentArrangement=layout;
+  if (currentArrangement=='tree') {
+  arrangeTree();
+  }
+  else {
+    arrangeCircle();
+  }
   updateAll();
   if (button==document.getElementById('circleLayout')) {
     button.classList.add("selectedLayout");
