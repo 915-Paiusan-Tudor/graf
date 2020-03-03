@@ -28,6 +28,8 @@
   var s2;
   var x;
   var y;
+  var currentMatrice=matriceA;
+  var isDirected=false;
   ///////////////////////////////////////////////////////////////////////////////
   function createTable(tableData, g, conditii, classnametabel, tdname,rowname) {
     if (document.getElementById(g).childNodes[0]) {
@@ -83,20 +85,23 @@
     }
 
   }
-  createTable(matriceA, "g3", conditiimatrice, 'matrice','matrice',"matrice");
+  createTable(currentMatrice, "g3", conditiimatrice, 'matrice','matrice',"matrice");
 
   ///////////////////////////////////////////////////////////////////////////////
   randomMatriceA();
   function matriceToggle(x,y){
     if(matriceA[x][y]==0){
     matriceA[x][y]=1;
-    matriceA[y][x]=1;
+    if (!isDirected) {
+          matriceA[y][x]=1;
+    }
   }
     else {
       matriceA[x][y]=0;
-      matriceA[y][x]=0;
+      if (!isDirected) {
+            matriceA[y][x]=0;
+      }
     }
-
     updateAll();
   }
   function updateTableLeft(){
@@ -562,7 +567,7 @@ function increment(x, i){
 
 document.getElementById("defaultOpen").click();
 document.getElementById("defaultOpen2").click();
-
+document.getElementById("defaultOpen3").click();
 
 function makeCanvas(){
   c2.width=container.offsetWidth;
@@ -630,7 +635,6 @@ function drawNodes(){
   ctx.beginPath();
   ctx.arc(cx[i], cy[i], smaller/2*0.10, 0,Math.PI*2,false);
     ctx.fillStyle = "#161D21";
-
       ctx.fill();
       ctx.shadowColor = '#161D21';
       ctx.shadowBlur = 2;
@@ -641,21 +645,46 @@ function drawNodes(){
     ctx.textAlign = "center";
     ctx.font = "bold "+smaller/2*0.1+"px consolas";
     ctx.fontWeight = "bold";
-    ctx.textBaseline = "middle";
+      ctx.textBaseline = "middle";
     ctx.fillText(i, cx[i], cy[i]+2 ,);
   }
 }
 
 function drawCanvasLines(){
+  var ux=1
   ctx2.clearRect(0,0,c.width,c.height);
   ctx2.beginPath();
-      ctx2.lineWidth = 5;
+      ctx2.lineWidth = 3;
       ctx2.strokeStyle = "#1D262B";
-      for (var i = 1; i < rowNumber; i++){
-        for (var j = i+1; j <= rowNumber; j++) {
-          if (matriceA[i][j]==1) {
-            ctx2.moveTo(cx[i],cy[i]);
-            ctx2.lineTo(cx[j],cy[j]);
+      if (isDirected) {
+        for (var i = 1; i <= rowNumber; i++){
+          for (var j = 1; j <= rowNumber; j++) {
+            if (matriceA[i][j]==1&&j!=i) {
+              if (matriceA[j][i]==1) {
+                ctx2.moveTo(cx[i],cy[i]);
+                ctx2.lineTo(cx[j],cy[j]);
+              }
+              else {
+                canvas_arrow(ctx2,cx[i],cy[i],cx[j],cy[j]);
+              }
+              // TODO: add conditions
+              //ctx2.globalCompositeOperation='destination-over';
+              //ctx2.fillText('ux'+ux, (cx[i]+cx[j])/2, (cy[i]+cy[j])/2 ,);
+              //ux++;
+            }
+          }
+        }
+      }
+      else {
+        for (var i = 1; i < rowNumber; i++){
+          for (var j = i+1; j <= rowNumber; j++) {
+            if (matriceA[i][j]==1) {
+              ctx2.moveTo(cx[i],cy[i]);
+              ctx2.lineTo(cx[j],cy[j]);
+              //ctx2.globalCompositeOperation='destination-over';
+              //ctx2.fillText('ux'+ux, (cx[i]+cx[j])/2, (cy[i]+cy[j])/2 ,);
+              //ux++;
+            }
           }
         }
       }
@@ -674,13 +703,23 @@ function canvasClick(evt) {
     ctx2.moveTo(cx[currentCircle],cy[currentCircle]);
     ctx2.lineTo(cx[closestC],cy[closestC]);
     ctx2.stroke();
-    if (matriceA[currentCircle][closestC]==0) {
-      matriceA[currentCircle][closestC]=1;
-      matriceA[closestC][currentCircle]=1;
+    if (isDirected) {
+      if (matriceA[currentCircle][closestC]==0) {
+        matriceA[currentCircle][closestC]=1;
+      }
+      else {
+        matriceA[currentCircle][closestC]=0;
+      }
     }
     else {
-      matriceA[currentCircle][closestC]=0;
-      matriceA[closestC][currentCircle]=0;
+      if (matriceA[currentCircle][closestC]==0) {
+        matriceA[currentCircle][closestC]=1;
+        matriceA[closestC][currentCircle]=1;
+      }
+      else {
+        matriceA[currentCircle][closestC]=0;
+        matriceA[closestC][currentCircle]=0;
+      }
     }
     if (currentArrangement=='tree') {
     arrangeTree();
@@ -735,7 +774,6 @@ function canvasHover(evt) {
       cx[currentCircle]=mouseMovePos.x;
       cy[currentCircle]=mouseMovePos.y;
       drawNodes();
-
       drawCanvasLines();
     }
 }
@@ -765,14 +803,22 @@ function drawLines() {
     ctx2.lineWidth = 5;
   }
    ctx2.beginPath();
-   ctx2.moveTo(cx[currentCircle],cy[currentCircle]);
-   ctx2.lineTo(cx[closestC],cy[closestC]);
+      ctx2.moveTo(cx[currentCircle],cy[currentCircle]);
+   if (isDirected&&matriceA[closestC][currentCircle]==1) {
+     var m=Math.sqrt( Math.pow((cy[currentCircle]-cy[closestC]),2) + Math.pow((cx[currentCircle]-cx[closestC]),2 ));
+     var n=m/2;
+     console.log(n);
+     ctx2.quadraticCurveTo(cx[currentCircle]-n,cy[currentCircle]+n, cx[closestC], cy[closestC]);
+   }
+   else {
+      ctx2.lineTo(cx[closestC],cy[closestC]);
+   }
    ctx2.stroke();
 
   ctx2.globalCompositeOperation='destination-over';
 }
 function updateAll(){
-  createTable(matriceA, "g3", conditiimatrice, 'matrice','');
+  createTable(currentMatrice, "g3", conditiimatrice, 'matrice','');
   updateTableLeft();
   updateButtons();
   checkButtons();
@@ -797,10 +843,21 @@ function clearMatriceA(){
   updateAll();
 }
 function randomMatriceA(){
-  for(var i=1;i<rowNumber;i++){
-    for (var j = i+1; j <= rowNumber; j++) {
-      matriceA[i][j]=Math.round(Math.random());
-      matriceA[j][i]=matriceA[i][j];
+  if(isDirected){
+    for (var i = 1; i <= rowNumber; i++) {
+      for (var j = 1; j <= rowNumber; j++){
+        if(j!=i){
+          matriceA[i][j]=Math.round(Math.random());
+        }
+      }
+    }
+  }
+  else {
+    for(var i=1;i<rowNumber;i++){
+      for (var j = i+1; j <= rowNumber; j++) {
+        matriceA[i][j]=Math.round(Math.random());
+        matriceA[j][i]=matriceA[i][j];
+      }
     }
   }
   if (currentArrangement=='tree') {
@@ -853,11 +910,46 @@ function changeLayout(button,layout){
   }
   updateAll();
   if (button==document.getElementById('circleLayout')) {
-    button.classList.add("selectedLayout");
-    document.getElementById('treeLayout').classList.remove("selectedLayout");
+    button.classList.add("selectedSVG");
+    document.getElementById('treeLayout').classList.remove("selectedSVG");
   }
   else {
-    button.classList.add("selectedLayout");
-    document.getElementById('circleLayout').classList.remove("selectedLayout");
+    button.classList.add("selectedSVG");
+    document.getElementById('circleLayout').classList.remove("selectedSVG");
+  }
+}
+function canvas_arrow(context, fromx, fromy, tox, toy) {
+  var headlen = 30; // length of head in pixels
+  var dx = tox - fromx;
+  var dy = toy - fromy;
+  var angle = Math.atan2(dy, dx);
+  context.moveTo(fromx, fromy);
+  context.lineTo(tox, toy);
+  context.moveTo((tox+fromx)/2, (toy+fromy)/2);
+  context.lineTo((tox+fromx)/2 - headlen * Math.cos(angle - Math.PI / 6), (toy+fromy)/2 - headlen * Math.sin(angle - Math.PI / 6));
+  context.moveTo((tox+fromx)/2, (toy+fromy)/2);
+  context.lineTo((tox+fromx)/2 - headlen * Math.cos(angle + Math.PI / 6), (toy+fromy)/2 - headlen * Math.sin(angle + Math.PI / 6));
+}
+function  matriceCurrent(evt,matrice){
+  var tablinks = document.getElementsByClassName("tablinks3");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  evt.currentTarget.className += " active";
+  currentMatrice=eval(matrice);
+  createTable(currentMatrice, "g3", conditiimatrice, 'matrice','matrice',"matrice");
+}
+document.getElementById('nondirected').click();
+function changeDirection(button,directed){
+  isDirected=directed;
+  console.log(button);
+  updateAll();
+  if (button==document.getElementById('nondirected')) {
+    button.classList.add("selectedSVG");
+    document.getElementById('directed').classList.remove("selectedSVG");
+  }
+  else {
+    button.classList.add("selectedSVG");
+    document.getElementById('nondirected').classList.remove("selectedSVG");
   }
 }

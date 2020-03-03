@@ -74,7 +74,41 @@ body {
   box-shadow: none;
   background-color: inherit;
 }
-
+#matriceTabs{
+  display: flex;
+  padding: 0;
+  margin: 0;
+  border:0;
+  box-shadow: none;
+  position: relative;
+  top:10px;
+  border-radius: 0px;
+  background-color: transparent;
+  overflow: hidden;
+  justify-content: flex-end;
+  button{
+    cursor: pointer;
+    font-family: consolas;
+    font-weight: bold;
+    font-size:1.5vw;
+    width: 33.3%;
+    max-width: 33.3%;
+    padding: 0px 10px 0px 10px;
+    color: $bg-color;
+    text-align: center;
+    background-color: #D19738;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top: solid 2px;
+    border-left: solid 2px;
+    border-right: solid 2px;
+    border-color: #D19738;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
 .navbar{
   z-index: 3;
   width:5%;
@@ -105,6 +139,12 @@ body {
       max-width: none;
     }
   }
+  #direction{
+    svg{
+      width: 80%;
+      max-width: none;
+    }
+  }
 }
 .navbar-nav{
   list-style: none;
@@ -126,10 +166,11 @@ body {
     display: none;
     outline: none;
   }
-  svg{
+  svg,use{
+    height: auto;
     width: 80%;
     max-width: 50px;
-    fill:$yellow;
+    fill: $yellow !important;
     filter: grayscale(100%) opacity(0.2);
     transition: filter 100ms linear, transform 100ms linear;
   }
@@ -138,7 +179,7 @@ body {
     transform: scale(1.1);
   }
 }
-.selectedLayout{
+.selectedSVG{
     display: inline !important;
   svg{
   filter: grayscale(0%) opacity(1);
@@ -353,7 +394,7 @@ height: 100%;
 #canvas2{
   z-index: 2;
 }
-.tablinks, .tablinks2{
+.tablinks, .tablinks2,.tablinks3{
   outline: none;
   width: auto;
   border: 0px;

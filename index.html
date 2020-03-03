@@ -15,11 +15,21 @@
       <li class="logo">
         <span class="itemtext">Graf</span>
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-double-right" class="svg-inline--fa fa-angle-double-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34zm192-34l-136-136c-9.4-9.4-24.6-9.4-33.9 0l-22.6 22.6c-9.4 9.4-9.4 24.6 0 33.9l96.4 96.4-96.4 96.4c-9.4 9.4-9.4 24.6 0 33.9l22.6 22.6c9.4 9.4 24.6 9.4 33.9 0l136-136c9.4-9.2 9.4-24.4 0-33.8z"></path></svg>
-
       </li>
-
+      <li class="navbar-item" id="direction">
+        <button id="directed" type="button" name="button" class="svgButton" onclick="changeDirection(this,true);">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 250" width="640" height="250"><defs><path d="M230 125C230 180.19 185.19 225 130 225C74.81 225 30 180.19 30 125C30 69.81 74.81 25 130 25C185.19 25 230 69.81 230 125Z" id="dGru5WqUl"></path><path d="M610 125C610 180.19 565.19 225 510 225C454.81 225 410 180.19 410 125C410 69.81 454.81 25 510 25C565.19 25 610 69.81 610 125Z" id="h2DjQSZXW9"></path><path d="M315.15 78.12L400 125L315.15 171.87L315.15 142.16L225.15 142.16L225.15 107.76L315.15 107.76L315.15 78.12Z" id="a2joyoLFek">
+          </path></defs><g><g><g><use xlink:href="#dGru5WqUl" opacity="1" fill="#000000" fill-opacity="1"></use></g><g><use xlink:href="#h2DjQSZXW9" opacity="1" fill="#000000" fill-opacity="1"></use></g><g>
+          <use xlink:href="#a2joyoLFek" opacity="1" fill="#000000" fill-opacity="1"></use></g></g></g></svg>
+        </button>
+        <button id="nondirected" type="button" name="button" class="svgButton" onclick="changeDirection(this,false);">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 250" width="640" height="250"><defs><path d="M230 125C230 180.19 185.19 225 130 225C74.81 225 30 180.19 30 125C30 69.81 74.81 25 130 25C185.19 25 230 69.81 230 125Z" id="dGru5WqUl"></path><path d="M610 125C610 180.19 565.19 225 510 225C454.81 225 410 180.19 410 125C410 69.81 454.81 25 510 25C565.19 25 610 69.81 610 125Z" id="h2DjQSZXW9"></path><path d="M216.9 105L421.9 105L421.9 145L216.9 145L216.9 105Z" id="j2zgIifyPY">
+          </path></defs><g><g><g><use xlink:href="#dGru5WqUl" opacity="1" fill="#000000" fill-opacity="1"></use></g><g><use xlink:href="#h2DjQSZXW9" opacity="1" fill="#000000" fill-opacity="1"></use></g>
+          <g><use xlink:href="#j2zgIifyPY" opacity="1" fill="#000000" fill-opacity="1"></use></g></g></g></svg>
+        </button>
+      </li>
       <li class="navbar-item">
-        <button id="circleLayout" type="button" name="button" class="svgButton" onclick="changeLayout(this,'circle');"><svg id="Circle" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><title>Loading Circles_1</title><path id="Loading_Circles" data-name="Loading Circles" d="M8,8.5A3.5,3.5,0,1,1,4.5,5,3.5,3.5,0,0,1,8,8.5ZM4.5,14A3.5,3.5,0,1,0,8,17.5,3.5,3.5,0,0,0,4.5,14Zm16-2A3.5,3.5,0,1,0,17,8.5,3.5,3.5,0,0,0,20.5,12Zm0,2A3.5,3.5,0,1,0,24,17.5,3.5,3.5,0,0,0,20.5,14Zm-8,4A3.5,3.5,0,1,0,16,21.5,3.5,3.5,0,0,0,12.5,18Zm0-18A3.5,3.5,0,1,0,16,3.5,3.5,3.5,0,0,0,12.5,0Z" fill="#0e1d25"/></svg></button>
+        <button id="circleLayout" type="button" name="button" class="svgButton" onclick="changeLayout(this,'circle');"><svg id="Circle" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path id="Loading_Circles" data-name="Loading Circles" d="M8,8.5A3.5,3.5,0,1,1,4.5,5,3.5,3.5,0,0,1,8,8.5ZM4.5,14A3.5,3.5,0,1,0,8,17.5,3.5,3.5,0,0,0,4.5,14Zm16-2A3.5,3.5,0,1,0,17,8.5,3.5,3.5,0,0,0,20.5,12Zm0,2A3.5,3.5,0,1,0,24,17.5,3.5,3.5,0,0,0,20.5,14Zm-8,4A3.5,3.5,0,1,0,16,21.5,3.5,3.5,0,0,0,12.5,18Zm0-18A3.5,3.5,0,1,0,16,3.5,3.5,3.5,0,0,0,12.5,0Z" fill="#0e1d25"></svg></button>
         <button id="treeLayout" type="button" name="button" class="svgButton" onclick="changeLayout(this,'tree');"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         	 viewBox="0 0 476.401 476.401" style="enable-background:new 0 0 476.401 476.401;" xml:space="preserve">
         <g>
@@ -67,6 +77,12 @@
       <div id="gtabs" class="g">
         <button type="button" class="tablinks" onclick="openParcurgere(event, 'BF')" id="defaultOpen"><p>BF</p></button>
         <button type="button" class="tablinks" onclick="openParcurgere(event, 'DF')"><p>DF</p></button>
+      </div>
+
+      <div id="matriceTabs" class="g">
+        <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceM')"><p>Muchii</p></button>
+        <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceI')"><p>Incidenta</p></button>
+        <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceA')" id="defaultOpen3"><p>Adiacenta</p></button>
       </div>
 
       <div id="g1" class="g">
