@@ -20,7 +20,7 @@ body {
   transition: transform 200ms ease; }
 
 .g {
-  border: 2px solid #D19738;
+  border: 2px solid #DC9E38;
   border-radius: 5px;
   box-shadow: 0px 6px 20px 10px rgba(0, 0, 0, 0.2);
   background-color: #263238; }
@@ -39,7 +39,7 @@ body {
   border: solid 2px;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
-  border-color: #D19738; }
+  border-color: #DC9E38; }
 
 #g3 {
   padding: 2px;
@@ -89,17 +89,22 @@ body {
     padding: 0px 10px 0px 10px;
     color: #263238;
     text-align: center;
-    background-color: #D19738;
+    background-color: #DC9E38;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-top: solid 2px;
     border-left: solid 2px;
     border-right: solid 2px;
-    border-color: #D19738;
+    border-color: #DC9E38;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center; }
+
+#matricediv {
+  overflow-x: auto; }
+  #matricediv td {
+    min-width: 40px; }
 
 .navbar {
   z-index: 3;
@@ -226,11 +231,11 @@ h1 {
   height: 100%;
   overflow-x: auto; }
 
-#tabelAdiacentadiv::-webkit-scrollbar {
+#tabelAdiacentadiv::-webkit-scrollbar, #matricediv::-webkit-scrollbar {
   background-color: transparent;
   height: 6px; }
 
-#tabelAdiacentadiv::-webkit-scrollbar-thumb {
+#tabelAdiacentadiv::-webkit-scrollbar-thumb, #matricediv::-webkit-scrollbar-thumb {
   background-color: #171E22;
   border-radius: 10px; }
 
@@ -292,13 +297,13 @@ h1 {
     min-width: 50%;
     color: #263238;
     text-align: center;
-    background-color: #D19738;
+    background-color: #DC9E38;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-top: solid 2px;
     border-left: solid 2px;
     border-right: solid 2px;
-    border-color: #D19738;
+    border-color: #DC9E38;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -321,13 +326,13 @@ h1 {
     min-width: 50%;
     color: #263238;
     text-align: center;
-    background-color: #D19738;
+    background-color: #DC9E38;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-top: solid 2px;
     border-left: solid 2px;
     border-right: solid 2px;
-    border-color: #D19738;
+    border-color: #DC9E38;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -376,7 +381,7 @@ canvas {
 .miscButton {
   width: 80%;
   height: auto;
-  background-color: #D19738;
+  background-color: #DC9E38;
   border-radius: 12px;
   color: #171E22;
   border: 0;
@@ -513,7 +518,7 @@ canvas {
     padding: 0px 10px 0px 10px;
     color: #DC9E38;
     text-align: center;
-    background-color: #263835;
+    background-color: #263238;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom: 0;
@@ -559,8 +564,8 @@ td {
   border-radius: 5%;
   margin-bottom: 5px; }
 .parcurgeretabel .row {
-  background: #1c252a;
-  box-shadow: 0px 2px 2px #0c1012, 0px 0px 0px #12181b; }
+  background: #1d262b;
+  box-shadow: 0px 2px 2px #0d1113, 0px 0px 0px #13191c; }
 
 .inputnode {
   width: 50%;
@@ -587,7 +592,7 @@ td {
   color: #B27A0C; }
 
 .diag {
-  background: #161d21; }
+  background: #171E22; }
 
 table {
   font-size: 1.2em !important; }
@@ -643,14 +648,14 @@ table {
       padding: 0;
       color: #263238;
       text-align: center;
-      background-color: #D19738;
+      background-color: #DC9E38;
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
       border-top-right-radius: 0px;
       border-top: solid 2px;
       border-left: solid 2px;
       border-right: solid 2px;
-      border-color: #D19738;
+      border-color: #DC9E38;
       display: flex;
       flex-direction: column;
       justify-content: center;

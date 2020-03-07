@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Coda+Caption:800|Nanum+Gothic|Nanum+Myeongjo&display=swap" rel="stylesheet">
 </head>
-<body>
+<body id="orange">
   <nav class="navbar" onmouseover="navbarhover(true)" onmouseout="navbarhover(false)">
     <ul class="navbar-nav">
       <li class="logo">
@@ -80,8 +80,8 @@
       </div>
 
       <div id="matriceTabs" class="g">
-        <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceM')"><p>Muchii</p></button>
-        <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceI')"><p>Incidenta</p></button>
+        <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceM')" id="drumBtn"><p>Drumuri</p></button>
+        <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceI')" id="incidentaBtn"><p>Incidenta</p></button>
         <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceA')" id="defaultOpen3"><p>Adiacenta</p></button>
       </div>
 
@@ -128,7 +128,10 @@
       <div id="g5" class="g"></div>
     </div>
 </main>
-
+  <script src="variables.js" charset="utf-8"></script>
+  <script src="tables.js" charset="utf-8"></script>
+  <script src="tableLeft.js" charset="utf-8"></script>
+  <script src="canvas.js" charset="utf-8"></script>
   <script src="script.js" charset="utf-8"></script>
 </body>
 </html>
