@@ -71,7 +71,12 @@ function drawNodes() {
   ctx.clearRect(0, 0, c.width, c.height);
   for (var i = 1; i <= rowNumber; i++) {
     ctx.beginPath();
+    if (i==hoverNode) {
+    ctx.arc(cx[i], cy[i], smaller / 2 * 0.105, 0, Math.PI * 2, false);
+    }
+    else {
     ctx.arc(cx[i], cy[i], smaller / 2 * 0.10, 0, Math.PI * 2, false);
+    }
     ctx.fillStyle = nodeColor;
     ctx.fill();
     ctx.shadowColor = nodeColor;
@@ -237,6 +242,7 @@ function canvasHover(evt) {
   mouseMovePos = getMousePos(c, evt);
   if(!currentCircle){
       hoverNode=ifInCircle(evt);
+      drawNodes();
   }
   if (mouseDownXY && !mouseUpXY && !currentCircle) {
     if (Math.abs(mouseMovePos.x - mouseDownXY.x) > 5 || Math.abs(mouseMovePos.y - mouseDownXY.y) > 5) {
