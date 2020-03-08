@@ -18,8 +18,10 @@ function makeCanvas() {
   } else {
     arrangeCircle();
   }
-
   drawCanvasLines();
+  // if (isAnimating && currentArrangement == 'circle') {
+  //   window.requestAnimationFrame(makeCanvas);
+  // }https://stackoverflow.com/questions/33622680/javascript-canvas-animated-arc
 }
 function arrangeTree() {
   parcurgereBF(current);
@@ -38,7 +40,7 @@ function arrangeTree() {
   drawNodes();
 }
 function arrangeCircle() {
-  var x2 = 1.5 * Math.PI - (current - 1) * 2 * Math.PI / rowNumber;
+  var x2 = 1.5 * Math.PI- (current - 1) * 2 * Math.PI / rowNumber;
   var y2 = x2 + 2 * Math.PI / rowNumber;
   var radius = 0.8;
   cx = [];
@@ -55,6 +57,15 @@ function arrangeCircle() {
   }
   ctx.closePath();
   drawNodes();
+  // if (isAnimating && frame<target) {
+  //   frame=frame+frame;
+  //   console.log(frame);
+  //   window.requestAnimationFrame(makeCanvas);
+  // }
+  // else {
+  //   isAnimating=false;
+  //   //frame=0;
+  // }
 }
 function drawNodes() {
   ctx.clearRect(0, 0, c.width, c.height);

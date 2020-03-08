@@ -61,6 +61,7 @@ function openMain(evt, main) {
   document.getElementById(main).style.display = "flex";
   evt.currentTarget.className += " active";
   if (main == "canvasContainer") {
+    makeCanvas();
     var mq = window.matchMedia('@media all and (max-width: 600px)');
     if (mq.matches) {
       document.getElementById("g1").style.gridTemplateColumn = 1;
@@ -89,14 +90,15 @@ function increment(x, i) {
   }
   document.getElementById("current" + x).innerHTML = current;
   eval("parcurgere" + x)(current);
-
+  // target=1.5 * Math.PI- (current) * 2 * Math.PI / rowNumber;
+  // frame=target/300;
+  // isAnimating=true;
   makeCanvas();
 }
-
+//// TODO: update adiacenta after switch to nondirected
 function updateAll() {
   ctx2.clearRect(0, 0, c.width, c.height);
   updateTableLeft();
-  updateButtons();
   checkButtons();
   generareTabelAdiacenta();
   eval("parcurgere" + currentparcurgere)(current);
@@ -286,7 +288,7 @@ function changeDirection(button, directed) {
 randomMatriceA();
 updateTableLeft();
 makeCanvas();
-updateButtons();
+// updateButtons();
 generareTabelAdiacenta();
 
 s1 = document.getElementById('allbtndiv');
