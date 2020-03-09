@@ -304,3 +304,5 @@ document.getElementById('treeLayout').click();
 document.getElementById("defaultOpen").click();
 document.getElementById("defaultOpen2").click();
 document.getElementById("defaultOpen3").click();
+let root = document.documentElement;
+  //root.style.setProperty('--pagebg', "#ffffff");

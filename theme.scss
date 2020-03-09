@@ -1,12 +1,20 @@
-//blue
-// $pagebg:#3E606F;
-// $bg-color: #193441;
-// $darkbg: #171E22;
-// $main: #91AA9D;
-// $darkerMain:#8CBEB2;
-// $darkerbg: #1E282D;
-// $oneColor: #FCFFF5;
-// $zeroColor: #D1DBBD;
+:root {
+  --pagebg: #3E606F;
+  --bg-color: #193441;
+  --bg-color-light:#204353;
+  --bg-color-dark: #12252f;
+}
+//blue#{'darken(var(--bg-color),5)'}
+$bg-color-light: var(--bg-color-light);
+$bg-color: var(--bg-color);
+$bg-color
+$darkbg: #171E22;
+$main: #91AA9D;
+$darkerMain:#8CBEB2;
+$darkerbg: #1E282D;
+$oneColor: #FCFFF5;
+$zeroColor: #D1DBBD;
+$pagebg:var(--pagebg);
 
 //Green
 // $pagebg:#49605F;
@@ -19,11 +27,11 @@
 // $zeroColor: #E4FDE1;
 
 //default
-$pagebg:#263835;
-$bg-color: #263238;
-$darkbg: #171E22;
-$main: #DC9E38;
-$darkerMain:#B27A0C;
-$darkerbg: #1E282D;
-$oneColor: #FB9039;
-$zeroColor: #C39EA0;
+// $pagebg:#263835;
+// $bg-color: #263238;
+// $darkbg: #171E22;
+// $main: #DC9E38;
+// $darkerMain:#B27A0C;
+// $darkerbg: #1E282D;
+// $oneColor: #FB9039;
+// $zeroColor: #C39EA0;

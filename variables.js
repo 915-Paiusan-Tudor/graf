@@ -43,11 +43,11 @@ let uNodes=[];
 var ux;
 let matriceI;
 let matriceD;
-let mainColor="#D19738";//#D19738 #91AA9D//#FFD27F
-let otherMain="#B27A0C";//#B27A0C #8CBEB2 #8ACB88
-let nodeStrokeColor="#1D262B";//#1D262B #191C21
-let nodeColor="#161D21";//#161D21 #16181d
-let contrastText="#1b1722";//#1b1722 #CBBF9F
+let mainColor="#91AA9D";//#D19738 #91AA9D//#FFD27F
+let otherMain="#8CBEB2";//#B27A0C #8CBEB2 #8ACB88
+let nodeStrokeColor="#191C21";//#1D262B #191C21
+let nodeColor="#16181d";//#161D21 #16181d
+let contrastText="#CBBF9F";//#1b1722 #CBBF9F
 let isAnimating=false;
 let frame=0;
 let target;
