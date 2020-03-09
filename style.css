@@ -1,68 +1,876 @@
-/*
-Error: Invalid CSS after "$bg-color": expected ":", was "$darkbg: #171E22;"
-        on line 11 of C:/Users/elev/Desktop/graf-master/theme.scss
-        from line 1 of C:\Users\elev\Desktop\graf-master\style.scss
+:root {
+  --pagebg: #263835;
+  --bg-color: #263238;
+  --bg-color-light: #304047;
+  --bg-color-dark: #1c2429;
+  --darkbg: #171E22;
+  --darkbg-dark: #0d1113;
+  --darkbg-light: #212b31;
+  --main: #DC9E38;
+  --darkermain: #B27A0C;
+  --darkerbg: #1E282D;
+  --darkerbg-dark: #141a1e;
+  --oneColor: #FB9039;
+  --zeroColor: #C39EA0; }
 
-6: }
-7: //blue#{'darken(var(--bg-color),5)'}
-8: $bg-color-light: var(--bg-color-light);
-9: $bg-color: var(--bg-color);
-10: $bg-color
-11: $darkbg: #171E22;
-12: $main: #91AA9D;
-13: $darkerMain:#8CBEB2;
-14: $darkerbg: #1E282D;
-15: $oneColor: #FCFFF5;
-16: $zeroColor: #D1DBBD;
+html {
+  height: 100%; }
 
-Backtrace:
-C:/Users/elev/Desktop/graf-master/theme.scss:11
-C:\Users\elev\Desktop\graf-master\style.scss:1
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:1278:in `expected'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:1208:in `expected'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:1203:in `tok!'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:640:in `variable'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:696:in `block_child'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:689:in `block_contents'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:137:in `stylesheet'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:41:in `parse'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:414:in `_to_tree'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:321:in `to_tree'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:327:in `block in visit_import'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:88:in `block in with_import'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:88:in `with_import'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:326:in `visit_import'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `map'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:171:in `block in visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:170:in `visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:190:in `visit_root'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:161:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:10:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:36:in `css_tree'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:391:in `run'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:63:in `process_result'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:52:in `parse'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:19:in `parse!'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/bin/sass:13:in `<top (required)>'
-C:/Program Files (x86)/Koala/bin/sass:22:in `load'
-C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"$bg-color\": expected \":\", was \"$darkbg: #171E22;\"\A         on line 11 of C:/Users/elev/Desktop/graf-master/theme.scss\A         from line 1 of C:\Users\elev\Desktop\graf-master\style.scss\A \A 6: }\A 7: //blue#{'darken(var(--bg-color),5)'}\A 8: $bg-color-light: var(--bg-color-light);\A 9: $bg-color: var(--bg-color);\A 10: $bg-color\A 11: $darkbg: #171E22;\A 12: $main: #91AA9D;\A 13: $darkerMain:#8CBEB2;\A 14: $darkerbg: #1E282D;\A 15: $oneColor: #FCFFF5;\A 16: $zeroColor: #D1DBBD;"; }
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background: var(--pagebg);
+  font-family: consolas;
+  overflow-x: hidden;
+  user-select: none; }
+
+* {
+  transition: background-color 0.2s linear; }
+
+.grid {
+  padding: 10px 0 20px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 35% 15% 30%;
+  grid-template-rows: 5vh 60vh 25vh;
+  grid-gap: 10px;
+  transition: transform 200ms ease; }
+
+.g {
+  border: 2px solid var(--main);
+  border-radius: 5px;
+  box-shadow: 0px 6px 20px 10px rgba(0, 0, 0, 0.2);
+  background-color: var(--bg-color); }
+
+#g1 {
+  grid-row: 2/4;
+  grid-column: 1;
+  position: relative;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px; }
+
+#g2 {
+  grid-column: 2;
+  grid-row: 2;
+  border: solid 2px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-color: var(--main);
+  overflow-y: auto; }
+
+#g3 {
+  padding: 2px;
+  grid-column: 3;
+  grid-row: 2;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px; }
+
+#g5 {
+  grid-column: 2/4;
+  grid-row: 3; }
+
+#ghead {
+  grid-column: 1/2;
+  border: 0px;
+  border-radius: 0px;
+  box-shadow: none;
+  background-color: inherit;
+  display: flex;
+  justify-content: space-between; }
+
+#gtabs {
+  grid-column: 2/3;
+  padding-left: 5px;
+  border: 0px;
+  border-radius: 0px;
+  box-shadow: none;
+  background-color: inherit; }
+
+#matriceTabs {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+  position: relative;
+  top: 10px;
+  border-radius: 0px;
+  background-color: transparent;
+  overflow: hidden;
+  justify-content: flex-end; }
+  #matriceTabs button {
+    cursor: pointer;
+    font-family: consolas;
+    font-weight: bold;
+    font-size: 1.5vw;
+    width: 33.3%;
+    max-width: 33.3%;
+    padding: 0px 10px 0px 10px;
+    color: var(--bg-color);
+    text-align: center;
+    background-color: var(--main);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top: solid 2px;
+    border-left: solid 2px;
+    border-right: solid 2px;
+    border-color: var(--main);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+
+#matricediv {
+  overflow-x: auto; }
+  #matricediv td {
+    min-width: 40px; }
+
+.navbar {
+  z-index: 3;
+  width: 5%;
+  min-width: 50px;
+  height: 100vh;
+  position: fixed;
+  background-color: var(--bg-color-dark);
+  transition: width 200ms ease; }
+
+.navbar:hover {
+  width: 15%; }
+  .navbar:hover .logo svg {
+    transform: rotate(-180deg); }
+  .navbar:hover span {
+    display: inline; }
+  .navbar:hover button {
+    display: inline; }
+  .navbar:hover .miscButtonLi {
+    display: flex; }
+  .navbar:hover .navbar-item svg {
+    width: 40%;
+    max-width: none; }
+  .navbar:hover #direction svg {
+    height: 100% !important;
+    width: 40%;
+    max-width: 40%; }
+
+.navbar-nav {
+  height: 100%;
+  list-style: none;
+  padding: 0px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.navbar-item:last-child {
+  margin-top: auto;
+  border-top: 1px var(--bg-color-light) solid;
+  border-bottom: 0; }
+
+.navbar-item {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 1px var(--bg-color-light) solid; }
+  .navbar-item button {
+    display: none;
+    outline: none; }
+  .navbar-item svg, .navbar-item use {
+    height: auto;
+    width: 80%;
+    max-width: 50px;
+    fill: var(--main) !important;
+    filter: grayscale(100%) opacity(0.2);
+    transition: filter 100ms linear, transform 100ms linear; }
+  .navbar-item svg:hover {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.1); }
+
+.selectedSVG {
+  display: inline !important; }
+  .selectedSVG svg {
+    filter: grayscale(0%) opacity(1); }
+
+.selectedTheme {
+  display: inline !important; }
+
+.miscButtonLi {
+  display: none; }
+
+.logo {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 50px;
+  background-color: var(--darkbg-dark); }
+  .logo span {
+    font-size: 2em;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-left: 10px;
+    color: var(--main);
+    display: none; }
+  .logo svg {
+    height: 100%;
+    align-self: flex-end;
+    transform: rotate(0deg);
+    transition: transform 200ms; }
+
+.svgButton {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+.fa-angle-double-right {
+  color: var(--main); }
+
+#Loading_Circles {
+  fill: var(--main); }
+
+.themeContainer {
+  width: 5vw;
+  height: 100%;
+  background: transparent;
+  align-self: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  align-self: center; }
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 2.5vw;
+  background: transparent;
+  border: none;
+  padding: 0px;
+  align-self: center; }
+
+.circle {
+  width: 100%;
+  height: 2.5vw;
+  background-color: #8CBEB2;
+  border-bottom-left-radius: 2.5vw;
+  border-top-left-radius: 2.5vw;
+  transform: rotate(45deg);
+  transform-origin: 100% 50%; }
+
+.circle-container {
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  left: 25%;
+  top: 0; }
+
+.circle2-container {
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  display: flex;
+  flex-direction: row-reverse; }
+
+.circle2 {
+  flex-direction: row-reverse;
+  position: relative;
+  width: 100%;
+  height: 2.5vw;
+  background-color: #91AA9D;
+  border-bottom-right-radius: 2.5vw;
+  border-top-right-radius: 2.5vw;
+  transform: rotate(45deg);
+  transform-origin: 0% 50%; }
+
+#c11 {
+  background-color: #8ACB88; }
+
+#c12 {
+  background-color: #FFD27F; }
+
+#c21 {
+  background-color: #DC9E38; }
+
+#c22 {
+  background-color: #B27A0C; }
+
+.themeContainer:hover .circle-container {
+  width: 50%;
+  left: 0;
+  transition: width 0.3s 0.3s, left 0.3s 0.3s; }
+
+.themeContainer:hover .circle-container .circle, .themeContainer:hover .circle2-container .circle2 {
+  border-radius: 2.5vw;
+  transform: rotate(0deg);
+  transition: transform 0.3s, border-radius 0.3s 0.3s; }
+
+.themeContainer:hover .circle2-container {
+  width: 50%;
+  right: 0;
+  transition: width 0.3s 0.3s, right 0.3s 0.3s; }
+
+table {
+  padding: 0;
+  color: var(--main);
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1vw; }
+
+#table {
+  padding-left: 2px; }
+
+h1 {
+  text-align: center;
+  text-decoration: underline;
+  color: var(--main); }
+
+.tableLeft {
+  table-layout: fixed;
+  padding: 0;
+  height: 100%;
+  width: auto;
+  table-layout: fixed; }
+
+.tabelAdiacenta {
+  width: auto; }
+
+#tabelAdiacentadiv {
+  height: 100%;
+  overflow-x: auto; }
+
+*::-webkit-scrollbar, #matricediv::-webkit-scrollbar {
+  background-color: transparent;
+  height: 6px; }
+
+*::-webkit-scrollbar-thumb, #matricediv::-webkit-scrollbar-thumb {
+  background-color: var(--darkbg);
+  border-radius: 10px; }
+
+#matricediv {
+  height: 100%;
+  width: 100%; }
+
+.celladiacenta {
+  padding: 0px 14px 0px 14px; }
+
+.btnparcurgere {
+  width: 100%;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center; }
+
+.btndiv {
+  height: auto;
+  width: 100%;
+  height: 12%;
+  justify-content: space-around;
+  display: flex;
+  margin: 2px 0px 2px 0px;
+  flex-direction: column;
+  align-items: baseline; }
+
+#allbtndiv {
+  position: absolute;
+  top: 2px;
+  height: 100%;
+  left: -30px;
+  z-index: -2; }
+
+.trb {
+  height: auto;
+  outline: 2px solid var(--darkerbg); }
+
+.td {
+  height: 12.5%;
+  width: 64px; }
+
+.tab {
+  margin-top: 5px;
+  display: flex; }
+
+#gtabs {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  top: 10px;
+  overflow: hidden; }
+  #gtabs button {
+    cursor: pointer;
+    font-family: consolas;
+    font-weight: bold;
+    font-size: 2vw;
+    width: 50%;
+    min-width: 50%;
+    color: var(--bg-color);
+    text-align: center;
+    background-color: var(--main);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top: solid 2px;
+    border-left: solid 2px;
+    border-right: solid 2px;
+    border-color: var(--main);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+
+#gtabs2 {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  top: 10px;
+  overflow: hidden;
+  min-width: 100px; }
+  #gtabs2 button {
+    cursor: pointer;
+    font-family: consolas;
+    font-weight: bold;
+    font-size: 1.5vw;
+    width: 50%;
+    min-width: 50%;
+    color: var(--bg-color);
+    text-align: center;
+    background-color: var(--main);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top: solid 2px;
+    border-left: solid 2px;
+    border-right: solid 2px;
+    border-color: var(--main);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 5px 0px 5px; }
+
+#bfbtn, #dfbtn {
+  width: 80%; }
+
+.tabcontent {
+  justify-content: center;
+  flex-direction: column; }
+
+.tabcontent2 {
+  position: relative;
+  height: 100%; }
+  .tabcontent2 #tr0 {
+    height: 0; }
+
+#canvasContainer {
+  justify-content: center;
+  height: 100%;
+  width: 100%; }
+
+canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%; }
+
+#canvas1 {
+  z-index: 3;
+  background: transparent; }
+
+#canvas2 {
+  z-index: 2; }
+
+.tablinks, .tablinks2, .tablinks3 {
+  outline: none;
+  width: auto;
+  border: 0px;
+  padding: 0px;
+  background: transparent;
+  opacity: 0.5; }
+
+.miscButton {
+  width: 80%;
+  height: auto;
+  background-color: var(--main);
+  border-radius: 12px;
+  color: var(--darkbg);
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  font-family: consolas;
+  font-weight: bold;
+  font-size: 1.5vw; }
+
+.directionbtn {
+  cursor: pointer;
+  border: 3px solid var(--main);
+  background-color: var(--darkbg);
+  padding: 0px;
+  margin: 0px;
+  width: 20%;
+  outline: none;
+  height: 100%; }
+  .directionbtn p {
+    padding: 3px 0px 0px 0px;
+    margin: 0px;
+    height: 100%;
+    font-family: 'Nanum Gothic', sans-serif;
+    color: var(--main);
+    font-weight: bolder;
+    font-size: 1.8em; }
+
+#rightbtn {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px; }
+
+#leftbtn {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px; }
+
+.nodeselect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding-top: 10px;
+  margin-bottom: 5px; }
+
+.current {
+  align-self: stretch;
+  outline: solid 3px;
+  outline-offset: -3px;
+  width: 30%;
+  margin: 0px;
+  font-family: consolas;
+  color: var(--main);
+  background-color: var(--darkbg);
+  justify-content: center; }
+  .current p {
+    display: flex;
+    position: relative;
+    top: 25%;
+    font-weight: bold;
+    justify-content: center;
+    margin: 0px;
+    text-align: center; }
+
+.parcurgeretabel {
+  align-self: center;
+  width: 70%; }
+
+.cellArray {
+  padding: 8px; }
+
+.active {
+  opacity: 1;
+  z-index: 3; }
+
+.btnadd, .btnremove {
+  cursor: pointer;
+  padding: 0px;
+  width: 64px;
+  height: 32px;
+  border: 3px solid var(--darkbg);
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  background-color: inherit;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  animation-name: deselected;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards; }
+  .btnadd p, .btnremove p {
+    position: relative;
+    top: -29px;
+    text-align: left;
+    margin: 0;
+    font-family: Dosis;
+    color: var(--main);
+    font-size: 4em; }
+
+.btnadd:hover, .btnremove:hover {
+  animation-name: selected;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards; }
+
+@keyframes selected {
+  from {
+    left: 0px; }
+  to {
+    left: -5px; } }
+@keyframes deselected {
+  from {
+    left: -5px; }
+  to {
+    left: 0px; } }
+.btnremove:disabled, .btnadd:disabled, .btnaddtop:disabled, .btnremovetop:disabled {
+  opacity: 0.4;
+  cursor: default; }
+
+.rowbuttons {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  top: 10px;
+  overflow: hidden; }
+  .rowbuttons button {
+    cursor: pointer;
+    font-family: consolas;
+    font-weight: bold;
+    font-size: 1.5vw;
+    white-space: nowrap;
+    width: 50%;
+    padding: 0px 20px 0px 20px;
+    color: var(--main);
+    text-align: center;
+    background-color: var(--bg-color);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom: 0;
+    border-top: solid 3px;
+    border-left: solid 3px;
+    border-right: solid 3px;
+    border-color: var(--darkbg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+
+.matriceButtonZero, .matriceButtonOne, .parcurgereButton {
+  background: var(--bg-color-light);
+  box-shadow: 0px 2px 2px var(--bg-color-dark), 0px 0px 0px var(--bg-color-dark);
+  transition: all 150ms linear; }
+
+.matriceButtonZero:hover, .matriceButtonOne:hover, .parcurgereButton:hover {
+  background: var(--bg-color-dark);
+  transition: all 250ms linear;
+  box-sizing: inherit;
+  transition-property: all;
+  transition-duration: .2s;
+  transition-timing-function: ease; }
+
+.matriceButtonOne, .parcurgereButton {
+  background: var(--bg-color-light);
+  box-shadow: 0px 1px 1px var(--darkerbg-dark), 0px 0px 0px var(--darkerbg-dark); }
+
+.matriceButtonOne:hover, .parcurgereButton:hover {
+  background: var(--darkerbg-dark);
+  box-shadow: 1px 1px 2px 2px var(--darkerbg); }
+
+td {
+  background-color: var(--darkerbg);
+  margin: 2px;
+  border-radius: 10%; }
+
+.matrice td {
+  border-radius: 5%; }
+
+.parcurgeretabel td {
+  font-size: 1.2vw;
+  border-radius: 5%;
+  margin-bottom: 5px; }
+.parcurgeretabel .row {
+  background: var(--darkbg-light);
+  box-shadow: 0px 2px 2px var(--darkbg-dark), 0px 0px 0px var(--darkbg-dark); }
+
+.inputnode {
+  width: 50%;
+  caret-color: var(--main);
+  color: var(--oneColor);
+  padding-left: 3px;
+  font-family: consolas;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1em;
+  background: transparent;
+  border: 0px;
+  outline: none; }
+
+.zero {
+  color: var(--zeroColor); }
+
+.one {
+  background-color: var(--darkerbg);
+  color: var(--oneColor); }
+
+.row, .collumn, #td1 {
+  background: var(--darkbg);
+  color: var(--darkermain); }
+
+.diag {
+  background: var(--darkbg); }
+
+table {
+  font-size: 1.5vw !important; }
+
+.current p {
+  font-size: 1.5vw;
+  top: 15%; }
+
+@media only screen and (max-width: 600px) {
+  .grid {
+    grid-template-columns: 5% 85%;
+    grid-template-rows: 30px 400px 400px 75px 100px; }
+
+  #g0 {
+    grid-column: 1/2;
+    grid-row: 2; }
+
+  #g1 {
+    grid-row: 2;
+    grid-column: 2;
+    overflow: visible; }
+
+  #allbtndiv {
+    max-height: 100%;
+    overflow-y: auto; }
+
+  #tableLeftdiv {
+    max-height: 100%;
+    overflow-y: auto; }
+
+  #g2 {
+    grid-column: 2/3;
+    grid-row: 4;
+    display: flex;
+    z-index: 3; }
+
+  #gtabs {
+    grid-column: 1/2;
+    grid-row: 4;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: 0px;
+    overflow: visible; }
+    #gtabs button {
+      font-family: consolas;
+      font-weight: bold;
+      font-size: 1em;
+      height: 50%;
+      width: 160%;
+      padding: 0;
+      color: var(--bg-color);
+      text-align: center;
+      background-color: var(--main);
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      border-top-right-radius: 0px;
+      border-top: solid 2px;
+      border-left: solid 2px;
+      border-right: solid 2px;
+      border-color: var(--main);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      #gtabs button p {
+        transform: rotate(-90deg); }
+
+  #g3 {
+    grid-column: 1/3;
+    grid-row: 3;
+    margin-top: 20px; }
+
+  #g5 {
+    grid-column: 1/3;
+    grid-row: 5; }
+
+  #ghead {
+    grid-row: 1;
+    grid-column: 2; }
+
+  .td {
+    height: 62px;
+    width: 44px; }
+
+  .tab {
+    flex-direction: column;
+    margin-right: 5px;
+    margin-top: 0px; }
+
+  #bfbtn, #dfbtn {
+    height: 36px;
+    width: auto; }
+
+  .tabcontent {
+    flex-direction: row; }
+
+  .parcurgeretabel {
+    align-self: center;
+    height: 60%;
+    width: auto;
+    display: flex; }
+
+  .nodeselect {
+    flex-flow: column-reverse;
+    height: 70px;
+    width: 40px;
+    margin-right: 2px;
+    margin-left: 4px;
+    padding-top: 0px; }
+
+  .directionbtn {
+    height: 20px;
+    width: 40px;
+    overflow: hidden; }
+    .directionbtn p {
+      transform: rotate(-90deg);
+      height: 40px;
+      width: 20px;
+      padding: 0px;
+      font-size: 1.5em;
+      position: relative;
+      top: -13px;
+      left: 15px; }
+
+  .btndiv {
+    height: 64px; }
+
+  .current {
+    height: 25px;
+    width: 40px; }
+    .current p {
+      font-size: 1em !important;
+      top: 3px;
+      height: 100%; }
+
+  * {
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    -o-animation: none !important;
+    -ms-animation: none !important;
+    animation: none !important; } }
+@media only screen and (min-width: 1920px) {
+  .grid {
+    grid-template-rows: 30px 600px 240px; }
+
+  .td {
+    width: 96px; }
+
+  .btndiv {
+    margin-top: 4px;
+    margin-bottom: 4px; }
+
+  .celladiacenta {
+    padding: 0px 28px 0px 28px; }
+
+  table {
+    font-size: 2em !important; }
+
+  .current p {
+    font-size: 2em !important;
+    top: 0%; }
+
+  .miscButton {
+    font-size: 2em; } }
+
+/*# sourceMappingURL=style.css.map */

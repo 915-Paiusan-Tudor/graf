@@ -306,3 +306,72 @@ document.getElementById("defaultOpen2").click();
 document.getElementById("defaultOpen3").click();
 let root = document.documentElement;
   //root.style.setProperty('--pagebg', "#ffffff");
+  function changeTheme(theme,button){
+    if(theme=="yellow"){
+      root.style.setProperty('--pagebg', "#263835");
+      root.style.setProperty('--bg-color', "#263238");
+      root.style.setProperty('--bg-color-light', "#304047");
+      root.style.setProperty('--bg-color-dark', "#1c2429");
+      root.style.setProperty('--darkbg', "#171E22");
+      root.style.setProperty('--darkbg-dark', "#0d1113");
+      root.style.setProperty('--darkbg-light', "#212b31");
+      root.style.setProperty('--main', "#DC9E38");
+      root.style.setProperty('--darkermain', "#B27A0C");
+      root.style.setProperty('--darkerbg', "#1E282D");
+      root.style.setProperty('--darkerbg-dark', "#141a1e");
+      root.style.setProperty('--oneColor', "#FB9039");
+      root.style.setProperty('--zeroColor', "#C39EA0");
+      mainColor='#DC9E38';
+      otherMain="#B27A0C";//#B27A0C #8CBEB2 #8ACB88
+      nodeStrokeColor="#1D262B";//#1D262B #191C21
+      nodeColor="#161D21";//#161D21 #16181d
+      contrastText="#1b1722";//#1b1722 #CBBF9F
+    }
+    else if(theme=="green"){
+      root.style.setProperty('--pagebg', "#49605F");
+      root.style.setProperty('--bg-color', "#242428");
+      root.style.setProperty('--bg-color-light', "#303035");
+      root.style.setProperty('--bg-color-dark', "#18181b");
+      root.style.setProperty('--darkbg', "#191C21");
+      root.style.setProperty('--darkbg-dark', "#0e1012");
+      root.style.setProperty('--darkbg-light', "#24282f");
+      root.style.setProperty('--main', "#8ACB88");
+      root.style.setProperty('--darkermain', "#FFD27F");
+      root.style.setProperty('--darkerbg', "#16181d");
+      root.style.setProperty('--darkerbg-dark', "#0b0c0e");
+      root.style.setProperty('--oneColor', "#FFBF46");
+      root.style.setProperty('--zeroColor', "#E4FDE1");
+      mainColor='#8ACB88';
+      otherMain="#8CBEB2";//#B27A0C #8CBEB2 #8ACB88
+      nodeStrokeColor="#191C21";//#1D262B #191C21
+      nodeColor="#16181d";//#161D21 #16181d
+      contrastText="#CBBF9F";//#1b1722 #CBBF9F
+    }
+    else if (theme=="blue") {
+      root.style.setProperty('--pagebg', "#3E606F");
+      root.style.setProperty('--bg-color', "#193441");
+      root.style.setProperty('--bg-color-light', "#204353");
+      root.style.setProperty('--bg-color-dark', "#12252f");
+      root.style.setProperty('--darkbg', "#171E22");
+      root.style.setProperty('--darkbg-dark', "#0d1113");
+      root.style.setProperty('--darkbg-light', "#212b31");
+      root.style.setProperty('--main', "#91AA9D");
+      root.style.setProperty('--darkermain', "#8CBEB2");
+      root.style.setProperty('--darkerbg', "#1E282D");
+      root.style.setProperty('--darkerbg-dark', "#141a1e");
+      root.style.setProperty('--oneColor', "#FCFFF5");
+      root.style.setProperty('--zeroColor', "#D1DBBD");
+      mainColor='#91AA9D';
+      otherMain="#8ACB88";//#B27A0C #8CBEB2 #8ACB88
+      nodeStrokeColor="#191C21";//#1D262B #191C21
+      nodeColor="#16181d";//#161D21 #16181d
+      contrastText="#CBBF9F";//#1b1722 #CBBF9F
+    }
+    for(var i=0; i<3;i++) {
+      console.log(document.getElementsByClassName("themeContainer")[i]);
+      document.getElementsByClassName("themeContainer")[i].classList.remove("selectedTheme");
+    }
+    button.classList.add("selectedTheme");
+    drawNodes();
+    drawCanvasLines();
+  }

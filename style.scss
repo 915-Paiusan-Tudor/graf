@@ -11,14 +11,17 @@ body {
   font-family: consolas;
   overflow-x: hidden;
   user-select: none;
-}
 
+}
+*{
+  transition: background-color 0.2s linear;
+}
 .grid {
   padding: 10px 0 20px;
   display: grid;
   justify-content: center;
   grid-template-columns: 35% 15% 30%;
-  grid-template-rows: 30px 400px 120px;
+  grid-template-rows: 5vh 60vh 25vh;
   grid-gap: 10px;
   transition: transform 200ms ease;
 }
@@ -43,11 +46,14 @@ body {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   border-color: $main;
+  overflow-y: auto;
 }
 #g3 {
   padding: 2px;
   grid-column: 3;
   grid-row: 2;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 #g5 {
   grid-column: 2/4;
@@ -117,7 +123,7 @@ body {
   min-width: 50px;
   height: 100vh;
   position: fixed;
-  background-color: $bg-color;
+  background-color: $bg-color-dark;
   transition: width 200ms ease;
 }
 .navbar:hover{
@@ -143,21 +149,26 @@ body {
   }
   #direction{
     svg{
-      width: 80%;
-      max-width: none;
+      height: 100% !important;
+      width: 40%;
+      max-width: 40%;
     }
   }
 }
 .navbar-nav{
+  height: 100%;
   list-style: none;
   padding: 0px;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
 }
-
+.navbar-item:last-child{
+  margin-top:auto;
+  border-top: 1px $bg-color-light solid;
+  border-bottom: 0;
+}
 .navbar-item{
   display: flex;
   justify-content: center;
@@ -187,6 +198,9 @@ body {
   filter: grayscale(0%) opacity(1);
 }
 }
+.selectedTheme{
+  display: inline !important;
+}
 .miscButtonLi{
   display: none;
 }
@@ -195,7 +209,7 @@ body {
     justify-content: space-around;
     width: 100%;
     height: 50px;
-    background-color: $darkbg;
+    background-color: $darkbg-dark;
       span{
         font-size: 2em;
         font-weight: bold;
@@ -223,6 +237,98 @@ body {
 #Loading_Circles{
   fill: $main;
 }
+
+$width:5vw;
+$height:$width/2;
+$angle:45deg;
+$speed1:0.3s;
+$speed2:0.3s;
+$color1:$main;
+$color2:$darkerMain;
+.themeContainer {
+  width: $width;
+  height: 100%;
+  background: transparent;
+  align-self:center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  align-self:center;
+}
+.container{
+  position: relative;
+  width: 100%;
+  height: $height;
+  background: transparent;
+  border: none;
+  padding: 0px;
+  align-self:center;
+}
+.circle {
+  width: 100%;
+  height: $height;
+  background-color: #8CBEB2;
+  border-bottom-left-radius: $height;
+  border-top-left-radius: $height;
+  transform: rotate($angle);
+  transform-origin: 100% 50%;
+}
+.circle-container {
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  left: 25%;
+  top: 0;
+}
+.circle2-container {
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.circle2 {
+  flex-direction: row-reverse;
+  position: relative;
+  width: 100%;
+  height: $height;
+  background-color: #91AA9D;
+  border-bottom-right-radius: $height;
+  border-top-right-radius: $height;
+
+  transform: rotate($angle);
+  transform-origin: 0% 50%;
+}
+#c11{
+  background-color: #8ACB88;
+}
+#c12{
+  background-color: #FFD27F;
+}
+#c21{
+  background-color: #DC9E38;
+}
+#c22{
+  background-color: #B27A0C;
+}
+.themeContainer:hover .circle-container {
+  width: 50%;
+  left: 0;
+  transition:width $speed2 $speed1,left $speed2 $speed1;
+}
+.themeContainer:hover .circle-container .circle, .themeContainer:hover .circle2-container .circle2{
+    border-radius: $height;
+  transform: rotate(0deg);
+  transition: transform $speed1,border-radius $speed2 $speed1;
+}
+.themeContainer:hover .circle2-container {
+  width: 50%;
+  right: 0;
+  transition:width $speed2 $speed1,right $speed2 $speed1;
+}
+
 table{
   padding: 0;
   color: $main;
@@ -230,7 +336,7 @@ table{
   height: 100%;
   font-weight: bold;
   text-align: center;
-  font-size: 1em;
+  font-size: 1vw;
 }
 #table{
   padding-left: 2px;
@@ -254,11 +360,11 @@ width: auto;
 height: 100%;
   overflow-x: auto;
 }
-#tabelAdiacentadiv::-webkit-scrollbar,#matricediv::-webkit-scrollbar{
+*::-webkit-scrollbar,#matricediv::-webkit-scrollbar{
   background-color: transparent;
   height: 6px;
 }
-#tabelAdiacentadiv::-webkit-scrollbar-thumb,#matricediv::-webkit-scrollbar-thumb{
+*::-webkit-scrollbar-thumb,#matricediv::-webkit-scrollbar-thumb{
   background-color: $darkbg;
   border-radius: 10px;
 }
@@ -315,7 +421,7 @@ button{
   cursor: pointer;
   font-family: consolas;
   font-weight: bold;
-  font-size:1.2em;
+  font-size:2vw;
   width: 50%;
   min-width: 50%;
   color: $bg-color;
@@ -345,7 +451,7 @@ button{
     cursor: pointer;
     font-family: consolas;
     font-weight: bold;
-    font-size:1.2em;
+    font-size:1.5vw;
     width: 50%;
     min-width: 50%;
     color: $bg-color;
@@ -416,7 +522,7 @@ height: 100%;
   cursor: pointer;
   font-family: consolas;
   font-weight: bold;
-  font-size:1em;
+  font-size:1.5vw;
 }
 .directionbtn{
   cursor: pointer;
@@ -540,10 +646,10 @@ button{
   cursor: pointer;
   font-family: consolas;
   font-weight: bold;
-  font-size:1em;
+  font-size:1.5vw;
   white-space: nowrap;
   width:50%;
-  padding: 0px 10px 0px 10px;
+  padding: 0px 20px 0px 20px;
   color: $main;
   text-align: center;
   background-color: $bg-color;
@@ -562,11 +668,11 @@ button{
 }
 .matriceButtonZero,.matriceButtonOne,.parcurgereButton{
 background: $bg-color-light;
-box-shadow: 0px 2px 2px $bg-color, 0px 0px 0px $bg-color;
+box-shadow: 0px 2px 2px $bg-color-dark, 0px 0px 0px $bg-color-dark;
 transition: all 150ms linear;
 }
 .matriceButtonZero:hover, .matriceButtonOne:hover,.parcurgereButton:hover{
-  background: $bg-color;
+  background: $bg-color-dark;
   transition: all 250ms linear;
   box-sizing: inherit;
   transition-property: all;
@@ -575,10 +681,10 @@ transition: all 150ms linear;
 }
 .matriceButtonOne,.parcurgereButton{
   background: $bg-color-light;
-  box-shadow: 0px 1px 1px $darkerbg, 0px 0px 0px $darkerbg;
+  box-shadow: 0px 1px 1px $darkerbg-dark, 0px 0px 0px $darkerbg-dark;
 }
 .matriceButtonOne:hover,.parcurgereButton:hover{
-  background: $darkerbg;
+  background: $darkerbg-dark;
     box-shadow: 1px 1px 2px 2px $darkerbg;
 }
 td {
@@ -593,12 +699,13 @@ td {
 }
 .parcurgeretabel{
   td{
+    font-size: 1.2vw;
     border-radius: 5%;
     margin-bottom:5px;
   }
   .row{
-    background: $bg-color-light;
-    box-shadow: 0px 2px 2px $darkbg, 0px 0px 0px $darkbg;
+    background: $darkbg-light;
+    box-shadow: 0px 2px 2px $darkbg-dark, 0px 0px 0px $darkbg-dark;
   }
 }
 .inputnode{
@@ -631,11 +738,11 @@ td {
   background: $darkbg;
 }
 table{
-  font-size: 1.2em !important;
+  font-size: 1.5vw !important;
 }
 .current{
   p{
-    font-size: 1.5em;
+    font-size: 1.5vw;
     top:15%;
   }
 }

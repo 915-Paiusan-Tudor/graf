@@ -79,10 +79,13 @@ function drawNodes() {
     }
     ctx.fillStyle = nodeColor;
     ctx.fill();
+    ctx2.lineWidth = 3;
     ctx.shadowColor = nodeColor;
     ctx.shadowBlur = 2;
     ctx.shadowOffsetX = 2;
     ctx.shadowOffsetY = 2;
+    ctx.fillStyle = nodeStrokeColor;
+      console.log(nodeStrokeColor);
     ctx.stroke();
     ctx.fillStyle = mainColor;
     ctx.textAlign = "center";
@@ -110,7 +113,7 @@ function drawCanvasLines() {
           ctx2.globalCompositeOperation = 'source-over';
         }
         else {
-          ctx2.strokeStyle = "#171E22";
+          ctx2.strokeStyle = nodeColor;
           ctx2.globalCompositeOperation = 'destination-over';
         }
         if (matriceA[i][j] == 1 && j != i) {
@@ -159,7 +162,7 @@ function drawCanvasLines() {
           }
           else {
             ctx2.globalCompositeOperation = 'destination-over';
-            ctx2.strokeStyle = "#171E22";
+            ctx2.strokeStyle = nodeColor;
           }
           ctx2.moveTo(cx[i], cy[i]);
           ctx2.lineTo(cx[j], cy[j]);

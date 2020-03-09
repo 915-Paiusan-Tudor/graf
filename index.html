@@ -57,76 +57,108 @@
       <li class="navbar-item miscButtonLi" class="miscButton">
         <button type="button" onclick="completeMatriceA()" class="miscButton" name="button">Complete</button>
       </li>
+      <li class="navbar-item">
+        <button type="button" name="button" class="themeContainer" onclick="changeTheme('blue',this)">
+            <div class="container">
+          <div class="circle-container">
+            <div class="circle"></div>
+          </div>
+          <div class="circle2-container">
+            <div class="circle2"></div>
+          </div>
+            </div>
+        </button>
+        <button type="button" name="button" class="themeContainer" onclick="changeTheme('green',this)">
+            <div class="container">
+          <div class="circle-container">
+            <div class="circle" id="c11"></div>
+          </div>
+          <div class="circle2-container">
+            <div class="circle2" id="c12"></div>
+          </div>
+            </div>
+        </button>
+        <button type="button" name="button" class="themeContainer selectedTheme" onclick="changeTheme('yellow',this)">
+            <div class="container">
+          <div class="circle-container">
+            <div class="circle" id="c21"></div>
+          </div>
+          <div class="circle2-container">
+            <div class="circle2" id="c22"></div>
+          </div>
+            </div>
+        </button>
+      </li>
     </ul>
   </nav>
 
   <main>
-    <div class="grid">
+  <div class="grid">
 
-      <div id="ghead" class="g" class="color">
-       <div class="rowbuttons">
-         <button class="btnaddtop" id="addtop" type="button" onclick="addRow(rowNumber)" name="button"><p>Add</p></button>
-         <button class="btnremovetop" id="removetop" type="button" onclick="deleteRow()" name="button" disabled><p>Remove</p></button>
-       </div>
-       <div id="gtabs2">
-         <button type="button" class="tablinks2" onclick="openMain(event, 'table')" ><p>Table</p></button>
-         <button type="button" class="tablinks2" onclick="openMain(event, 'canvasContainer')" id="defaultOpen2"><p>Canvas</p></button>
-       </div>
-      </div>
-
-      <div id="gtabs" class="g">
-        <button type="button" class="tablinks" onclick="openParcurgere(event, 'BF')" id="defaultOpen"><p>BF</p></button>
-        <button type="button" class="tablinks" onclick="openParcurgere(event, 'DF')"><p>DF</p></button>
-      </div>
-
-      <div id="matriceTabs" class="g">
-        <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceM')" id="drumBtn"><p>Drumuri</p></button>
-        <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceI')" id="incidentaBtn"><p>Incidenta</p></button>
-        <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceA')" id="defaultOpen3"><p>Adiacenta</p></button>
-      </div>
-
-      <div id="g1" class="g">
-
-        <div id="table" class="tabcontent2">
-          <div class="empty">
-          </div>
-          <div id="allbtndiv">
-          </div>
-          <div id="whitespace">
-          </div>
-        </div>
-
-        <div id="canvasContainer" class="tabcontent2">
-              <canvas id="canvas1"></canvas>
-              <canvas id="canvas2"></canvas>
-        </div>
-
-        <div id="miscButtonContainer">
-
-        </div>
-      </div>
-
-      <div id="g2" class="g">
-        <div id="BF" class="tabcontent">
-          <div class="nodeselect">
-            <button type="button" class="directionbtn" onclick="increment('BF',-1)" id="leftbtn"><p><</p></button>
-            <div class=current><p id="currentBF">1</p></div>
-            <button type="button" class="directionbtn" onclick="increment('BF',1)" id="rightbtn"><p>></p></button>
-          </div>
-        </div>
-        <div id="DF"  class="tabcontent">
-          <div class="nodeselect">
-            <button type="button" class="directionbtn" onclick="increment('DF',-1)" id="leftbtn"><p><</p></button>
-            <div class=current><p id="currentDF">1</p></div>
-            <button type="button" class="directionbtn" onclick="increment('DF',1)" id="rightbtn"><p>></p></button>
-          </div>
-        </div>
-      </div>
-
-      <div id="g3" class="g"></div>
-
-      <div id="g5" class="g"></div>
+    <div id="ghead" class="g" class="color">
+     <div class="rowbuttons">
+       <button class="btnaddtop" id="addtop" type="button" onclick="addRow(rowNumber)" name="button"><p>Add</p></button>
+       <button class="btnremovetop" id="removetop" type="button" onclick="deleteRow()" name="button" disabled><p>Remove</p></button>
+     </div>
+     <div id="gtabs2">
+       <button type="button" class="tablinks2" onclick="openMain(event, 'table')" ><p>Table</p></button>
+       <button type="button" class="tablinks2" onclick="openMain(event, 'canvasContainer')" id="defaultOpen2"><p>Canvas</p></button>
+     </div>
     </div>
+
+    <div id="gtabs" class="g">
+      <button type="button" class="tablinks" onclick="openParcurgere(event, 'BF')" id="defaultOpen"><p>BF</p></button>
+      <button type="button" class="tablinks" onclick="openParcurgere(event, 'DF')"><p>DF</p></button>
+    </div>
+
+    <div id="matriceTabs" class="g">
+      <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceM')" id="drumBtn"><p>Drumuri</p></button>
+      <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceI')" id="incidentaBtn"><p>Incidenta</p></button>
+      <button type="button" class="tablinks3" onclick="matriceCurrent(event, 'matriceA')" id="defaultOpen3"><p>Adiacenta</p></button>
+    </div>
+
+    <div id="g1" class="g">
+
+      <div id="table" class="tabcontent2">
+        <div class="empty">
+        </div>
+        <div id="allbtndiv">
+        </div>
+        <div id="whitespace">
+        </div>
+      </div>
+
+      <div id="canvasContainer" class="tabcontent2">
+            <canvas id="canvas1"></canvas>
+            <canvas id="canvas2"></canvas>
+      </div>
+
+      <div id="miscButtonContainer">
+
+      </div>
+    </div>
+
+    <div id="g2" class="g">
+      <div id="BF" class="tabcontent">
+        <div class="nodeselect">
+          <button type="button" class="directionbtn" onclick="increment('BF',-1)" id="leftbtn"><p><</p></button>
+          <div class=current><p id="currentBF">1</p></div>
+          <button type="button" class="directionbtn" onclick="increment('BF',1)" id="rightbtn"><p>></p></button>
+        </div>
+      </div>
+      <div id="DF"  class="tabcontent">
+        <div class="nodeselect">
+          <button type="button" class="directionbtn" onclick="increment('DF',-1)" id="leftbtn"><p><</p></button>
+          <div class=current><p id="currentDF">1</p></div>
+          <button type="button" class="directionbtn" onclick="increment('DF',1)" id="rightbtn"><p>></p></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="g3" class="g"></div>
+
+    <div id="g5" class="g"></div>
+  </div>
 </main>
   <script src="variables.js" charset="utf-8"></script>
   <script src="tables.js" charset="utf-8"></script>

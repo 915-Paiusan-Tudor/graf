@@ -1,19 +1,35 @@
 :root {
-  --pagebg: #3E606F;
-  --bg-color: #193441;
-  --bg-color-light:#204353;
-  --bg-color-dark: #12252f;
+  --pagebg: #263835;//3E606F
+  --bg-color: #263238;//193441
+  --bg-color-light: #304047;//204353
+  --bg-color-dark: #1c2429;//12252f
+  --darkbg: #171E22;//171E22
+  --darkbg-dark: #0d1113;//0d1113
+  --darkbg-light: #212b31;//212b31
+  --main: #DC9E38;//91AA9D
+  --darkermain: #B27A0C;//8CBEB2
+  --darkerbg: #1E282D;//1E282D4
+  --darkerbg-dark: #141a1e;//141a1e
+  --oneColor: #FB9039;//FCFFF5
+  --zeroColor: #C39EA0;//D1DBBD
 }
 //blue#{'darken(var(--bg-color),5)'}
 $bg-color-light: var(--bg-color-light);
 $bg-color: var(--bg-color);
-$bg-color
-$darkbg: #171E22;
-$main: #91AA9D;
-$darkerMain:#8CBEB2;
-$darkerbg: #1E282D;
-$oneColor: #FCFFF5;
-$zeroColor: #D1DBBD;
+$bg-color-dark: var(--bg-color-dark);
+
+$darkbg: var(--darkbg);
+$darkbg-dark: var(--darkbg-dark);
+$darkbg-light: var(--darkbg-light);
+
+$darkerbg: var(--darkerbg);
+$darkerbg-dark: var(--darkerbg-dark);
+
+$main: var(--main);
+$darkerMain: var(--darkermain);
+
+$oneColor: var(--oneColor);
+$zeroColor: var(--zeroColor);
 $pagebg:var(--pagebg);
 
 //Green
