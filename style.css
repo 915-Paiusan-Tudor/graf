@@ -1,11 +1,11 @@
 :root {
   --pagebg: #263835;
-  --bg-color: #263238;
+  --bg-color: #212b31;
   --bg-color-light: #304047;
   --bg-color-dark: #1c2429;
   --darkbg: #171E22;
   --darkbg-dark: #0d1113;
-  --darkbg-light: #212b31;
+  --darkbg-light: #141a1e;
   --main: #DC9E38;
   --darkermain: #B27A0C;
   --darkerbg: #1E282D;
@@ -164,6 +164,8 @@ body {
 
 .navbar-item:last-child {
   margin-top: auto;
+  margin-bottom: 10px;
+  padding-top: 10px;
   border-top: 1px var(--bg-color-light) solid;
   border-bottom: 0; }
 
@@ -230,7 +232,7 @@ body {
   fill: var(--main); }
 
 .themeContainer {
-  width: 5vw;
+  width: 4.5vw;
   height: 100%;
   background: transparent;
   align-self: center;
@@ -242,7 +244,7 @@ body {
 .container {
   position: relative;
   width: 100%;
-  height: 2.5vw;
+  height: 2.25vw;
   background: transparent;
   border: none;
   padding: 0px;
@@ -250,19 +252,21 @@ body {
 
 .circle {
   width: 100%;
-  height: 2.5vw;
+  height: 2.25vw;
   background-color: #8CBEB2;
-  border-bottom-left-radius: 2.5vw;
-  border-top-left-radius: 2.5vw;
+  border-bottom-left-radius: 2.25vw;
+  border-top-left-radius: 2.25vw;
   transform: rotate(45deg);
-  transform-origin: 100% 50%; }
+  transform-origin: 100% 50%;
+  transition: transform 0.15s, border-radius 0.25s; }
 
 .circle-container {
   width: 25%;
   height: 100%;
   position: absolute;
   left: 25%;
-  top: 0; }
+  top: 0;
+  transition: width 0.25s, left 0.25s; }
 
 .circle2-container {
   width: 25%;
@@ -271,16 +275,18 @@ body {
   left: 50%;
   top: 0;
   display: flex;
-  flex-direction: row-reverse; }
+  flex-direction: row-reverse;
+  transition: width 0.25s, right 0.25s; }
 
 .circle2 {
   flex-direction: row-reverse;
   position: relative;
   width: 100%;
-  height: 2.5vw;
-  background-color: #91AA9D;
-  border-bottom-right-radius: 2.5vw;
-  border-top-right-radius: 2.5vw;
+  height: 2.25vw;
+  background-color: #193441;
+  border-bottom-right-radius: 2.25vw;
+  border-top-right-radius: 2.25vw;
+  transition: transform 0.15s, border-radius 0.25s;
   transform: rotate(45deg);
   transform-origin: 0% 50%; }
 
@@ -288,7 +294,7 @@ body {
   background-color: #8ACB88; }
 
 #c12 {
-  background-color: #FFD27F; }
+  background-color: #485F59; }
 
 #c21 {
   background-color: #DC9E38; }
@@ -299,17 +305,17 @@ body {
 .themeContainer:hover .circle-container {
   width: 50%;
   left: 0;
-  transition: width 0.3s 0.3s, left 0.3s 0.3s; }
+  transition: width 0.5s, left 0.5s; }
 
 .themeContainer:hover .circle-container .circle, .themeContainer:hover .circle2-container .circle2 {
-  border-radius: 2.5vw;
+  border-radius: 2.25vw;
   transform: rotate(0deg);
-  transition: transform 0.3s, border-radius 0.3s 0.3s; }
+  transition: transform 0.3s, border-radius 0.5s; }
 
 .themeContainer:hover .circle2-container {
   width: 50%;
   right: 0;
-  transition: width 0.3s 0.3s, right 0.3s 0.3s; }
+  transition: width 0.5s, right 0.5s; }
 
 table {
   padding: 0;

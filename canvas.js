@@ -1,8 +1,9 @@
 function makeCanvas() {
-  c2.width = container.offsetWidth;
-  c2.height = container.offsetHeight;
-  c.width = container.offsetWidth;
-  c.height = container.offsetHeight;
+  console.log('makeCanvas');
+  c2.width = container.offsetWidth*2;
+  c2.height = container.offsetHeight*2;
+  c.width = container.offsetWidth*2;
+  c.height = container.offsetHeight*2;
 
   x = c.width;
   y = c.height;
@@ -29,7 +30,7 @@ function arrangeTree() {
   cy = [];
   ctx.strokeStyle = nodeStrokeColor;
   ctx2.strokeStyle = nodeStrokeColor;
-  ctx.lineWidth = 3;
+  ctx.lineWidth = 6;
   for (var i = 1; i < cdepth.length; i++) {
     for (var j = 0; j <= cdepth[i].length; j++) {
       cx[cdepth[i][j]] = (j) * x / (cdepth[i].length)+x / (cdepth[i].length)/2;
@@ -47,7 +48,7 @@ function arrangeCircle() {
   cy = [];
   ctx.strokeStyle = nodeStrokeColor;
   ctx2.strokeStyle = nodeStrokeColor;
-  ctx.lineWidth = 5;
+  ctx.lineWidth = 10;
   for (var i = 1; i <= rowNumber; i++) {
     cx[i] = x / 2 - smaller / 2 * radius * Math.cos(x2);
     cy[i] = y / 2 + smaller / 2 * radius * Math.sin(x2);
@@ -68,6 +69,7 @@ function arrangeCircle() {
   // }
 }
 function drawNodes() {
+  console.log('drawNodes');
   ctx.clearRect(0, 0, c.width, c.height);
   for (var i = 1; i <= rowNumber; i++) {
     ctx.beginPath();
@@ -79,13 +81,12 @@ function drawNodes() {
     }
     ctx.fillStyle = nodeColor;
     ctx.fill();
-    ctx2.lineWidth = 3;
+    ctx2.lineWidth = 6;
     ctx.shadowColor = nodeColor;
-    ctx.shadowBlur = 2;
-    ctx.shadowOffsetX = 2;
-    ctx.shadowOffsetY = 2;
+    ctx.shadowBlur = 4;
+    ctx.shadowOffsetX = 4;
+    ctx.shadowOffsetY = 4;
     ctx.fillStyle = nodeStrokeColor;
-      console.log(nodeStrokeColor);
     ctx.stroke();
     ctx.fillStyle = mainColor;
     ctx.textAlign = "center";
@@ -96,8 +97,9 @@ function drawNodes() {
   }
 }
 function drawCanvasLines() {
+  console.log('drawCanvasLines');
   ux = 1;
-  ctx2.lineWidth = 3;
+  ctx2.lineWidth = 6;
   uNodes=[];
   if (isDirected) {
       ctx2.clearRect(0, 0, c.width, c.height);
@@ -183,7 +185,7 @@ function canvasClick(evt) {
     currentCircle = ifInCircle(evt);
   } else if (currentCircle != undefined && dragging == false) {
     ctx2.beginPath();
-    ctx2.lineWidth = 2;
+    ctx2.lineWidth = 4;
     ctx2.moveTo(cx[currentCircle], cy[currentCircle]);
     ctx2.lineTo(cx[closestC], cy[closestC]);
     ctx2.stroke();
@@ -212,8 +214,8 @@ function canvasClick(evt) {
 function getMousePos(canvas, evt) {
   var rect = c.getBoundingClientRect();
   return {
-    x: evt.clientX - rect.left,
-    y: evt.clientY - rect.top
+    x: (evt.clientX - rect.left)*2,
+    y: (evt.clientY - rect.top)*2
   };
 }
 
@@ -287,12 +289,12 @@ function drawLines() {
   if (matriceA[currentCircle][closestC] == 0) {
     ctx2.globalCompositeOperation = 'source-over';
     ctx2.strokeStyle = nodeStrokeColor;
-    ctx2.lineWidth = 3;
+    ctx2.lineWidth = 6;
   } else {
     ctx2.globalCompositeOperation = 'source-over';
     //ctx2.globalCompositeOperation='destination-over';
     ctx2.strokeStyle = "#343c40";
-    ctx2.lineWidth = 3.5;
+    ctx2.lineWidth = 7;
   }
   ctx2.beginPath();
   ctx2.moveTo(cx[currentCircle], cy[currentCircle]);
@@ -306,7 +308,7 @@ function drawLines() {
   //ctx2.globalCompositeOperation='destination-over';
 }
 function canvas_arrow(context, fromx, fromy, tox, toy) {
-  var headlen = 15; // length of head in pixels
+  var headlen = 30; // length of head in pixels
   var dx = tox - fromx;
   var dy = toy - fromy;
   var angle = Math.atan2(dy, dx);

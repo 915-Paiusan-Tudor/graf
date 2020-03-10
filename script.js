@@ -106,7 +106,6 @@ function updateAll() {
   drawCanvasLines();
   createMatriceIncidenta();
   createMatriceDrum();
-  console.table(matriceI);
   if (currentMatrice==="matriceI") {
       createTable(matriceI, "g3", conditiimatrice, 'matrice', 'matrice', "matrice");
   }
@@ -227,7 +226,6 @@ function createMatriceDrum(){
     for(var i = 1 ; i <= rowNumber ; i++){
         for(var j = 1 ; j <= rowNumber ; j++){
             if(matriceD[i][j] == 0){
-              console.log(k+"->"+i+"-"+j ,  matriceD[i][k] , matriceD[k][j]);
               if (k==i&&k==j) {
                 matriceD[i][j] = 1;
               }
@@ -240,12 +238,10 @@ function createMatriceDrum(){
               else {
                 matriceD[i][j] = matriceD[i][k] * matriceD[k][j];
               }
-                console.log(matriceD[i][j]);
               }
             }
           }
         }
-        console.table(matriceD);
 }
 
 function matriceCurrent(evt, matrice) {
@@ -309,7 +305,7 @@ let root = document.documentElement;
   function changeTheme(theme,button){
     if(theme=="yellow"){
       root.style.setProperty('--pagebg', "#263835");
-      root.style.setProperty('--bg-color', "#263238");
+      root.style.setProperty('--bg-color', "#212b31");
       root.style.setProperty('--bg-color-light', "#304047");
       root.style.setProperty('--bg-color-dark', "#1c2429");
       root.style.setProperty('--darkbg', "#171E22");
@@ -323,8 +319,8 @@ let root = document.documentElement;
       root.style.setProperty('--zeroColor', "#C39EA0");
       mainColor='#DC9E38';
       otherMain="#B27A0C";//#B27A0C #8CBEB2 #8ACB88
-      nodeStrokeColor="#1D262B";//#1D262B #191C21
-      nodeColor="#161D21";//#161D21 #16181d
+      nodeStrokeColor="#191C21";//#1D262B #191C21
+      nodeColor="#111111";//#161D21 #16181d
       contrastText="#1b1722";//#1b1722 #CBBF9F
     }
     else if(theme=="green"){
@@ -344,7 +340,7 @@ let root = document.documentElement;
       mainColor='#8ACB88';
       otherMain="#8CBEB2";//#B27A0C #8CBEB2 #8ACB88
       nodeStrokeColor="#191C21";//#1D262B #191C21
-      nodeColor="#16181d";//#161D21 #16181d
+      nodeColor="#000111";//#161D21 #16181d
       contrastText="#CBBF9F";//#1b1722 #CBBF9F
     }
     else if (theme=="blue") {
@@ -364,11 +360,10 @@ let root = document.documentElement;
       mainColor='#91AA9D';
       otherMain="#8ACB88";//#B27A0C #8CBEB2 #8ACB88
       nodeStrokeColor="#191C21";//#1D262B #191C21
-      nodeColor="#16181d";//#161D21 #16181d
+      nodeColor="#000111";//#161D21 #16181d
       contrastText="#CBBF9F";//#1b1722 #CBBF9F
     }
     for(var i=0; i<3;i++) {
-      console.log(document.getElementsByClassName("themeContainer")[i]);
       document.getElementsByClassName("themeContainer")[i].classList.remove("selectedTheme");
     }
     button.classList.add("selectedTheme");

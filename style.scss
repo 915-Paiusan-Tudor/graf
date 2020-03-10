@@ -166,6 +166,8 @@ body {
 }
 .navbar-item:last-child{
   margin-top:auto;
+  margin-bottom:10px;
+  padding-top: 10px;
   border-top: 1px $bg-color-light solid;
   border-bottom: 0;
 }
@@ -238,11 +240,11 @@ body {
   fill: $main;
 }
 
-$width:5vw;
+$width:4.5vw;
 $height:$width/2;
 $angle:45deg;
 $speed1:0.3s;
-$speed2:0.3s;
+$speed2:0.5s;
 $color1:$main;
 $color2:$darkerMain;
 .themeContainer {
@@ -272,6 +274,7 @@ $color2:$darkerMain;
   border-top-left-radius: $height;
   transform: rotate($angle);
   transform-origin: 100% 50%;
+  transition: transform $speed1/2 ,border-radius $speed2/2 ;
 }
 .circle-container {
   width: 25%;
@@ -279,6 +282,7 @@ $color2:$darkerMain;
   position: absolute;
   left: 25%;
   top: 0;
+  transition:width $speed2/2 ,left $speed2/2 ;
 }
 .circle2-container {
   width: 25%;
@@ -288,16 +292,17 @@ $color2:$darkerMain;
   top: 0;
   display: flex;
   flex-direction: row-reverse;
+  transition:width $speed2/2,right $speed2/2;
 }
 .circle2 {
   flex-direction: row-reverse;
   position: relative;
   width: 100%;
   height: $height;
-  background-color: #91AA9D;
+  background-color: #193441;
   border-bottom-right-radius: $height;
   border-top-right-radius: $height;
-
+  transition: transform $speed1/2,border-radius $speed2/2 ;
   transform: rotate($angle);
   transform-origin: 0% 50%;
 }
@@ -305,7 +310,7 @@ $color2:$darkerMain;
   background-color: #8ACB88;
 }
 #c12{
-  background-color: #FFD27F;
+  background-color: #485F59;
 }
 #c21{
   background-color: #DC9E38;
@@ -316,17 +321,17 @@ $color2:$darkerMain;
 .themeContainer:hover .circle-container {
   width: 50%;
   left: 0;
-  transition:width $speed2 $speed1,left $speed2 $speed1;
+  transition:width $speed2 ,left $speed2 ;
 }
 .themeContainer:hover .circle-container .circle, .themeContainer:hover .circle2-container .circle2{
     border-radius: $height;
   transform: rotate(0deg);
-  transition: transform $speed1,border-radius $speed2 $speed1;
+  transition: transform $speed1,border-radius $speed2 ;
 }
 .themeContainer:hover .circle2-container {
   width: 50%;
   right: 0;
-  transition:width $speed2 $speed1,right $speed2 $speed1;
+  transition:width $speed2,right $speed2;
 }
 
 table{

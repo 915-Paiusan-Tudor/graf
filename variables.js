@@ -45,8 +45,8 @@ let matriceI;
 let matriceD;
 let mainColor="#DC9E38";//#D19738 #91AA9D//#FFD27F
 let otherMain="#B27A0C";//#B27A0C #8CBEB2 #8ACB88
-let nodeStrokeColor="#1D262B";//#1D262B #191C21
-let nodeColor="#161D21";//#161D21 #16181d
+let nodeStrokeColor="#191C21";//#1D262B #191C21
+let nodeColor="#111111";//#161D21 #16181d
 let contrastText="#1b1722";//#1b1722 #CBBF9F
 let isAnimating=false;
 let frame=0;
