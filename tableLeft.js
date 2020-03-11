@@ -24,6 +24,11 @@ function deleteRow() {
     alert("Please enter a node");
     return;
   }
+  if (current==rowNumber) {
+current--;
+document.getElementById("current" + currentparcurgere).innerHTML = current;
+eval("parcurgere" + currentparcurgere)(current);
+  }
   rowNumber--;
   tableLeft.pop();
   matriceA.pop();

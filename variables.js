@@ -48,6 +48,7 @@ let otherMain="#B27A0C";//#B27A0C #8CBEB2 #8ACB88
 let nodeStrokeColor="#191C21";//#1D262B #191C21
 let nodeColor="#111111";//#161D21 #16181d
 let contrastText="#1b1722";//#1b1722 #CBBF9F
+let angle=0;
+let direction=1;
 let isAnimating=false;
-let frame=0;
-let target;
+let prevCurrent;

@@ -78,6 +78,14 @@ function parcurgereButton(x) {
 }
 
 function increment(x, i) {
+  if (currentArrangement=="circle") {
+    isAnimating=true;
+    angle=0;
+    direction=i;
+    prevCurrent=current;
+    window.requestAnimationFrame(arrangeCircle);
+  }
+
   if (current != rowNumber && i != -1) {
     current += i;;
   } else if (i != -1) {
@@ -90,10 +98,7 @@ function increment(x, i) {
   }
   document.getElementById("current" + x).innerHTML = current;
   eval("parcurgere" + x)(current);
-  // target=1.5 * Math.PI- (current) * 2 * Math.PI / rowNumber;
-  // frame=target/300;
-  // isAnimating=true;
-  makeCanvas();
+  //makeCanvas();
 }
 //// TODO: update adiacenta after switch to nondirected
 function updateAll() {
