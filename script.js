@@ -1,3 +1,20 @@
+
+function loadCookies(){
+  console.log(document.cookie);
+    if(getCookie('currentTheme')){
+      currentTheme=getCookie('currentTheme');
+    }
+    if(getCookie('currentArrangement')){
+      currentArrangement=getCookie('currentArrangement');
+      console.log(currentArrangement);
+    }
+    if(getCookie('isDirected')){
+      isDirected=getCookie('isDirected');
+    }
+}
+loadCookies();
+console.log(isDirected);
+console.log(typeof isDirected);
 function matriceToggle(x, y) {
   if (matriceA[x][y] == 0) {
     matriceA[x][y] = 1;
@@ -181,6 +198,7 @@ function navbarhover(hover) {
 
 function changeLayout(button, layout) {
   currentArrangement = layout;
+  document.cookie = 'currentArrangement='+layout;
   if (currentArrangement == 'tree') {
     arrangeTree();
   } else {
@@ -271,6 +289,7 @@ function matriceCurrent(evt, matrice) {
 
 function changeDirection(button, directed) {
   isDirected = directed;
+  document.cookie = 'isDirected='+directed;
   updateAll();
   if (button == document.getElementById('nondirected')) {
     document.getElementById('drumBtn').style.display="none";
@@ -300,8 +319,18 @@ c.addEventListener("mouseup", mouseUp);
 c.addEventListener('mousemove', canvasHover);
 window.onresize = makeCanvas;
 window.onzoom = makeCanvas;
-document.getElementById('nondirected').click();
+if (currentArrangement=="tree") {
 document.getElementById('treeLayout').click();
+}
+else {
+  document.getElementById('circleLayout').click();
+}
+if (isDirected==='true') {
+document.getElementById('directed').click();
+}
+else {
+  document.getElementById('nondirected').click();
+}
 document.getElementById("defaultOpen").click();
 document.getElementById("defaultOpen2").click();
 document.getElementById("defaultOpen3").click();
@@ -374,4 +403,24 @@ let root = document.documentElement;
     button.classList.add("selectedTheme");
     drawNodes();
     drawCanvasLines();
+    currentTheme=theme;
+    document.cookie = 'currentTheme='+theme;
   }
+  console.log(currentTheme);
+changeTheme(currentTheme,document.getElementById(currentTheme));
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = document.cookie;
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}

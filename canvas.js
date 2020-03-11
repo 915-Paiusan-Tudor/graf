@@ -1,5 +1,4 @@
 function makeCanvas() {
-  console.log('makeCanvas');
   c2.width = container.offsetWidth*2;
   c2.height = container.offsetHeight*2;
   c.width = container.offsetWidth*2;
@@ -75,7 +74,6 @@ function arrangeCircle() {
   }
 }
 function drawNodes() {
-  console.log('drawNodes');
   ctx.clearRect(0, 0, c.width, c.height);
   for (var i = 1; i <= rowNumber; i++) {
     ctx.beginPath();
@@ -103,7 +101,6 @@ function drawNodes() {
   }
 }
 function drawCanvasLines() {
-  console.log('drawCanvasLines');
   ux = 1;
   ctx2.lineWidth = 6;
   uNodes=[];
