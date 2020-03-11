@@ -98,7 +98,7 @@ function increment(x, i) {
   }
   document.getElementById("current" + x).innerHTML = current;
   eval("parcurgere" + x)(current);
-  //makeCanvas();
+  makeCanvas();
 }
 //// TODO: update adiacenta after switch to nondirected
 function updateAll() {
