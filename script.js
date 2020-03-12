@@ -4,6 +4,9 @@ function loadCookies(){
     if(getCookie('currentTheme')){
       currentTheme=getCookie('currentTheme');
     }
+    else {
+      currentTheme="yellow";
+    }
     if(getCookie('currentArrangement')){
       currentArrangement=getCookie('currentArrangement');
       console.log(currentArrangement);

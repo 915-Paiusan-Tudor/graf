@@ -1,17 +1,17 @@
 :root {
-  --pagebg: #263835;//3E606F
-  --bg-color: #212b31;//193441
-  --bg-color-light: #304047;//204353
-  --bg-color-dark: #1c2429;//12252f
-  --darkbg: #171E22;//171E22
-  --darkbg-dark: #0d1113;//0d1113
-  --darkbg-light: #141a1e;//212b31
-  --main: #DC9E38;//91AA9D
-  --darkermain: #B27A0C;//8CBEB2
-  --darkerbg: #1E282D;//1E282D4
-  --darkerbg-dark: #141a1e;//141a1e
-  --oneColor: #FB9039;//FCFFF5
-  --zeroColor: #C39EA0;//D1DBBD
+  --pagebg: #000;//3E606F
+  --bg-color: #000;//193441
+  --bg-color-light: #000;//204353
+  --bg-color-dark: #000;//12252f
+  --darkbg: #000;//171E22
+  --darkbg-dark: #000;//0d1113
+  --darkbg-light: #000;//212b31
+  --main: #000;//91AA9D
+  --darkermain: #000;//8CBEB2
+  --darkerbg: #000;//1E282D4
+  --darkerbg-dark: #000;//141a1e
+  --oneColor: #000;//FCFFF5
+  --zeroColor: #000;//D1DBBD
 }
 //blue#{'darken(var(--bg-color),5)'}
 $bg-color-light: var(--bg-color-light);

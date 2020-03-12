@@ -51,4 +51,4 @@ let angle=0;
 let direction=1;
 let isAnimating=false;
 let prevCurrent;
-let currentTheme="yellow";;
+let currentTheme;
